@@ -1,0 +1,21 @@
+export const hero = {
+  badge: "Offline | Indisponível para contrato",
+  greeting: "Olá,",
+  nameLead: "eu sou o",
+  tagline: "Desenvolvendo inovações que transformam aspirações em soluções tangíveis, impulsionando o potencial do seu negócio além dos limites.",
+  ctaProjects: "Ver projetos",
+  resume: "Currículo",
+  resumeView: "Visualizar",
+  resumeDownload: "Baixar PDF",
+  photoBio: "Foto & bio",
+  personalIntroCTA: "Ver foto & detalhes pessoais",
+  socialLabel: "Redes e contato",
+  socialGithub: "GitHub",
+  socialLinkedIn: "LinkedIn",
+  socialEmail: "E-mail",
+  roles: {
+    fullstack: "FULLSTACK DEVELOPER",
+    frontend: "FRONTEND DEVELOPER",
+    backend: "BACKEND DEVELOPER",
+  },
+} as const;

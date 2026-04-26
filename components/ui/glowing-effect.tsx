@@ -93,7 +93,7 @@ const GlowingEffect = memo(
       const handleScroll = () => handleMove();
       const handlePointerMove = (e: PointerEvent) => handleMove(e);
 
-      /** Após layout, alinha `--active` se o ponteiro já estiver sobre o cartão (ex.: scroll até à secção). */
+      /** Após layout, alinha `--active` se o ponteiro já estiver sobre o cartão (ex.: scroll até a seção). */
       let innerRaf = 0;
       const outerRaf = requestAnimationFrame(() => {
         innerRaf = requestAnimationFrame(() => handleMove());

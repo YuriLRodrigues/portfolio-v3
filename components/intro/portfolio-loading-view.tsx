@@ -1,3 +1,7 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
+
 import { cn } from "@/lib/utils";
 
 type PortfolioLoadingViewProps = {
@@ -8,6 +12,7 @@ type PortfolioLoadingViewProps = {
  * Visual compartilhado: `app/loading` e splash inicial (logo YR + riscos).
  */
 export function PortfolioLoadingView({ className }: PortfolioLoadingViewProps) {
+  const { t } = useTranslation("common");
   return (
     <div
       className={cn(
@@ -51,16 +56,10 @@ export function PortfolioLoadingView({ className }: PortfolioLoadingViewProps) {
       </div>
 
       <div className="relative z-[1] flex flex-col items-center gap-3">
-        <div
-          className="h-1 w-36 max-w-full overflow-hidden rounded-full bg-border/80"
-          role="progressbar"
-          aria-label="Progresso de carregamento"
-          aria-valuemin={0}
-          aria-valuemax={100}
-        >
+        <div className="h-1 w-36 max-w-full overflow-hidden rounded-full bg-border/80" role="progressbar" aria-label={t("splash.progress")} aria-valuemin={0} aria-valuemax={100}>
           <div className="h-full w-1/3 min-w-[22%] animate-[pulse_1.4s_ease-in-out_infinite] rounded-full bg-primary shadow-[0_0_20px_color-mix(in_oklch,var(--color-primary)_50%,_transparent)]" />
         </div>
-        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.35em] text-muted-foreground">Carregando portfólio</p>
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.35em] text-muted-foreground">{t("splash.loading")}</p>
       </div>
     </div>
   );

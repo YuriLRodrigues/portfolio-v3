@@ -1,0 +1,62 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
+
+import { Container } from "@/components/ui/container";
+
+import { AboutEditorialColumn } from "./about-editorial-column";
+import { AboutStackAside } from "./about-stack-aside";
+
+/**
+ * Sobre — layout próprio (coluna editorial + métricas em cartões + stack em destaque),
+ * sem copiar a hierarquia visual da referência (marca d’água gigante, INTRO/NO., lista tabular).
+ */
+export function AboutSection() {
+  const { t } = useTranslation("about");
+  return (
+    <section
+      id="about"
+      className="relative scroll-mt-20 overflow-hidden border-b border-border/30 bg-background py-20 sm:py-28"
+      style={{
+        backgroundImage: `
+          radial-gradient(ellipse 80% 50% at 100% -20%, color-mix(in oklch, var(--primary) 14%, transparent), transparent 55%),
+          radial-gradient(ellipse 60% 40% at 0% 100%, color-mix(in oklch, var(--primary) 8%, transparent), transparent 50%)
+        `,
+      }}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.22]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            -12deg,
+            transparent,
+            transparent 56px,
+            color-mix(in oklch, var(--foreground) 4%, transparent) 56px,
+            color-mix(in oklch, var(--foreground) 4%, transparent) 57px
+          )`,
+        }}
+        aria-hidden
+      />
+
+      <Container className="relative z-10">
+        <div className="flex flex-wrap items-center gap-4">
+          <div
+            className="grid size-11 shrink-0 place-items-center rounded-lg border border-primary/35 bg-gradient-to-br from-primary/[0.16] to-transparent shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--color-primary)_24%,_transparent)] sm:size-12"
+            aria-hidden
+          >
+            <span className="font-mono text-[11px] font-bold tabular-nums text-primary sm:text-xs">01</span>
+          </div>
+          <div className="h-px min-w-[2.5rem] flex-1 max-w-[6rem] bg-gradient-to-r from-primary/5 via-primary/45 to-transparent lg:max-w-[11rem]" aria-hidden />
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary sm:text-[11px]">{t("sectionKicker")}</p>
+        </div>
+
+        <p className="mt-6 max-w-xl font-mono text-[11px] font-medium uppercase leading-relaxed tracking-[0.18em] text-muted-foreground sm:text-xs">{t("sectionSubtitle")}</p>
+
+        <div className="mt-8 grid gap-12 sm:mt-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 xl:gap-20">
+          <AboutEditorialColumn />
+          <AboutStackAside />
+        </div>
+      </Container>
+    </section>
+  );
+}

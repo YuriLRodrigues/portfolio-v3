@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Scroll spy: a secção ativa é a última (na ordem da página) cujo topo já passou
+ * Scroll spy: a seção ativa é a última (na ordem da página) cujo topo já passou
  * da linha de ativação abaixo do header — comportamento estável com sticky nav.
  */
 export function useActiveSection(sectionIds: readonly string[], fallback: string = sectionIds[0] ?? "home") {

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 import { Container } from "@/components/ui/container";
 
@@ -7,6 +10,7 @@ import { cn } from "@/lib/utils";
 const SITE_LABEL = "Yuri Rodrigues";
 
 export function SiteFooter() {
+  const { t } = useTranslation("common");
   const year = new Date().getFullYear();
 
   return (
@@ -22,10 +26,8 @@ export function SiteFooter() {
       <Container className="relative py-12 sm:py-14">
         <div className="flex flex-col items-center justify-between gap-8 sm:flex-row sm:items-end">
           <div className="text-center sm:max-w-md sm:text-left">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary/90">Portfólio</p>
-            <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
-              Código, interface e produto com atenção ao detalhe — obrigado por visitar.
-            </p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary/90">{t("footer.kicker")}</p>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground sm:text-[0.9375rem]">{t("footer.blurb")}</p>
           </div>
 
           <div className="flex flex-col items-center gap-3 sm:items-end">
@@ -39,7 +41,7 @@ export function SiteFooter() {
               <span className="text-sm font-semibold tracking-tight text-foreground">{SITE_LABEL}</span>
             </Link>
             <p className="text-center font-mono text-[11px] tabular-nums text-muted-foreground sm:text-right">
-              © {year} {SITE_LABEL}. <span className="text-foreground/85">Todos os direitos reservados.</span>
+              © {year} {SITE_LABEL}. <span className="text-foreground/85">{t("footer.rights")}</span>
             </p>
           </div>
         </div>

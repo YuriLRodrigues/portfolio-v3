@@ -2,13 +2,20 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useId, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { AccentPicker } from "@/components/theme/accent-picker";
 import { Button } from "@/components/ui/button";
 
 import { useClientReady } from "@/hooks/use-client-ready";
+import { normalizeToSupported } from "@/lib/i18n/resolve-locale";
 import { cn } from "@/lib/utils";
 import { Monitor, Moon, Palette, Sun } from "lucide-react";
+
+const languageOptions = [
+  { id: "pt" as const, labelKey: "languagePt" as const, ariaKey: "languagePtAria" as const, flag: "🇧🇷" },
+  { id: "en" as const, labelKey: "languageEn" as const, ariaKey: "languageEnAria" as const, flag: "🇺🇸" },
+] as const;
 
 const themeOptions = [
   { id: "system" as const, label: "Sistema", icon: Monitor },
@@ -20,8 +27,10 @@ export function AppearanceMenu() {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
+  const { t, i18n } = useTranslation("common");
   const clientReady = useClientReady();
   const titleId = useId();
+  const activeLanguage = normalizeToSupported(i18n.resolvedLanguage ?? i18n.language);
 
   useEffect(() => {
     if (!open) return;
@@ -50,8 +59,8 @@ export function AppearanceMenu() {
         className="size-9 border-border/60 bg-background/60 shadow-sm backdrop-blur-sm"
         aria-expanded={open}
         aria-haspopup="dialog"
-        aria-label="Aparência: tema e cor de destaque"
-        title="Tema e cores"
+        aria-label={t("appearance.buttonAria")}
+        title={t("appearance.buttonTitle")}
         disabled={!clientReady}
         onClick={() => setOpen((v) => !v)}
       >
@@ -66,12 +75,39 @@ export function AppearanceMenu() {
           aria-labelledby={titleId}
         >
           <p id={titleId} className="mb-3 text-sm font-semibold text-foreground">
-            Aparência
+            {t("appearance.dialogTitle")}
           </p>
 
-          <p className="mb-1.5 text-xs font-medium text-muted-foreground">Tema</p>
+          <p className="mb-1.5 text-xs font-medium text-muted-foreground">{t("appearance.language")}</p>
+          <div className="mb-4 grid grid-cols-2 gap-2">
+            {languageOptions.map(({ id, labelKey, ariaKey, flag }) => {
+              const active = activeLanguage === id;
+              return (
+                <Button
+                  key={id}
+                  type="button"
+                  variant={active ? "default" : "outline"}
+                  size="sm"
+                  className={cn("h-auto flex-col gap-1.5 border-border/50 py-2.5", !active && "bg-background/50")}
+                  aria-pressed={active}
+                  aria-label={t(`appearance.${ariaKey}`)}
+                  onClick={() => {
+                    void i18n.changeLanguage(id);
+                  }}
+                >
+                  <span className="text-lg leading-none" aria-hidden>
+                    {flag}
+                  </span>
+                  <span className="text-[0.7rem] font-medium leading-none">{t(`appearance.${labelKey}`)}</span>
+                </Button>
+              );
+            })}
+          </div>
+
+          <p className="mb-1.5 text-xs font-medium text-muted-foreground">{t("appearance.theme")}</p>
           <div className="mb-4 grid grid-cols-3 gap-2">
-            {themeOptions.map(({ id, label, icon: Icon }) => {
+            {themeOptions.map(({ id, icon: Icon }) => {
+              const label = id === "system" ? t("appearance.themeSystem") : id === "light" ? t("appearance.themeLight") : t("appearance.themeDark");
               const active = theme === id;
               return (
                 <Button
@@ -92,7 +128,7 @@ export function AppearanceMenu() {
             })}
           </div>
 
-          <p className="mb-1.5 text-xs font-medium text-muted-foreground">Cor de destaque</p>
+          <p className="mb-1.5 text-xs font-medium text-muted-foreground">{t("appearance.accent")}</p>
           <AccentPicker />
         </div>
       ) : null}

@@ -1,0 +1,18 @@
+export const contact = {
+  bgWord: "CONTACT",
+  kicker: "Let’s talk",
+  title: "Contact",
+  lead: "Get in touch",
+  p: "Starting a project or want a technical chat? Write with context — I’ll reply as soon as I can.",
+  email: "Email",
+  phone: "Phone",
+  social: "Social links",
+  formKicker: "Message",
+  formSub: "Editorial field styling — UI only for now.",
+  beta: "Beta",
+  name: "Your name",
+  emailField: "Email",
+  message: "Project or message",
+  submit: "Send",
+  footnote: "A real send integration (server action, Resend, Formspree, etc.) can be added later — for now the button only validates the layout.",
+} as const;

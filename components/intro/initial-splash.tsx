@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { PortfolioLoadingView } from "@/components/intro/portfolio-loading-view";
 
@@ -12,6 +13,7 @@ const SESSION_KEY = "portfolio-intro-splash";
  * Apresentação inicial (uma vez por sessão): logo YR + riscos; encerra sozinha ou por "Pular".
  */
 export function InitialSplash() {
+  const { t } = useTranslation("common");
   const [show, setShow] = useState(false);
   const autoHideRef = useRef<number | null>(null);
 
@@ -84,7 +86,7 @@ export function InitialSplash() {
               onClick={dismiss}
               className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground underline-offset-4 transition hover:text-foreground"
             >
-              Pular
+              {t("splash.skip")}
             </button>
           </div>
         </motion.div>

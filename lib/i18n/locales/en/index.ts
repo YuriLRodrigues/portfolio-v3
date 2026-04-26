@@ -1,0 +1,21 @@
+import { about } from "./about";
+import { common } from "./common";
+import { contact } from "./contact";
+import { hero } from "./hero";
+import { highlights } from "./highlights";
+import { intro } from "./intro";
+import { journey } from "./journey";
+import { projects } from "./projects";
+import { technologies } from "./technologies";
+
+export const en = {
+  common,
+  hero,
+  about,
+  technologies,
+  highlights,
+  projects,
+  journey,
+  contact,
+  intro,
+} as const;

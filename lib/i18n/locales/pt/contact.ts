@@ -1,0 +1,18 @@
+export const contact = {
+  bgWord: "CONTATO",
+  kicker: "Vamos conversar",
+  title: "Contato",
+  lead: "Entre em contato",
+  p: "Quer começar um projeto ou bater um papo técnico? Escreva com contexto — respondo o quanto antes.",
+  email: "E-mail",
+  phone: "Telefone",
+  social: "Redes sociais",
+  formKicker: "Mensagem",
+  formSub: "Campos com estilo editorial — só interface por agora.",
+  beta: "Beta",
+  name: "Seu nome",
+  emailField: "E-mail",
+  message: "Projeto ou mensagem",
+  submit: "Enviar",
+  footnote: "Integração de envio (server action, Resend, Formspree, etc.) pode ser ligada depois — por agora o botão só confirma o layout.",
+} as const;

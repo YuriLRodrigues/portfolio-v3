@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { AppearanceMenu } from "@/components/theme/appearance-menu";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
 export function SiteHeader() {
+  const { t } = useTranslation("common");
   const active = useActiveSection(SECTION_IDS, "home");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -35,13 +37,13 @@ export function SiteHeader() {
             className="group flex items-center gap-2 tracking-tight"
           >
             <span className="flex h-8 w-8  items-center uppercase justify-center rounded-lg border border-border/60 bg-primary/10 font-mono text-xs font-bold text-primary shadow-sm transition group-hover:shadow-md">
-              YR
+              {t("siteHeader.logoInitials")}
             </span>
-            <span className=" text-2xl leading-none text-foreground sm:text-3xl">Yuri Rodrigues</span>
+            <span className=" text-2xl leading-none text-foreground sm:text-3xl">{t("siteHeader.brand")}</span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Navegação principal">
-            {NAV_LINKS.map(({ id, label, href }) => (
+          <nav className="hidden items-center gap-1 md:flex" aria-label={t("siteHeader.mainNav")}>
+            {NAV_LINKS.map(({ id, href }) => (
               <a
                 key={id}
                 href={href}
@@ -55,7 +57,7 @@ export function SiteHeader() {
                   active === id && "text-foreground after:scale-x-100",
                 )}
               >
-                {label}
+                {t(`nav.${id}`)}
               </a>
             ))}
           </nav>
@@ -69,7 +71,7 @@ export function SiteHeader() {
               className="size-9 md:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+              aria-label={mobileOpen ? t("siteHeader.closeMenu") : t("siteHeader.mobileOpenMenu")}
               onClick={() => setMobileOpen((v) => !v)}
             >
               {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
@@ -80,12 +82,12 @@ export function SiteHeader() {
 
       {mobileOpen ? (
         <div className="fixed inset-0 z-[48] md:hidden" id="mobile-nav" role="dialog" aria-modal="true">
-          <button type="button" className="absolute inset-0 bg-background/60 backdrop-blur-sm" aria-label="Fechar fundo" onClick={() => setMobileOpen(false)} />
+          <button type="button" className="absolute inset-0 bg-background/60 backdrop-blur-sm" aria-label={t("siteHeader.closeOverlay")} onClick={() => setMobileOpen(false)} />
           <div className="absolute right-0 top-16 w-[min(100%,20rem)] border-l border-border/40 bg-background/95 p-4 shadow-2xl backdrop-blur-xl">
-            <p className="mb-1 text-xs font-medium text-muted-foreground">Aparência</p>
-            <p className="mb-2 text-xs text-muted-foreground">Use o botão de paleta ao lado para tema e cores.</p>
-            <nav className="flex flex-col gap-0.5" aria-label="Navegação mobile">
-              {NAV_LINKS.map(({ id, label, href }) => (
+            <p className="mb-1 text-xs font-medium text-muted-foreground">{t("appearance.dialogTitle")}</p>
+            <p className="mb-2 text-xs text-muted-foreground">{t("siteHeader.mobileNavHint")}</p>
+            <nav className="flex flex-col gap-0.5" aria-label={t("siteHeader.mobileNav")}>
+              {NAV_LINKS.map(({ id, href }) => (
                 <a
                   key={id}
                   href={href}
@@ -98,7 +100,7 @@ export function SiteHeader() {
                     active === id ? "bg-primary/10 text-foreground" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
                   )}
                 >
-                  {label}
+                  {t(`nav.${id}`)}
                 </a>
               ))}
             </nav>
