@@ -8,7 +8,7 @@ import { GradientText } from "@/components/ui/gradient-text";
 
 import { cn } from "@/lib/utils";
 import { Tabs } from "@base-ui/react/tabs";
-import { Briefcase, Download, FileText, GraduationCap } from "lucide-react";
+import { Award, Briefcase, Download, ExternalLink, GraduationCap } from "lucide-react";
 import { motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 
 type ProfessionalEntry = {
@@ -27,12 +27,14 @@ type AcademicEntry = {
   description: string;
 };
 
-type CvEntry = {
+type CertificateEntry = {
   title: string;
-  lang: string;
-  updated: string;
+  issuer: string;
+  issued: string;
   href: string;
   format: string;
+  /** Se true, sugere download de PDF; se false, abre credencial em nova aba. */
+  download?: boolean;
 };
 
 const PROFESSIONAL: ProfessionalEntry[] = [
@@ -57,7 +59,7 @@ const PROFESSIONAL: ProfessionalEntry[] = [
     title: "Desenvolvedor júnior",
     org: "Agência digital",
     location: "Presencial",
-    description: "Landing pages, integrações com CMS e primeiros contactos com pipelines de deploy e versionamento em equipa.",
+    description: "Landing pages, integrações com CMS e primeiros contatos com pipeline de deploy e versionamento em time.",
     stack: ["JavaScript", "WordPress", "Git"],
   },
 ];
@@ -77,61 +79,66 @@ const ACADEMIC: AcademicEntry[] = [
   },
 ];
 
-const CURRICULA: CvEntry[] = [
+const CERTIFICATES: CertificateEntry[] = [
   {
-    title: "CV desenvolvedor",
-    lang: "Português (BR)",
-    updated: "Atualizado em abril/2026",
-    href: "/curriculos/cv-portugues.pdf",
-    format: "PDF · ~120 KB",
+    title: "Certificado (modelo PDF)",
+    issuer: "Instituição ou curso",
+    issued: "2025",
+    href: "/certificados/certificado-modelo.pdf",
+    format: "PDF",
+    download: true,
   },
   {
-    title: "Developer résumé",
-    lang: "English",
-    updated: "Updated Apr 2026",
-    href: "/curriculos/cv-english.pdf",
-    format: "PDF · ~110 KB",
+    title: "Credencial verificável (modelo)",
+    issuer: "Plataforma de badges",
+    issued: "2024",
+    href: "https://www.credly.com",
+    format: "Online",
+    download: false,
   },
 ];
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
-function CurriculumGrid({ items }: { items: CvEntry[] }) {
+function CertificatesGrid({ items }: { items: CertificateEntry[] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
-      {items.map((cv) => (
-        <div
-          key={cv.href}
-          className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/55 bg-gradient-to-br from-card via-card/90 to-background/30 p-5 shadow-sm ring-1 ring-inset ring-white/[0.04] transition hover:border-primary/30 hover:shadow-[0_16px_48px_-24px_color-mix(in_oklch,var(--color-primary)_30%,_transparent)] dark:from-card/50 dark:to-background/20"
-        >
-          <div className="flex items-start justify-between gap-3">
-            <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-border/60 bg-background/80 text-primary">
-              <FileText className="size-5" aria-hidden />
-            </span>
-            <span className="rounded-md border border-border/50 bg-muted/40 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-              {cv.format}
-            </span>
-          </div>
-          <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">{cv.title}</h3>
-          <p className="text-sm text-primary">{cv.lang}</p>
-          <p className="mt-1 text-xs text-muted-foreground">{cv.updated}</p>
-          <a
-            href={cv.href}
-            download
-            className={cn(
-              "mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-primary/35 bg-primary/10 px-4 py-2.5 text-sm font-semibold text-primary transition",
-              "hover:bg-primary hover:text-primary-foreground",
-            )}
+      {items.map((cert) => {
+        const isFileDownload = cert.download === true;
+        return (
+          <div
+            key={cert.title + cert.issued}
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/55 bg-gradient-to-br from-card via-card/90 to-background/30 p-5 shadow-sm ring-1 ring-inset ring-white/[0.04] transition hover:border-primary/30 hover:shadow-[0_16px_48px_-24px_color-mix(in_oklch,var(--color-primary)_30%,_transparent)] dark:from-card/50 dark:to-background/20"
           >
-            <Download className="size-4" aria-hidden />
-            Baixar ficheiro
-          </a>
-          <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
-            Coloca o PDF em <code className="rounded bg-muted px-1 py-px font-mono text-[10px]">public/curriculos/</code> com o mesmo nome do link, ou altera os caminhos no
-            componente.
-          </p>
-        </div>
-      ))}
+            <div className="flex items-start justify-between gap-3">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-border/60 bg-background/80 text-primary">
+                <Award className="size-5" aria-hidden />
+              </span>
+              <span className="rounded-md border border-border/50 bg-muted/40 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                {cert.format}
+              </span>
+            </div>
+            <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">{cert.title}</h3>
+            <p className="text-sm text-primary">{cert.issuer}</p>
+            <p className="mt-1 text-xs text-muted-foreground">Emitido em {cert.issued}</p>
+            <a
+              href={cert.href}
+              {...(isFileDownload ? { download: true } : { target: "_blank", rel: "noopener noreferrer" })}
+              className={cn(
+                "mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-primary/35 bg-primary/10 px-4 py-2.5 text-sm font-semibold text-primary transition",
+                "hover:bg-primary hover:text-primary-foreground",
+              )}
+            >
+              {isFileDownload ? <Download className="size-4" aria-hidden /> : <ExternalLink className="size-4" aria-hidden />}
+              {isFileDownload ? "Baixar PDF" : "Abrir credencial"}
+            </a>
+            <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
+              PDFs em <code className="rounded bg-muted px-1 py-px font-mono text-[10px]">public/certificados/</code> — edite títulos, emitente e links no topo de{" "}
+              <code className="rounded bg-muted px-1 py-px font-mono text-[10px]">journey-section.tsx</code>.
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -191,16 +198,24 @@ function ExperienceCard({ period, title, subtitle, meta, description, tags, kind
   );
 }
 
-function NumberMilestone({ index, total, active, compact }: { index: number; total: number; active: boolean; compact?: boolean }) {
+function NumberMilestone({ index, total, highlighted, compact }: { index: number; total: number; highlighted: boolean; compact?: boolean }) {
   const n = String(index + 1).padStart(2, "0");
+  const reduceMotion = useReducedMotion();
+
   return (
-    <div className={cn("flex flex-col items-center", compact ? "py-1" : "py-2")}>
+    <motion.div
+      className={cn("flex flex-col items-center", compact ? "py-1" : "py-2")}
+      initial={reduceMotion ? false : { opacity: 0, scale: 0.88, y: compact ? 6 : 14 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1, margin: "0px 0px -6% 0px" }}
+      transition={{ duration: 0.48, ease: easeOut, delay: index * 0.04 }}
+    >
       <div
         className={cn(
-          "relative grid place-items-center rounded-2xl border-2 bg-gradient-to-br font-mono font-black tabular-nums tracking-tighter shadow-lg transition-all duration-500",
+          "relative grid place-items-center rounded-2xl border-2 bg-gradient-to-br font-mono font-black tabular-nums tracking-tighter shadow-lg transition-[border-color,color,box-shadow,filter] duration-700 ease-out",
           compact ? "size-16 text-lg" : "size-[4.25rem] text-xl sm:size-24 sm:text-3xl",
           "from-background via-card to-background/80",
-          active
+          highlighted
             ? "border-primary text-primary shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-primary)_40%,_transparent),0_16px_48px_-16px_color-mix(in_oklch,var(--color-primary)_45%,_transparent)]"
             : "border-border/55 text-muted-foreground shadow-black/[0.06] dark:shadow-black/25",
         )}
@@ -208,8 +223,8 @@ function NumberMilestone({ index, total, active, compact }: { index: number; tot
         <span className="relative z-[1]">{n}</span>
         <span
           className={cn(
-            "pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500",
-            active && "opacity-100 [background:radial-gradient(circle_at_28%_18%,color-mix(in_oklch,var(--primary)_28%,_transparent),transparent_62%)]",
+            "pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-700",
+            highlighted && "opacity-100 [background:radial-gradient(circle_at_28%_18%,color-mix(in_oklch,var(--primary)_28%,_transparent),transparent_62%)]",
           )}
           aria-hidden
         />
@@ -217,13 +232,17 @@ function NumberMilestone({ index, total, active, compact }: { index: number; tot
       <span className="mt-2 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/75">
         {n}/{String(total).padStart(2, "0")}
       </span>
-    </div>
+    </motion.div>
   );
 }
 
 function TimelineRow({ entry, index, total, kind }: { entry: Entry; index: number; total: number; kind: TimelineKind }) {
   const rowRef = useRef<HTMLLIElement>(null);
-  const inView = useInView(rowRef, { amount: 0.35, margin: "-10% 0px" });
+  /** Só colore o marco quando boa parte da linha já está na viewport (evita primary “cedo demais”). */
+  const milestoneHighlighted = useInView(rowRef, {
+    amount: 0.58,
+    margin: "0px 0px -18% 0px",
+  });
   const even = index % 2 === 0;
 
   return (
@@ -231,8 +250,8 @@ function TimelineRow({ entry, index, total, kind }: { entry: Entry; index: numbe
       {/* Marco no eixo central — desktop */}
       <div
         className={cn(
-          "pointer-events-none absolute left-1/2 top-1/2 z-[3] hidden size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-background shadow-md md:block",
-          inView
+          "pointer-events-none absolute left-1/2 top-1/2 z-[3] hidden size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-background shadow-md transition-[background-color,box-shadow] duration-700 ease-out md:block",
+          milestoneHighlighted
             ? "bg-primary shadow-[0_0_0_6px_color-mix(in_oklch,var(--color-primary)_22%,_transparent),0_0_28px_color-mix(in_oklch,var(--color-primary)_40%,_transparent)]"
             : "bg-muted-foreground/35",
         )}
@@ -248,7 +267,7 @@ function TimelineRow({ entry, index, total, kind }: { entry: Entry; index: numbe
       >
         {/* Mobile: sempre número → card */}
         <div className="flex justify-center md:hidden">
-          <NumberMilestone index={index} total={total} active={inView} compact />
+          <NumberMilestone index={index} total={total} highlighted={milestoneHighlighted} compact />
         </div>
         <div className="md:hidden">
           <ExperienceCard {...entry} kind={kind} />
@@ -256,10 +275,10 @@ function TimelineRow({ entry, index, total, kind }: { entry: Entry; index: numbe
 
         {/* Desktop: alternância */}
         <div className="hidden md:flex md:justify-end md:pr-4 lg:pr-8">
-          {even ? <NumberMilestone index={index} total={total} active={inView} /> : <ExperienceCard {...entry} kind={kind} />}
+          {even ? <NumberMilestone index={index} total={total} highlighted={milestoneHighlighted} /> : <ExperienceCard {...entry} kind={kind} />}
         </div>
         <div className="hidden md:flex md:justify-start md:pl-4 lg:pl-8">
-          {even ? <ExperienceCard {...entry} kind={kind} /> : <NumberMilestone index={index} total={total} active={inView} />}
+          {even ? <ExperienceCard {...entry} kind={kind} /> : <NumberMilestone index={index} total={total} highlighted={milestoneHighlighted} />}
         </div>
       </motion.div>
     </li>
@@ -338,7 +357,7 @@ function academicToEntries(items: AcademicEntry[]): Entry[] {
 }
 
 /**
- * Trajetória: abas + linha do tempo alternada; trilho ganha cor conforme o scroll.
+ * Trajetória: abas (profissional, acadêmico, certificados) + linha do tempo alternada no scroll.
  */
 export function JourneySection() {
   const listProRef = useRef<HTMLUListElement>(null);
@@ -386,21 +405,21 @@ export function JourneySection() {
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[11px]">Trajetória</p>
           </div>
           <h2 id="journey-heading" className="mt-5 text-balance text-3xl font-black tracking-[-0.035em] text-foreground sm:text-4xl lg:text-[2.55rem] lg:leading-[1.08]">
-            Percurso em <GradientText variant="primaryBalanced">camadas narradas</GradientText>
+            Minha evolução como <GradientText variant="primaryBalanced">desenvolvedor</GradientText>
           </h2>
           <p className="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Uma linha do tempo que alterna o índice da experiência e o cartão de contexto: ao desceres, o trilho ganha cor como se o percurso fosse sendo assinado. Os dados são
-            modelo — substitui pelos teus marcos reais.
+            Organizei minha trajetória em três áreas: <strong>Profissional</strong>, com minha experiência no mercado e projetos reais;
+            <strong> Acadêmico</strong>, com minha formação e estudos em tecnologia; e <strong>Certificados</strong>, onde reúno cursos e validações das minhas habilidades.
           </p>
         </div>
 
-        <Tabs.Root defaultValue="professional" className="mt-12 sm:mt-14">
-          <Tabs.List className="relative flex w-full max-w-2xl flex-col gap-2 rounded-2xl border border-border/50 bg-muted/25 p-1.5 shadow-inner backdrop-blur-sm sm:flex-row sm:p-1.5">
+        <Tabs.Root defaultValue="professional" className="mt-12 w-full sm:mt-14">
+          <Tabs.List className="relative flex w-full flex-col gap-2 rounded-2xl border border-border/50 bg-muted/25 p-1.5 shadow-inner backdrop-blur-sm sm:flex-row sm:gap-1.5 sm:p-1.5">
             <Tabs.Tab
               value="professional"
               className={({ active }) =>
                 cn(
-                  "flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition outline-none sm:py-2.5",
+                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition outline-none sm:flex-1 sm:py-2.5 sm:px-4",
                   active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
                 )
               }
@@ -412,7 +431,7 @@ export function JourneySection() {
               value="academic"
               className={({ active }) =>
                 cn(
-                  "flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition outline-none sm:py-2.5",
+                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition outline-none sm:flex-1 sm:py-2.5 sm:px-4",
                   active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
                 )
               }
@@ -421,20 +440,20 @@ export function JourneySection() {
               Académico
             </Tabs.Tab>
             <Tabs.Tab
-              value="cv"
+              value="certificates"
               className={({ active }) =>
                 cn(
-                  "flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition outline-none sm:py-2.5",
+                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition outline-none sm:flex-1 sm:py-2.5 sm:px-4",
                   active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
                 )
               }
             >
-              <FileText className="size-4 shrink-0 opacity-80" aria-hidden />
-              Currículos
+              <Award className="size-4 shrink-0 opacity-80" aria-hidden />
+              Certificados
             </Tabs.Tab>
           </Tabs.List>
 
-          <div className="relative mt-8 overflow-hidden rounded-[1.75rem] border border-border/45 bg-card/35 p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.35)] ring-1 ring-inset ring-white/[0.04] backdrop-blur-xl dark:border-white/[0.06] dark:bg-card/20 dark:shadow-black/40 sm:p-7 lg:p-9">
+          <div className="relative mt-8 w-full overflow-hidden rounded-[1.75rem] border border-border/45 bg-card/35 p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.35)] ring-1 ring-inset ring-white/[0.04] backdrop-blur-xl dark:border-white/[0.06] dark:bg-card/20 dark:shadow-black/40 sm:p-7 lg:p-9">
             <div className="pointer-events-none absolute -right-24 top-0 size-72 rounded-full bg-primary/[0.07] blur-3xl" aria-hidden />
             <div className="pointer-events-none absolute -bottom-20 -left-16 size-56 rounded-full bg-foreground/[0.04] blur-3xl dark:bg-white/[0.05]" aria-hidden />
 
@@ -448,9 +467,9 @@ export function JourneySection() {
                 <AlternatingTimeline listRef={listAcadRef} entries={academicToEntries(ACADEMIC)} kind="study" />
               </motion.div>
             </Tabs.Panel>
-            <Tabs.Panel value="cv" className="outline-none">
+            <Tabs.Panel value="certificates" className="outline-none">
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: easeOut }}>
-                <CurriculumGrid items={CURRICULA} />
+                <CertificatesGrid items={CERTIFICATES} />
               </motion.div>
             </Tabs.Panel>
           </div>

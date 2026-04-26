@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 
 import { MouseFollower } from "@/components/background/mouse-follower";
 import { InitialSplash } from "@/components/intro/initial-splash";
+import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { AppProviders } from "@/components/providers/app-providers";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <div className="relative z-10 flex min-h-0 min-h-full flex-1 flex-col">
             <SiteHeader />
             {children}
+            <SiteFooter />
           </div>
         </AppProviders>
       </body>

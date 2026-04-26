@@ -5,6 +5,7 @@ import { Archivo } from "next/font/google";
 import { CoderProfileCard } from "@/components/home/coder-profile-card";
 import { HeroFlashStrokes } from "@/components/home/hero-flash-strokes";
 import { HeroLocalGrid } from "@/components/home/hero-local-grid";
+import { openPersonalIntro } from "@/components/home/personal-intro";
 import { ResumeMenu } from "@/components/home/resume-menu";
 import { RotatingRole } from "@/components/home/rotating-role";
 import { GitHubIcon } from "@/components/icons/github-icon";
@@ -13,13 +14,17 @@ import { AnimatedBadge } from "@/components/ui/animated-badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { GradientText } from "@/components/ui/gradient-text";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 
 import { cn } from "@/lib/utils";
-import { Mail, MoveRight } from "lucide-react";
+import { Mail, MoveRight, UserCircle2 } from "lucide-react";
 import { motion } from "motion/react";
 
 const heroDisplay = Archivo({ subsets: ["latin"], weight: "900" });
+
+const socialIconClassName =
+  "flex size-10 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition hover:border-primary/50 hover:bg-primary/10 hover:text-foreground";
 
 /**
  * Hero em duas colunas: saudação, título FULL / STACK / rotação e cartão “coder” à direita.
@@ -95,25 +100,35 @@ export function HeroSection() {
               <MoveRight className="size-4" />
             </a>
             <ResumeMenu />
+            <button
+              type="button"
+              onClick={openPersonalIntro}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "inline-flex gap-2 border-primary/35 bg-background/50 font-mono text-xs font-bold uppercase tracking-wider backdrop-blur-sm hover:border-primary/50 hover:bg-primary/10",
+              )}
+            >
+              <UserCircle2 className="size-4 shrink-0 text-primary" aria-hidden />
+              Foto & bio
+            </button>
             <div className="flex items-center gap-1.5 sm:pl-1" aria-label="Redes e contato">
               {(
                 [
-                  { href: "https://github.com", label: "GitHub", Icon: GitHubIcon },
-                  { href: "https://linkedin.com", label: "LinkedIn", Icon: LinkedInIcon },
-                  { href: "mailto:seu@email.com", label: "E-mail", Icon: Mail },
+                  { href: "https://github.com/YuriLRodrigues", label: "GitHub", Icon: GitHubIcon, preview: true },
+                  { href: "https://www.linkedin.com/in/yuri-leite-rodrigues", label: "LinkedIn", Icon: LinkedInIcon, preview: true },
+                  { href: "mailto:rodriguesyuri769@gmail.com", label: "E-mail", Icon: Mail, preview: false },
                 ] as const
-              ).map(({ href, label, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex size-10 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition hover:border-primary/50 hover:bg-primary/10 hover:text-foreground"
-                  aria-label={label}
-                >
-                  <Icon className="size-4" />
-                </a>
-              ))}
+              ).map(({ href, label, Icon, preview }) =>
+                preview ? (
+                  <LinkPreview key={label} url={href} className={socialIconClassName} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                    <Icon className="size-4" aria-hidden />
+                  </LinkPreview>
+                ) : (
+                  <a key={label} href={href} className={socialIconClassName} aria-label={label}>
+                    <Icon className="size-4" aria-hidden />
+                  </a>
+                ),
+              )}
             </div>
           </motion.div>
         </div>

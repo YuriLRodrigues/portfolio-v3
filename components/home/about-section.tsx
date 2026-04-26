@@ -1,25 +1,31 @@
 import Link from "next/link";
 
+import { PersonalIntroTrigger } from "@/components/home/personal-intro";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { GradientText } from "@/components/ui/gradient-text";
+import { MagicCard } from "@/components/ui/magic-card";
+import { NumberTicker } from "@/components/ui/number-ticker";
 
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Coffee, FolderKanban, Timer } from "lucide-react";
 
-import { MagicCard } from "../ui/magic-card";
-
 const STATS = [
-  { label: "Anos em produção", value: "3+", icon: Timer },
-  { label: "Projetos entregues", value: "30+", icon: FolderKanban },
-  { label: "Café por sprint", value: "∞", icon: Coffee },
+  { label: "Anos em produção", icon: Timer, ticker: 3, suffix: "+" },
+  { label: "Projetos entregues", icon: FolderKanban, ticker: 30, suffix: "+" },
+  { label: "Café por sprint", icon: Coffee, display: "∞" },
 ] as const;
 
 const FOCUS_STACK = [
-  { name: "TypeScript", tag: "Tipagem", detail: "Contratos claros em todo o stack." },
-  { name: "Node.js", tag: "Runtime", detail: "Serviços e APIs com performance previsível." },
-  { name: "React", tag: "Interface", detail: "Componentes reutilizáveis e UX responsiva." },
-  { name: "NestJS", tag: "Backend", detail: "Módulos organizados e prontos para escalar." },
+  {
+    name: "Next.js",
+    tag: "App",
+    detail: "React com App Router, Server Components, streaming e build otimizado para rodar em produção.",
+  },
+  { name: "NestJS", tag: "Backend", detail: "Node modular com injeção de dependência, camadas e suporte a REST, GraphQL e WebSockets." },
+  { name: "Drizzle", tag: "Dados", detail: "ORM em TypeScript com SQL explícito, schema tipado e migrações versionadas no repositório." },
+  { name: "PostgreSQL", tag: "Dados", detail: "Banco relacional ACID com índices avançados, JSON/JSONB, CTEs e ecossistema de extensões." },
+  { name: "Tailwind CSS", tag: "UI", detail: "Utilities CSS com JIT: breakpoints, tema com variáveis, modo escuro por variante e CSS gerado só do que entra na marcação." },
 ] as const;
 
 /**
@@ -53,24 +59,20 @@ export function AboutSection() {
       />
 
       <Container className="relative z-10">
-        <div className="mb-8 flex flex-wrap items-center gap-4 sm:mb-10">
+        <div className="flex flex-wrap items-center gap-4">
           <div
-            className="grid size-11 shrink-0 place-items-center rounded-lg border border-primary/35 bg-gradient-to-br from-primary/[0.12] to-transparent shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--color-primary)_25%,_transparent)] sm:size-12"
+            className="grid size-11 shrink-0 place-items-center rounded-lg border border-primary/35 bg-gradient-to-br from-primary/[0.16] to-transparent shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--color-primary)_24%,_transparent)] sm:size-12"
             aria-hidden
           >
             <span className="font-mono text-[11px] font-bold tabular-nums text-primary sm:text-xs">01</span>
           </div>
-          <div className="h-px min-w-[3rem] flex-1 max-w-[8rem] bg-gradient-to-r from-primary/50 via-primary/20 to-transparent" aria-hidden />
-          <p className="min-w-0 text-[11px] font-medium uppercase leading-snug tracking-[0.2em] text-muted-foreground sm:text-xs">
-            <span className="text-foreground/90">Contexto</span>
-            <span className="mx-2 text-border" aria-hidden>
-              ·
-            </span>
-            <span className="font-normal normal-case tracking-normal text-muted-foreground/90">quem eu sou e como trabalho</span>
-          </p>
+          <div className="h-px min-w-[2.5rem] flex-1 max-w-[6rem] bg-gradient-to-r from-primary/5 via-primary/45 to-transparent lg:max-w-[11rem]" aria-hidden />
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary sm:text-[11px]">Contexto</p>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 xl:gap-20">
+        <p className="mt-6 max-w-xl font-mono text-[11px] font-medium uppercase leading-relaxed tracking-[0.18em] text-muted-foreground sm:text-xs">Quem eu sou e como trabalho</p>
+
+        <div className="mt-8 grid gap-12 sm:mt-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 xl:gap-20">
           <div className="min-w-0 border-l-2 border-primary/35 pl-5 sm:pl-7">
             <h2 className="max-w-xl text-balance text-[clamp(1.85rem,4.6vw,2.85rem)] font-bold leading-[1.12] tracking-[-0.035em] text-foreground">
               Sobre <GradientText>quem assina</GradientText> o código por aqui
@@ -83,22 +85,43 @@ export function AboutSection() {
 
             <div className="mt-7 max-w-xl space-y-4 text-sm leading-relaxed text-muted-foreground sm:mt-8 sm:text-base">
               <p>Trabalho entre APIs bem desenhadas e interfaces que respondem rápido: performance, acessibilidade e detalhes que somam quando o produto cresce.</p>
-              <p>Este site é um laboratório vivo do meu jeito de construir — inclusive a cor de destaque que você escolhe no topo, que percorre o layout inteiro.</p>
+              <p>
+                Sou desenvolvedor full stack e costumo atravessar o ciclo inteiro — do entendimento do problema ao deploy e ao que acontece depois em produção. Me prendo com
+                contratos de API claros, dados consistentes e interface que não sacrifica performance nem acessibilidade por capricho visual. Valorizo convenção do repositório,
+                código legível e teste onde realmente segura mudança sensível, não como enfeite de checklist. Em time, alinho cedo com produto e design; em revisão de código
+                prefiro explicar o porquê do que só trocar linha por gosto pessoal.
+              </p>
+            </div>
+
+            <div className="mt-6 sm:mt-7">
+              <PersonalIntroTrigger />
             </div>
 
             <div className="mt-10 grid gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4">
-              {STATS.map(({ label, value, icon: Icon }) => (
-                <MagicCard
-                  key={label}
-                  gradientSize={75}
-                  className="flex flex-col rounded-2xl border border-border/50 bg-card/50 p-4 shadow-sm ring-1 ring-foreground/[0.02] backdrop-blur-sm transition hover:border-primary/25 hover:ring-primary/10 dark:bg-card/35 dark:ring-white/[0.03] sm:p-5"
-                  innerClassName="bg-card/50 dark:bg-card/35"
-                >
-                  <Icon className="size-4 text-primary/80" aria-hidden />
-                  <p className="mt-3 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-[11px]">{label}</p>
-                  <p className="mt-1 text-2xl font-black tabular-nums tracking-tight text-foreground sm:text-3xl">{value}</p>
-                </MagicCard>
-              ))}
+              {STATS.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <MagicCard
+                    key={stat.label}
+                    gradientSize={75}
+                    className="flex flex-col rounded-2xl border border-border/50 bg-card/50 p-4 shadow-sm ring-1 ring-foreground/[0.02] backdrop-blur-sm transition hover:border-primary/25 hover:ring-primary/10 dark:bg-card/35 dark:ring-white/[0.03] sm:p-5"
+                    innerClassName="bg-card/50 dark:bg-card/35"
+                  >
+                    <Icon className="size-4 text-primary/80" aria-hidden />
+                    <p className="mt-3 font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground sm:text-[11px]">{stat.label}</p>
+                    <p className="mt-1 flex min-h-[2.5rem] items-baseline gap-0.5 text-2xl font-black tabular-nums tracking-tight text-foreground sm:min-h-[2.75rem] sm:text-3xl">
+                      {"ticker" in stat ? (
+                        <>
+                          <NumberTicker value={stat.ticker} delay={index * 0.12} className="font-black tracking-tight text-foreground" />
+                          <span className="text-primary/90">{stat.suffix}</span>
+                        </>
+                      ) : (
+                        <span className="text-primary/90">{stat.display}</span>
+                      )}
+                    </p>
+                  </MagicCard>
+                );
+              })}
             </div>
           </div>
 

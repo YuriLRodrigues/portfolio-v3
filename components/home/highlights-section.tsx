@@ -20,33 +20,34 @@ type Highlight = {
 const HIGHLIGHTS: Highlight[] = [
   {
     title: "Produto antes do código",
-    description: "Traduzo objetivos de negócio em entregas priorizadas: alinho escopo com stakeholders, corto ruído e documento decisões para o time não perder contexto.",
+    description:
+      "Metas de negócio viram entregas priorizadas: alinho escopo com quem decide, tiro ruído de escopo vago e registro o que importa para ninguém perder o fio da meada depois.",
     Icon: Target,
     accent: "featured",
   },
   {
     title: "Comunicação direta",
-    description: "Status honestos, riscos visíveis cedo e handoffs claros com design e QA — menos surpresas em produção e mais confiança no ritmo.",
+    description: "Status sincero, risco visível cedo e passagem de bastão clara com design e QA — menos susto em produção e mais confiança no ritmo do time.",
     Icon: MessageCircle,
   },
   {
-    title: "Código pensado para o próximo",
-    description: "Legibilidade, convenções do projeto e PRs enxutos: quem vier depois (ou eu daqui a seis meses) entende o porquê, não só o como.",
+    title: "Código pensado para quem vem depois",
+    description: "Leitura fácil, convenção do repositório e PRs enxutos: quem pegar o código amanhã (eu mesmo, daqui a seis meses) entende o porquê, não só o como.",
     Icon: GitPullRequest,
   },
   {
     title: "Performance e acessibilidade no radar",
-    description: "Web vitals, contraste e teclado não são extras de última hora — entram no desenho da feature e nos critérios de pronto.",
+    description: "Web Vitals, contraste e teclado não ficam para a véspera — entram junto com o desenho da feature e com a definição do que conta como entregue.",
     Icon: Zap,
   },
   {
     title: "Entrega contínua, não big bang",
-    description: "Slices entregáveis, feature flags quando faz sentido e rollback simples: valor cedo para o utilizador e menos stress na equipa.",
+    description: "Cortes que já geram valor, feature flag quando faz sentido e rollback simples: o usuário ganha cedo e o time respira mais aliviado.",
     Icon: Rocket,
   },
   {
-    title: "Curiosidade técnica aplicada",
-    description: "Experimento com ferramentas novas com critério: só levo ao projeto o que reduz risco, tempo ou custo de manutenção.",
+    title: "Curiosidade técnica com pé no chão",
+    description: "Testo coisa nova com critério: no projeto entra só o que reduz risco, encolhe prazo ou barateia manutenção — o resto fica para estudo fora da sprint.",
     Icon: Sparkles,
   },
 ];
@@ -69,8 +70,7 @@ const item = {
 };
 
 /**
- * Diferenciais — padrão [Aceternity Glowing Effect](https://ui.aceternity.com/components/glowing-effect):
- * wrapper `relative` + brilho na borda + camada `z-10` com [Magic Card](https://magicui.design/docs/components/magic-card) (spotlight no interior).
+ * Diferenciais — grid 2× / 3×; `GlowingEffect` themed (inactiveZone baixo para o brilho reagir ao centro do cartão).
  */
 export function HighlightsSection() {
   return (
@@ -112,10 +112,11 @@ export function HighlightsSection() {
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[11px]">Diferenciais</p>
           </div>
           <h2 id="highlights-heading" className="mt-5 text-balance text-3xl font-bold tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
-            O que levo para <GradientText variant="primaryBalanced">cada equipa</GradientText>
+            O que levo para <GradientText variant="primaryBalanced">cada time</GradientText>
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Um conjunto curto de princípios e hábitos — não buzzwords. Ajusta os textos para refletir a tua experiência real e o tipo de projetos que queres atrair.
+            Busco alinhar negócio, pessoas e qualidade técnica antes do deploy. Cada cartão abaixo é um recorte de como isso aparece no dia a dia — produto, comunicação, código e
+            ritmo de entrega.
           </p>
         </div>
 
@@ -127,24 +128,27 @@ export function HighlightsSection() {
           viewport={{ once: true, margin: "-10% 0px -8% 0px" }}
         >
           {HIGHLIGHTS.map(({ title, description, Icon, accent }) => (
-            <motion.li key={title} variants={item} className="h-full min-h-0">
+            <motion.li key={title} variants={item} className="h-full min-h-0 relative">
               <div
                 className={cn(
-                  "group relative flex h-full min-h-[188px] flex-col overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card via-card/85 to-background/35 shadow-sm ring-1 ring-inset ring-white/[0.04] dark:from-card/55 dark:via-card/40 dark:to-background/20 dark:ring-white/[0.03]",
+                  "group relative flex h-full min-h-[188px] flex-col overflow-visible rounded-2xl border border-border/50 bg-gradient-to-br from-card via-card/85 to-background/35 p-2 shadow-sm ring-1 ring-inset ring-white/[0.04] dark:from-card/55 dark:via-card/40 dark:to-background/20 dark:ring-white/[0.03]",
                   "transition-[border-color,box-shadow,transform] duration-300 hover:border-primary/35 hover:shadow-[0_14px_44px_-18px_color-mix(in_oklch,var(--color-primary)_32%,_transparent)]",
                   accent === "featured" && "border-primary/30 from-primary/[0.07] via-card/88 to-background/35 ring-primary/15 dark:from-primary/[0.1] dark:via-card/45",
                 )}
               >
                 <GlowingEffect
+                  className="z-0"
                   disabled={false}
                   variant="themed"
+                  glow
                   spread={accent === "featured" ? 32 : 26}
-                  proximity={100}
-                  inactiveZone={0.65}
+                  proximity={120}
+                  inactiveZone={0.01}
                   movementDuration={1.5}
-                  borderWidth={1}
+                  borderWidth={2}
+                  blur={0}
                 />
-                <MagicCard mode="gradient" emphasis={accent === "featured"} className="relative z-10 flex h-full min-h-0 flex-1 flex-col rounded-2xl p-0">
+                <MagicCard mode="gradient" emphasis={accent === "featured"} className="relative z-10 flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden rounded-xl p-0">
                   <div
                     className="pointer-events-none absolute -right-8 -top-8 size-28 rounded-full bg-primary/[0.08] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
                     aria-hidden

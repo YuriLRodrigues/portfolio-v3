@@ -93,12 +93,20 @@ const GlowingEffect = memo(
       const handleScroll = () => handleMove();
       const handlePointerMove = (e: PointerEvent) => handleMove(e);
 
+      /** Após layout, alinha `--active` se o ponteiro já estiver sobre o cartão (ex.: scroll até à secção). */
+      let innerRaf = 0;
+      const outerRaf = requestAnimationFrame(() => {
+        innerRaf = requestAnimationFrame(() => handleMove());
+      });
+
       window.addEventListener("scroll", handleScroll, { passive: true });
       document.body.addEventListener("pointermove", handlePointerMove, {
         passive: true,
       });
 
       return () => {
+        cancelAnimationFrame(outerRaf);
+        cancelAnimationFrame(innerRaf);
         if (animationFrameRef.current) {
           cancelAnimationFrame(animationFrameRef.current);
         }
@@ -114,7 +122,7 @@ const GlowingEffect = memo(
             "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
             glow && "opacity-100",
             variant === "white" && "border-white",
-            variant === "themed" && "border-primary/25 dark:border-primary/20",
+            variant === "themed" && "border-[color-mix(in_oklch,var(--primary)_28%,var(--border)_72%)] dark:border-[color-mix(in_oklch,var(--primary)_42%,transparent)]",
             disabled && "!block",
           )}
         />
