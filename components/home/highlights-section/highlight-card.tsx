@@ -1,3 +1,5 @@
+"use client";
+
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { MagicCard } from "@/components/ui/magic-card";
 
@@ -5,6 +7,7 @@ import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
 import { motion } from "motion/react";
 
+import { sectionLiftHoverTransition } from "../section-motion";
 import { item } from "./motion-variants";
 
 type HighlightCardProps = {
@@ -16,7 +19,7 @@ type HighlightCardProps = {
 
 export function HighlightCard({ title, description, Icon, accent }: HighlightCardProps) {
   return (
-    <motion.li variants={item} className="relative h-full min-h-0">
+    <motion.li variants={item} whileHover={{ y: -3 }} transition={sectionLiftHoverTransition} className="relative h-full min-h-0">
       <div
         className={cn(
           "group relative flex h-full min-h-[188px] flex-col overflow-visible rounded-2xl border border-border/50 bg-gradient-to-br from-card via-card/85 to-background/35 p-2 shadow-sm ring-1 ring-inset ring-white/[0.04] dark:from-card/55 dark:via-card/40 dark:to-background/20 dark:ring-white/[0.03]",

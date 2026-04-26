@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { GiBrazilFlag, GiUsaFlag } from "react-icons/gi";
 
 import { AccentPicker } from "@/components/theme/accent-picker";
 import { Button } from "@/components/ui/button";
@@ -13,8 +14,8 @@ import { cn } from "@/lib/utils";
 import { Monitor, Moon, Palette, Sun } from "lucide-react";
 
 const languageOptions = [
-  { id: "pt" as const, labelKey: "languagePt" as const, ariaKey: "languagePtAria" as const, flag: "🇧🇷" },
-  { id: "en" as const, labelKey: "languageEn" as const, ariaKey: "languageEnAria" as const, flag: "🇺🇸" },
+  { id: "pt" as const, labelKey: "languagePt" as const, ariaKey: "languagePtAria" as const, Icon: GiBrazilFlag },
+  { id: "en" as const, labelKey: "languageEn" as const, ariaKey: "languageEnAria" as const, Icon: GiUsaFlag },
 ] as const;
 
 const themeOptions = [
@@ -80,7 +81,7 @@ export function AppearanceMenu() {
 
           <p className="mb-1.5 text-xs font-medium text-muted-foreground">{t("appearance.language")}</p>
           <div className="mb-4 grid grid-cols-2 gap-2">
-            {languageOptions.map(({ id, labelKey, ariaKey, flag }) => {
+            {languageOptions.map(({ id, labelKey, ariaKey, Icon }) => {
               const active = activeLanguage === id;
               return (
                 <Button
@@ -95,9 +96,7 @@ export function AppearanceMenu() {
                     void i18n.changeLanguage(id);
                   }}
                 >
-                  <span className="text-lg leading-none" aria-hidden>
-                    {flag}
-                  </span>
+                  <Icon className="size-5 shrink-0" aria-hidden />
                   <span className="text-[0.7rem] font-medium leading-none">{t(`appearance.${labelKey}`)}</span>
                 </Button>
               );

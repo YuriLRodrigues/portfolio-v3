@@ -5,6 +5,9 @@ import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
 import { ChevronRight, Code2, Cpu, Layers, Wrench } from "lucide-react";
+import { motion } from "motion/react";
+
+import { sectionEase, sectionMotionViewport } from "../section-motion";
 
 function PipelineConnector() {
   return (
@@ -31,7 +34,15 @@ export function PipelineDecor({ className }: { className?: string }) {
     [],
   );
   return (
-    <div className={cn("hidden w-full select-none  lg:block", className)} aria-hidden>
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -3 }}
+      viewport={sectionMotionViewport}
+      transition={{ duration: 0.7, delay: 0.08, ease: sectionEase }}
+      className={cn("hidden w-full cursor-default select-none lg:block", className)}
+      aria-hidden
+    >
       <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card/70 via-background/35 to-card/40 p-[1px] shadow-[0_20px_50px_-24px_rgba(0,0,0,0.2)] ring-1 ring-inset ring-white/[0.07] dark:from-card/45 dark:via-background/25 dark:to-card/30 dark:shadow-black/45 dark:ring-white/[0.05]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_50%_-30%,color-mix(in_oklch,var(--primary)_14%,transparent),transparent_58%)]" />
         <div className="pointer-events-none absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
@@ -61,6 +72,6 @@ export function PipelineDecor({ className }: { className?: string }) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

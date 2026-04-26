@@ -9,6 +9,7 @@ import { withTechLocale } from "@/lib/i18n/tech-english";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 
+import { sectionMotionViewport } from "../section-motion";
 import { easeOut } from "./motion-variants";
 import type { PanelMeta, Tech } from "./types";
 
@@ -41,9 +42,10 @@ export function TechTile({ tech, panelId, compact, rail }: { tech: Tech; panelId
       ref={tileRef}
       initial={reduceMotion ? false : { opacity: 0, y: 18 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-8% 0px" }}
-      transition={{ duration: 0.45, ease: easeOut }}
+      viewport={sectionMotionViewport}
+      transition={{ duration: 0.62, ease: easeOut }}
       whileHover={reduceMotion ? undefined : { y: -5, transition: { duration: 0.24, ease: easeOut } }}
+      whileTap={reduceMotion ? undefined : { scale: 0.985 }}
       onMouseMove={onMove}
       onMouseLeave={() => setGlow({ x: 50, y: 50 })}
       className={cn(

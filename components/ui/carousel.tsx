@@ -84,7 +84,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
         <button
           type="button"
           onClick={() => go(-1)}
-          className="grid cursor-pointer size-12 place-items-center rounded-2xl border border-border/55 bg-gradient-to-b from-background/95 to-muted/30 text-foreground shadow-[0_8px_28px_-12px_rgba(0,0,0,0.25)] ring-1 ring-primary/15 transition hover:border-primary/40 hover:from-primary/10 hover:to-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 dark:from-card/90 dark:to-background/40 dark:shadow-black/40"
+          className="grid cursor-pointer size-12 place-items-center rounded-2xl border border-border/55 bg-gradient-to-b from-background/95 to-muted/30 text-foreground shadow-[0_8px_28px_-12px_rgba(0,0,0,0.25)] ring-1 ring-primary/15 transition-[border-color,background-color,color,transform,box-shadow] duration-200 hover:scale-105 hover:border-primary/40 hover:from-primary/10 hover:to-primary/5 hover:text-primary active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 dark:from-card/90 dark:to-background/40 dark:shadow-black/40"
           aria-label="Projeto anterior"
         >
           <ChevronLeft className="size-5" />
@@ -102,7 +102,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
               aria-selected={i === current}
               onClick={() => setCurrent(i)}
               className={cn(
-                "h-2 rounded-full cursor-pointer transition-all duration-300 ease-out",
+                "h-2 rounded-full cursor-pointer transition-all duration-300 ease-out hover:scale-125",
                 i === current
                   ? "w-10 bg-primary shadow-[0_0_18px_color-mix(in_oklch,var(--color-primary)_50%,_transparent)]"
                   : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50",
@@ -114,7 +114,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
         <button
           type="button"
           onClick={() => go(1)}
-          className="grid cursor-pointer size-12 place-items-center rounded-2xl border border-border/55 bg-gradient-to-b from-background/95 to-muted/30 text-foreground shadow-[0_8px_28px_-12px_rgba(0,0,0,0.25)] ring-1 ring-primary/15 transition hover:border-primary/40 hover:from-primary/10 hover:to-primary/5 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 dark:from-card/90 dark:to-background/40 dark:shadow-black/40"
+          className="grid cursor-pointer size-12 place-items-center rounded-2xl border border-border/55 bg-gradient-to-b from-background/95 to-muted/30 text-foreground shadow-[0_8px_28px_-12px_rgba(0,0,0,0.25)] ring-1 ring-primary/15 transition-[border-color,background-color,color,transform,box-shadow] duration-200 hover:scale-105 hover:border-primary/40 hover:from-primary/10 hover:to-primary/5 hover:text-primary active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 dark:from-card/90 dark:to-background/40 dark:shadow-black/40"
           aria-label="Projeto seguinte"
         >
           <ChevronRight className="size-5" />

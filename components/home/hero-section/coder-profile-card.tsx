@@ -30,7 +30,7 @@ export function CoderProfileCard({ data = DEFAULT_PROFILE, className }: CoderPro
   return (
     <div
       className={cn(
-        "w-full max-w-xl overflow-hidden rounded-xl border border-border/80 bg-gradient-to-br from-card via-card to-muted/25 shadow-lg ring-1 ring-foreground/[0.04] dark:from-card dark:via-card/90 dark:to-background/40 dark:ring-white/[0.05] lg:max-w-none",
+        "w-full max-w-xl overflow-hidden rounded-xl border border-border/80 bg-gradient-to-br from-card via-card to-muted/25 shadow-lg ring-1 ring-foreground/[0.04] transition-[border-color,box-shadow] duration-300 hover:border-primary/35 hover:shadow-[0_20px_50px_-24px_color-mix(in_oklch,var(--color-primary)_18%,_transparent)] dark:from-card dark:via-card/90 dark:to-background/40 dark:ring-white/[0.05] lg:max-w-none",
         className,
       )}
     >

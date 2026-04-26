@@ -15,7 +15,7 @@ export function AboutEditorialColumn() {
         {t("titleBefore")} <GradientText>{t("titleGradient")}</GradientText> {t("titleAfter")}
       </h2>
 
-      <blockquote className="relative mt-7 max-w-xl border-l border-primary/25 py-1 pl-5 text-base italic leading-relaxed text-foreground/90 sm:mt-8 sm:text-lg">
+      <blockquote className="relative mt-7 max-w-xl border-l border-primary/25 py-1 pl-5 text-base italic leading-relaxed text-foreground/90 transition-[border-color,box-shadow] duration-300 hover:border-primary/45 hover:shadow-[inset_4px_0_0_0_color-mix(in_oklch,var(--color-primary)_35%,_transparent)] sm:mt-8 sm:text-lg">
         <span className="font-semibold not-italic text-foreground">{t("blockquoteStrong")}</span> {t("blockquoteRest")}{" "}
         <span className="text-primary not-italic">{t("blockquoteAccent")}</span> {t("blockquoteEnd")}
       </blockquote>
@@ -26,7 +26,7 @@ export function AboutEditorialColumn() {
       </div>
 
       <div className="mt-6 sm:mt-7">
-        <PersonalIntroTrigger />
+        <PersonalIntroTrigger className="transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]" />
       </div>
 
       <AboutStatsGrid />

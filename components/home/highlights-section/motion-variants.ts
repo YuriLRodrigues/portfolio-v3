@@ -1,16 +1,18 @@
+import { sectionEase } from "../section-motion";
+
 export const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.08 },
   },
 };
 
 export const item = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.62, ease: sectionEase },
   },
 };

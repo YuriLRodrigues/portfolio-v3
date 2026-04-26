@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
@@ -12,6 +12,8 @@ type AnimatedBadgeProps = {
   color?: string;
   href?: string;
   className?: string;
+  /** Se definido, a entrada usa `whileInView` (ex.: hero com `once: false` para repetir ao scroll). */
+  motionViewport?: ComponentProps<typeof motion.div>["viewport"];
 };
 
 const dot = "relative flex h-2.5 w-2.5 shrink-0" as const;
@@ -22,7 +24,7 @@ const center = "relative inline-flex h-2.5 w-2.5 rounded-full" as const;
  * Badge com ponto a pulsar e entrada suave, inspirado no
  * [Eldora UI — Animated Badge](https://www.eldoraui.site/docs/components/animated-badge).
  */
-export function AnimatedBadge({ text, color, href, className }: AnimatedBadgeProps) {
+export function AnimatedBadge({ text, color, href, className, motionViewport }: AnimatedBadgeProps) {
   const tone = color ?? "var(--color-primary)";
   const pillStyle = color
     ? {
@@ -63,11 +65,19 @@ export function AnimatedBadge({ text, color, href, className }: AnimatedBadgePro
     </span>
   );
 
+  const revealed = { opacity: 1, y: 0, filter: "blur(0px)" } as const;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      {...(motionViewport ? { whileInView: revealed, viewport: motionViewport } : { animate: revealed })}
+      whileHover={{ scale: 1.03, y: -1 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{
+        duration: motionViewport ? 0.68 : 0.5,
+        delay: motionViewport ? 0.14 : 0.1,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="inline-block w-fit max-w-full"
     >
       {inner}

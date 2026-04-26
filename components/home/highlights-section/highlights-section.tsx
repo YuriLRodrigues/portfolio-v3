@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 
 import { motion } from "motion/react";
 
+import { sectionMotionViewport } from "../section-motion";
 import { HighlightCard } from "./highlight-card";
 import { HIGHLIGHTS } from "./highlights-data";
 import { HighlightsHeader } from "./highlights-header";
@@ -50,7 +51,7 @@ export function HighlightsSection() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-10% 0px -8% 0px" }}
+          viewport={sectionMotionViewport}
         >
           {HIGHLIGHTS.map((h) => (
             <HighlightCard

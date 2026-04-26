@@ -35,7 +35,7 @@ export function ExperienceCard({ period, title, subtitle, meta, description, tag
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="Stack">
           {tags.map((t) => (
             <li key={t}>
-              <span className="inline-flex rounded-md border border-primary/25 bg-primary/[0.08] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-primary">
+              <span className="inline-flex rounded-md border border-primary/25 bg-primary/[0.08] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-primary transition-[transform,border-color] duration-200 hover:scale-105 hover:border-primary/45">
                 {t}
               </span>
             </li>

@@ -1,10 +1,11 @@
-/** Substitua pelos seus dados e URLs reais. */
+/** Dados exibidos na coluna editorial; ajuste telefone/links se precisar. */
 export const CONTACT = {
-  email: "contato@exemplo.com",
-  phoneDisplay: "+55 (00) 00000-0000",
-  phoneHref: "tel:+5500000000000",
+  email: "rodriguesyuri769@gmail.com",
+  /** Deixe vazio para ocultar o bloco de telefone na UI. */
+  phoneDisplay: "",
+  phoneHref: "",
   social: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    github: "https://github.com/YuriLRodrigues",
+    linkedin: "https://www.linkedin.com/in/yuri-leite-rodrigues",
   },
 } as const;

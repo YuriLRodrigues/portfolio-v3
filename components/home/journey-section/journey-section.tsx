@@ -64,8 +64,8 @@ export function JourneySection() {
               value="professional"
               className={({ active }) =>
                 cn(
-                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition outline-none sm:flex-1 sm:py-2.5 sm:px-4",
-                  active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
+                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none transition-[color,transform,background-color,box-shadow] duration-200 sm:flex-1 sm:py-2.5 sm:px-4",
+                  active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:scale-[1.02] hover:text-foreground",
                 )
               }
             >
@@ -76,8 +76,8 @@ export function JourneySection() {
               value="academic"
               className={({ active }) =>
                 cn(
-                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition outline-none sm:flex-1 sm:py-2.5 sm:px-4",
-                  active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
+                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none transition-[color,transform,background-color,box-shadow] duration-200 sm:flex-1 sm:py-2.5 sm:px-4",
+                  active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:scale-[1.02] hover:text-foreground",
                 )
               }
             >
@@ -88,8 +88,8 @@ export function JourneySection() {
               value="certificates"
               className={({ active }) =>
                 cn(
-                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition outline-none sm:flex-1 sm:py-2.5 sm:px-4",
-                  active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:text-foreground",
+                  "flex w-full min-w-0 items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold outline-none transition-[color,transform,background-color,box-shadow] duration-200 sm:flex-1 sm:py-2.5 sm:px-4",
+                  active ? "bg-background text-foreground shadow-md ring-1 ring-border/60" : "text-muted-foreground hover:scale-[1.02] hover:text-foreground",
                 )
               }
             >

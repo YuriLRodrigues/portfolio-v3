@@ -1,18 +1,20 @@
-export const easeOut = [0.22, 1, 0.36, 1] as const;
+import { sectionEase } from "../section-motion";
+
+export const easeOut = sectionEase;
 
 export const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.06 },
+    transition: { staggerChildren: 0.14, delayChildren: 0.1 },
   },
 };
 
 export const panel = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 26 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.52, ease: easeOut },
+    transition: { duration: 0.68, ease: easeOut },
   },
 };

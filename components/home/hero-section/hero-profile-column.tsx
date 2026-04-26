@@ -3,14 +3,17 @@
 import { motion } from "motion/react";
 
 import { CoderProfileCard } from "./coder-profile-card";
+import { heroEase, heroMotionViewport } from "./hero-motion";
 
 export function HeroProfileColumn() {
   return (
     <motion.div
       className="relative min-h-[220px] w-full"
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.55, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      whileHover={{ y: -4, scale: 1.01 }}
+      viewport={heroMotionViewport}
+      transition={{ duration: 0.78, delay: 0.28, ease: heroEase }}
     >
       <div
         className="pointer-events-none absolute inset-0 -z-10 rounded-2xl border border-primary/30 shadow-[0_0_0_1px_color-mix(in_oklch,var(--color-primary)_20%,_transparent),inset_0_0_60px_color-mix(in_oklch,var(--color-primary)_8%,_transparent)]"

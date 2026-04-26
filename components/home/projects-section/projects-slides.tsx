@@ -15,7 +15,7 @@ const stackBadgeStyles: Record<ProjectStackRole, string> = {
 };
 
 const linkChipClass =
-  "inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-border/55 bg-background/70 px-4 font-mono text-[11px] font-bold uppercase tracking-wider text-foreground shadow-sm backdrop-blur-sm transition hover:border-primary/45 hover:bg-primary/10 hover:text-primary";
+  "inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-border/55 bg-background/70 px-4 font-mono text-[11px] font-bold uppercase tracking-wider text-foreground shadow-sm backdrop-blur-sm transition-[border-color,background-color,color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:border-primary/45 hover:bg-primary/10 hover:text-primary hover:shadow-md active:scale-[0.99]";
 
 type ProjectsT = TFunction<"projects", undefined>;
 

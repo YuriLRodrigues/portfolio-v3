@@ -17,7 +17,7 @@ export function AboutStatsGrid() {
           <MagicCard
             key={stat.id}
             gradientSize={75}
-            className="flex flex-col rounded-2xl border border-border/50 bg-card/50 p-4 shadow-sm ring-1 ring-foreground/[0.02] backdrop-blur-sm transition hover:border-primary/25 hover:ring-primary/10 dark:bg-card/35 dark:ring-white/[0.03] sm:p-5"
+            className="flex flex-col rounded-2xl border border-border/50 bg-card/50 p-4 shadow-sm ring-1 ring-foreground/[0.02] backdrop-blur-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:border-primary/25 hover:ring-primary/10 dark:bg-card/35 dark:ring-white/[0.03] sm:p-5"
             innerClassName="bg-card/50 dark:bg-card/35"
           >
             <Icon className="size-4 text-primary/80" aria-hidden />

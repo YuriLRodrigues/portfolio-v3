@@ -7,7 +7,9 @@ import { buttonVariants } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 
+import { sectionHoverTransition, sectionLiftHoverTransition } from "../section-motion";
 import { FOCUS_STACK } from "./about-data";
 
 export function AboutStackAside() {
@@ -22,7 +24,11 @@ export function AboutStackAside() {
           }}
           aria-hidden
         />
-        <div className="relative rounded-[calc(1.5rem-1px)] bg-card/90 p-6 backdrop-blur-xl dark:bg-card/75 sm:p-7">
+        <motion.div
+          whileHover={{ y: -3 }}
+          transition={sectionLiftHoverTransition}
+          className="relative rounded-[calc(1.5rem-1px)] bg-card/90 p-6 backdrop-blur-xl dark:bg-card/75 sm:p-7"
+        >
           <div className="flex items-baseline justify-between gap-3">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">{t("stackKicker")}</p>
@@ -33,9 +39,12 @@ export function AboutStackAside() {
 
           <ul className="mt-6 flex flex-col gap-2.5" role="list">
             {FOCUS_STACK.map((row) => (
-              <li
+              <motion.li
                 key={row.name}
-                className="group rounded-2xl border border-border/40 bg-background/40 px-4 py-3.5 transition hover:border-primary/30 hover:bg-background/70 dark:border-border/30 dark:bg-background/20 dark:hover:bg-background/35 sm:px-4 sm:py-4"
+                whileHover={{ y: -2, x: 2 }}
+                whileTap={{ scale: 0.99 }}
+                transition={sectionHoverTransition}
+                className="group cursor-default rounded-2xl border border-border/40 bg-background/40 px-4 py-3.5 transition-[border-color,background-color,box-shadow] duration-300 hover:border-primary/30 hover:bg-background/70 hover:shadow-md dark:border-border/30 dark:bg-background/20 dark:hover:bg-background/35 sm:px-4 sm:py-4"
               >
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                   <span className="text-base font-semibold tracking-tight text-foreground sm:text-lg">{row.name}</span>
@@ -44,7 +53,7 @@ export function AboutStackAside() {
                   </span>
                 </div>
                 <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground sm:text-sm">{t(`focus.${row.i18nKey}.detail` as "focus.next.detail")}</p>
-              </li>
+              </motion.li>
             ))}
           </ul>
 
@@ -52,13 +61,13 @@ export function AboutStackAside() {
             href="#projects"
             className={cn(
               buttonVariants({ variant: "default", size: "lg" }),
-              "group/about-cta mt-6 inline-flex w-full gap-2 font-mono text-xs font-bold uppercase tracking-widest shadow-[0_0_24px_color-mix(in_oklch,var(--color-primary)_28%,_transparent)]",
+              "group/about-cta mt-6 inline-flex w-full gap-2 font-mono text-xs font-bold uppercase tracking-widest shadow-[0_0_24px_color-mix(in_oklch,var(--color-primary)_28%,_transparent)] transition-transform duration-200 hover:scale-[1.02] active:scale-[0.99]",
             )}
           >
             {t("stackCta")}
             <ArrowUpRight className="size-4 opacity-90 transition group-hover/about-cta:translate-x-0.5 group-hover/about-cta:-translate-y-0.5" />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </aside>
   );

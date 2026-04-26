@@ -7,7 +7,9 @@ import { PortfolioCarousel } from "@/components/ui/carousel";
 import { Container } from "@/components/ui/container";
 
 import { PROJECTS } from "@/lib/projects";
+import { motion } from "motion/react";
 
+import { sectionEase, sectionMotionViewport } from "../section-motion";
 import { ProjectsHeader } from "./projects-header";
 import { projectToSlide } from "./projects-slides";
 
@@ -43,9 +45,15 @@ export function ProjectsSection() {
       <Container className="relative z-10">
         <ProjectsHeader />
 
-        <div className="relative z-[1] mt-10 w-full sm:mt-14">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={sectionMotionViewport}
+          transition={{ duration: 0.76, delay: 0.2, ease: sectionEase }}
+          className="relative z-[1] mt-10 w-full sm:mt-14"
+        >
           <PortfolioCarousel slides={slides} />
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

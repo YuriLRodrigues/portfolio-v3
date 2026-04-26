@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { RESUME_FILENAME_DOWNLOAD, RESUME_PDF_HREF } from "@/lib/resume";
 import { cn } from "@/lib/utils";
 import { ChevronDown, Download, ExternalLink, FileText } from "lucide-react";
+import { motion } from "motion/react";
+
+import { sectionHoverTransition } from "../section-motion";
 
 function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewLabel: string; downloadLabel: string }) {
   return (
@@ -20,7 +23,7 @@ function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewL
         target="_blank"
         rel="noopener noreferrer"
         role="menuitem"
-        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition hover:bg-primary/10"
+        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition-[background-color,transform] duration-200 hover:bg-primary/10 hover:translate-x-0.5"
         onClick={onPick}
       >
         <ExternalLink className="size-4 shrink-0 text-primary" />
@@ -30,7 +33,7 @@ function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewL
         href={RESUME_PDF_HREF}
         download={RESUME_FILENAME_DOWNLOAD}
         role="menuitem"
-        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition hover:bg-primary/10"
+        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition-[background-color,transform] duration-200 hover:bg-primary/10 hover:translate-x-0.5"
         onClick={onPick}
       >
         <Download className="size-4 shrink-0 text-primary" />
@@ -71,19 +74,21 @@ export function ResumeMenu() {
 
   return (
     <div className="relative flex flex-wrap items-center gap-2" ref={rootRef}>
-      <Button
-        type="button"
-        variant="outline"
-        size="default"
-        className="gap-2 border-border/60 bg-background/60 font-mono text-xs font-bold uppercase tracking-wide"
-        aria-expanded={open}
-        aria-haspopup="menu"
-        onClick={toggle}
-      >
-        <FileText className="size-4" />
-        {t("resume")}
-        <ChevronDown className={cn("size-4 transition", open && "rotate-180")} />
-      </Button>
+      <motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }} transition={sectionHoverTransition}>
+        <Button
+          type="button"
+          variant="outline"
+          size="default"
+          className="gap-2 border-border/60 bg-background/60 font-mono text-xs font-bold uppercase tracking-wide"
+          aria-expanded={open}
+          aria-haspopup="menu"
+          onClick={toggle}
+        >
+          <FileText className="size-4" />
+          {t("resume")}
+          <ChevronDown className={cn("size-4 transition", open && "rotate-180")} />
+        </Button>
+      </motion.div>
       {open ? <Panel onPick={pick} viewLabel={t("resumeView")} downloadLabel={t("resumeDownload")} /> : null}
     </div>
   );

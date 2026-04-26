@@ -1,6 +1,7 @@
 "use client";
 
-import { createElement, useEffect, useMemo, useRef, useState } from "react";
+import type { Ref } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { useInView } from "motion/react";
@@ -18,6 +19,8 @@ type TypingAnimationProps = {
   loop?: boolean;
   as?: "span" | "p" | "div" | "h1" | "h2" | "h3" | "h4";
   startOnView?: boolean;
+  /** Com `startOnView`: se `false`, reinicia a digitação sempre que o elemento volta a ficar visível. Default `true`. */
+  inViewOnce?: boolean;
   showCursor?: boolean;
   blinkCursor?: boolean;
   cursorStyle?: TypingAnimationCursor;
@@ -43,6 +46,7 @@ export function TypingAnimation({
   loop = false,
   as: Tag = "span",
   startOnView = true,
+  inViewOnce = true,
   showCursor = true,
   blinkCursor = true,
   cursorStyle = "line",
@@ -50,8 +54,11 @@ export function TypingAnimation({
   const list = useMemo(() => (words && words.length > 0 ? [...words] : [children].filter((s) => s.length > 0)), [words, children]);
   const listKey = useMemo(() => list.join("\0"), [list]);
   const boxRef = useRef<HTMLElement | null>(null);
+  const assignRef: Ref<HTMLElement> = useCallback((el: HTMLElement | null) => {
+    boxRef.current = el;
+  }, []);
   /** `amount` baixo + área mínima: span vazio `inline` costuma ter largura 0 e nunca entra em view — a digitação não começa. */
-  const inView = useInView(boxRef, { once: true, margin: "0px 0px -64px 0px", amount: 0.05 });
+  const inView = useInView(boxRef, { once: inViewOnce, margin: "0px 0px -64px 0px", amount: 0.05 });
   const startOk = !startOnView || inView;
   const [go, setGo] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
@@ -66,11 +73,29 @@ export function TypingAnimation({
   useEffect(() => {
     hasEnded.current = false;
     pauseRef.current = false;
-    setCharIndex(0);
-    setWordIndex(0);
-    setDeleting(false);
-    setGo(false);
+    const id = window.requestAnimationFrame(() => {
+      setCharIndex(0);
+      setWordIndex(0);
+      setDeleting(false);
+      setGo(false);
+    });
+    return () => window.cancelAnimationFrame(id);
   }, [listKey]);
+
+  useEffect(() => {
+    if (inViewOnce || !startOnView || inView) {
+      return;
+    }
+    const id = window.requestAnimationFrame(() => {
+      hasEnded.current = false;
+      pauseRef.current = false;
+      setCharIndex(0);
+      setWordIndex(0);
+      setDeleting(false);
+      setGo(false);
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [inView, inViewOnce, startOnView]);
 
   useEffect(() => {
     if (!startOk) {
@@ -132,13 +157,64 @@ export function TypingAnimation({
     </span>
   ) : null;
 
-  return createElement(
-    Tag,
-    {
-      ref: boxRef,
-      className: cn("inline-block min-h-[1cap] min-w-[0.35em] align-baseline", className),
-    },
-    text,
-    cursor,
-  );
+  const mergedClass = cn("inline-block min-h-[1cap] min-w-[0.35em] align-baseline", className);
+
+  switch (Tag) {
+    case "span":
+      return (
+        <span ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </span>
+      );
+    case "p":
+      return (
+        <p ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </p>
+      );
+    case "div":
+      return (
+        <div ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </div>
+      );
+    case "h1":
+      return (
+        <h1 ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </h1>
+      );
+    case "h2":
+      return (
+        <h2 ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </h2>
+      );
+    case "h3":
+      return (
+        <h3 ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </h3>
+      );
+    case "h4":
+      return (
+        <h4 ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </h4>
+      );
+    default:
+      return (
+        <span ref={assignRef} className={mergedClass}>
+          {text}
+          {cursor}
+        </span>
+      );
+  }
 }

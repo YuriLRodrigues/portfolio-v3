@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
+import { sectionLiftHoverTransition, sectionMotionViewport } from "../section-motion";
 import { container, panel } from "./motion-variants";
 import { PANEL_META } from "./stack-data";
 import { StackSpotlight } from "./stack-spotlight";
@@ -14,7 +15,7 @@ export function StackPanels() {
   const { t } = useTranslation("technologies");
   return (
     <StackSpotlight>
-      <motion.div className="space-y-8" variants={container} initial="hidden" whileInView="show">
+      <motion.div className="space-y-8" variants={container} initial="hidden" whileInView="show" viewport={sectionMotionViewport}>
         {PANEL_META.map(({ id, items, icon: PanelIcon, span, accent, rail, panelRing }, index) => {
           const title = t(`panels.${id}.title` as "panels.frontend.title");
           const kicker = t(`panels.${id}.kicker` as "panels.frontend.kicker");
@@ -24,6 +25,8 @@ export function StackPanels() {
             <motion.article
               key={id}
               variants={panel}
+              whileHover={{ y: -4 }}
+              transition={sectionLiftHoverTransition}
               className={cn("relative flex flex-col overflow-hidden rounded-3xl border border-border/55 bg-card/55 p-1 backdrop-blur-md dark:bg-card/38", panelRing, span)}
             >
               <div className={cn("pointer-events-none absolute inset-0 bg-gradient-to-br opacity-[0.92] dark:opacity-100", accent)} aria-hidden />

@@ -1,18 +1,18 @@
 "use client";
 
 import { Archivo } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
 
 const display = Archivo({ subsets: ["latin"], weight: "900" });
 
-const TYPE_MS = 42;
-const HOLD_MS = 2400;
+const TYPE_MS = 54;
+const HOLD_MS = 3000;
 const ROLE_KEYS = ["fullstack", "frontend", "backend"] as const;
 
 /**
@@ -20,6 +20,8 @@ const ROLE_KEYS = ["fullstack", "frontend", "backend"] as const;
  */
 export function RotatingRole() {
   const { t } = useTranslation("hero");
+  const blockRef = useRef<HTMLParagraphElement>(null);
+  const inView = useInView(blockRef, { once: false, margin: "0px 0px -18% 0px", amount: 0.08, initial: true });
   const [idx, setIdx] = useState(0);
   const [len, setLen] = useState(0);
   const [exiting, setExiting] = useState(false);
@@ -27,6 +29,21 @@ export function RotatingRole() {
   const word = t(`roles.${ROLE_KEYS[idx]}` as "roles.fullstack");
 
   useEffect(() => {
+    if (inView) {
+      return;
+    }
+    const id = window.requestAnimationFrame(() => {
+      setIdx(0);
+      setLen(0);
+      setExiting(false);
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [inView]);
+
+  useEffect(() => {
+    if (!inView) {
+      return;
+    }
     if (exiting) {
       return;
     }
@@ -43,10 +60,11 @@ export function RotatingRole() {
       return () => window.clearTimeout(t2);
     }
     return undefined;
-  }, [len, word, exiting, word.length]);
+  }, [inView, len, word, exiting, word.length]);
 
   return (
     <p
+      ref={blockRef}
       className={cn(
         display.className,
         "w-full min-h-[150px] min-w-0 max-w-full text-balance break-words text-[clamp(1.35rem,4.5vw,2.6rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] sm:tracking-[-0.04em]",
@@ -63,7 +81,7 @@ export function RotatingRole() {
             className="block max-w-full break-words will-change-[filter,opacity]"
             initial={{ opacity: 1, filter: "blur(0px)" }}
             animate={{ opacity: 0, filter: "blur(12px)" }}
-            transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
             onAnimationComplete={() => {
               setIdx((k) => (k + 1) % ROLE_KEYS.length);
               setLen(0);
@@ -78,7 +96,7 @@ export function RotatingRole() {
             className="block max-w-full break-words will-change-[filter]"
             initial={{ filter: "blur(10px)", opacity: 0.5 }}
             animate={{ filter: "blur(0px)", opacity: 1 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
             {word.slice(0, len)}
           </motion.span>

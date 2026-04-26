@@ -9,8 +9,8 @@ import { GradientText } from "@/components/ui/gradient-text";
 import { Mail, Phone } from "lucide-react";
 import { motion } from "motion/react";
 
+import { sectionEase, sectionHoverTransition, sectionMotionViewport } from "../section-motion";
 import { CONTACT } from "./contact-data";
-import { easeOut } from "./contact-motion";
 
 export function ContactEditorialColumn() {
   const { t } = useTranslation("contact");
@@ -24,19 +24,22 @@ export function ContactEditorialColumn() {
       </span>
 
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-8% 0px" }}
-        transition={{ duration: 0.5, ease: easeOut }}
+        viewport={sectionMotionViewport}
+        transition={{ duration: 0.72, ease: sectionEase }}
         className="relative"
       >
         <div className="flex flex-wrap items-center gap-4">
-          <div
-            className="grid size-11 shrink-0 place-items-center rounded-lg border border-primary/35 bg-gradient-to-br from-primary/[0.14] to-transparent shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--color-primary)_22%,_transparent)] sm:size-12"
+          <motion.div
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
+            transition={sectionHoverTransition}
+            className="grid size-11 shrink-0 cursor-default place-items-center rounded-lg border border-primary/35 bg-gradient-to-br from-primary/[0.14] to-transparent shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--color-primary)_22%,_transparent)] sm:size-12"
             aria-hidden
           >
             <span className="font-mono text-[11px] font-bold tabular-nums text-primary sm:text-xs">06</span>
-          </div>
+          </motion.div>
           <div className="h-px min-w-[2.5rem] flex-1 max-w-[6rem] bg-gradient-to-r from-primary/45 to-transparent lg:max-w-[10rem]" aria-hidden />
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary sm:text-[11px]">{t("kicker")}</p>
         </div>
@@ -58,43 +61,51 @@ export function ContactEditorialColumn() {
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t("email")}</p>
             <a
               href={`mailto:${CONTACT.email}`}
-              className="mt-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground underline decoration-primary/40 decoration-2 underline-offset-4 transition hover:decoration-primary"
+              className="mt-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground underline decoration-primary/40 decoration-2 underline-offset-4 transition-[text-decoration-color,transform] duration-200 hover:decoration-primary hover:translate-x-0.5"
             >
               <Mail className="size-5 shrink-0 text-primary" aria-hidden />
               {CONTACT.email}
             </a>
           </div>
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t("phone")}</p>
-            <a
-              href={CONTACT.phoneHref}
-              className="mt-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground underline decoration-primary/40 decoration-2 underline-offset-4 transition hover:decoration-primary"
-            >
-              <Phone className="size-5 shrink-0 text-primary" aria-hidden />
-              {CONTACT.phoneDisplay}
-            </a>
-          </div>
+          {CONTACT.phoneDisplay && CONTACT.phoneHref ? (
+            <div>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t("phone")}</p>
+              <a
+                href={CONTACT.phoneHref}
+                className="mt-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground underline decoration-primary/40 decoration-2 underline-offset-4 transition-[text-decoration-color,transform] duration-200 hover:decoration-primary hover:translate-x-0.5"
+              >
+                <Phone className="size-5 shrink-0 text-primary" aria-hidden />
+                {CONTACT.phoneDisplay}
+              </a>
+            </div>
+          ) : null}
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3" aria-label={t("social")}>
-          <a
+          <motion.a
             href={CONTACT.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-inset ring-white/[0.04] transition hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
+            whileHover={{ y: -3, scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            transition={sectionHoverTransition}
+            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-inset ring-white/[0.04] hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
           >
             <GitHubIcon className="size-5" />
             <span className="sr-only">GitHub</span>
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={CONTACT.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-inset ring-white/[0.04] transition hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
+            whileHover={{ y: -3, scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            transition={sectionHoverTransition}
+            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-inset ring-white/[0.04] hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
           >
             <LinkedInIcon className="size-5" />
             <span className="sr-only">LinkedIn</span>
-          </a>
+          </motion.a>
         </div>
       </motion.div>
     </div>
