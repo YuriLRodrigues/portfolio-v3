@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
+import { subscribePortfolioAccent } from "@/lib/theme/accent-events";
 import { cn } from "@/lib/utils";
 
 type Pt = { x: number; y: number; vx: number; vy: number };
@@ -18,7 +20,7 @@ export type MouseFollowerProps = {
   dampening?: number;
   /** Cor da trilha (hex, rgb ou nome). */
   color?: string;
-  /** Desfoque em px (efeito glow). */
+  /** Desfoque gaussiano (px) aplicado à linha — desenhada nítida num buffer e composta com `filter: blur()`. */
   blur?: number;
   /** Opacidade global da trilho (0–1). */
   trailOpacity?: number;
@@ -32,32 +34,52 @@ export type MouseFollowerProps = {
  */
 export function MouseFollower({
   className,
-  pointsCount = 48,
-  lineWidth = 1.25,
+  pointsCount = 32,
+  lineWidth = 1.15,
   springStrength = 0.45,
-  dampening = 0.52,
+  dampening = 0.58,
   color,
   blur = 10,
-  trailOpacity = 0.22,
+  trailOpacity = 0.32,
   mixBlendMode = "source-over",
 }: MouseFollowerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const bufferRef = useRef<HTMLCanvasElement | null>(null);
   const pointsRef = useRef<Pt[] | null>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const hasMovedRef = useRef(false);
   const rafRef = useRef<number>(0);
   const colorRef = useRef("#888888");
+  const dprRef = useRef(1);
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    if (prefersReduced || coarse) return;
+    queueMicrotask(() => {
+      setPortalTarget(document.body);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!portalTarget) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    if (!bufferRef.current) {
+      bufferRef.current = document.createElement("canvas");
+    }
+    const buffer = bufferRef.current;
+    const bufferCtx = buffer.getContext("2d", { alpha: true });
+    if (!bufferCtx) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const blurPx = Math.min(36, Math.max(0, prefersReduced ? 0 : blur));
+    const effectiveSpring = prefersReduced ? Math.min(springStrength * 1.35, 0.92) : springStrength;
+    const effectiveDamp = prefersReduced ? Math.min(dampening * 1.15, 0.75) : dampening;
+    const effectiveTrailOpacity = prefersReduced ? Math.min(trailOpacity + 0.12, 0.5) : trailOpacity;
 
     const n = Math.max(8, Math.min(96, pointsCount));
     pointsRef.current = Array.from({ length: n }, () => ({ x: 0, y: 0, vx: 0, vy: 0 }));
@@ -67,12 +89,25 @@ export function MouseFollower({
         colorRef.current = color;
         return;
       }
-      const p = getComputedStyle(document.documentElement).getPropertyValue("--primary").trim();
+      const root = document.documentElement;
+      const p = getComputedStyle(root).getPropertyValue("--primary").trim();
       colorRef.current = p || "oklch(0.5 0.2 264)";
     };
     resolveColor();
 
-    const onMove = (e: MouseEvent) => {
+    let unsubAccent: () => void = () => {};
+    let accentObserver: MutationObserver | null = null;
+    if (!color) {
+      unsubAccent = subscribePortfolioAccent(resolveColor);
+      accentObserver = new MutationObserver(resolveColor);
+      accentObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class", "data-accent"],
+      });
+    }
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
       hasMovedRef.current = true;
       mouseRef.current = { x: e.clientX, y: e.clientY };
       if (pointsRef.current) {
@@ -91,26 +126,35 @@ export function MouseFollower({
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dprRef.current = dpr;
       const w = window.innerWidth;
       const h = window.innerHeight;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
+      const bw = Math.floor(w * dpr);
+      const bh = Math.floor(h * dpr);
+      canvas.width = bw;
+      canvas.height = bh;
+      buffer.width = bw;
+      buffer.height = bh;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     resize();
-    window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("resize", resize, { passive: true });
 
     const pts = pointsRef.current;
-    const spring = springStrength;
-    const damp = dampening;
+    if (!pts) return;
+
+    const spring = effectiveSpring;
+    const damp = effectiveDamp;
 
     const tick = () => {
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
+      const iw = window.innerWidth;
+      const ih = window.innerHeight;
+      const dpr = dprRef.current;
 
       for (let i = 0; i < n; i++) {
         const p = pts[i];
@@ -124,25 +168,40 @@ export function MouseFollower({
         p.y += p.vy;
       }
 
-      ctx.save();
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      bufferCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bufferCtx.clearRect(0, 0, iw, ih);
+      if (hasMovedRef.current) {
+        bufferCtx.globalCompositeOperation = "source-over";
+        bufferCtx.globalAlpha = 1;
+        bufferCtx.strokeStyle = colorRef.current;
+        bufferCtx.lineCap = "round";
+        bufferCtx.lineJoin = "round";
+        bufferCtx.lineWidth = lineWidth;
+        bufferCtx.filter = "none";
+        bufferCtx.shadowBlur = 0;
+        bufferCtx.shadowColor = "transparent";
+        bufferCtx.beginPath();
+        bufferCtx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < n; i++) {
+          bufferCtx.lineTo(pts[i].x, pts[i].y);
+        }
+        bufferCtx.stroke();
+      }
+
+      const bw = canvas.width;
+      const bh = canvas.height;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, bw, bh);
       if (hasMovedRef.current) {
         ctx.globalCompositeOperation = mixBlendMode;
-        ctx.globalAlpha = trailOpacity;
-        ctx.strokeStyle = colorRef.current;
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.filter = blur > 0 ? `blur(${blur}px)` : "none";
-        ctx.lineWidth = lineWidth;
-
-        ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
-        for (let i = 1; i < n; i++) {
-          ctx.lineTo(pts[i].x, pts[i].y);
-        }
-        ctx.stroke();
+        ctx.globalAlpha = effectiveTrailOpacity;
+        ctx.imageSmoothingEnabled = true;
+        ctx.filter = blurPx > 0 ? `blur(${blurPx}px)` : "none";
+        ctx.drawImage(buffer, 0, 0);
       }
-      ctx.restore();
+      ctx.filter = "none";
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = "source-over";
 
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -150,11 +209,27 @@ export function MouseFollower({
     rafRef.current = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("mousemove", onMove);
+      unsubAccent();
+      accentObserver?.disconnect();
+      document.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [pointsCount, lineWidth, springStrength, dampening, color, blur, trailOpacity, mixBlendMode]);
+  }, [portalTarget, pointsCount, lineWidth, springStrength, dampening, color, blur, trailOpacity, mixBlendMode]);
 
-  return <canvas ref={canvasRef} aria-hidden className={cn("pointer-events-none fixed inset-0 z-[1]", className)} />;
+  if (!portalTarget) return null;
+
+  return createPortal(
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className={cn("pointer-events-none fixed inset-0", className)}
+      style={{
+        zIndex: 110,
+        width: "100vw",
+        height: "100vh",
+      }}
+    />,
+    portalTarget,
+  );
 }

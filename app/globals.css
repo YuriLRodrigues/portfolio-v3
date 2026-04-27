@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Arizonia&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arizonia&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Space+Grotesk:wght@500;600;700&display=swap");
 @layer theme, base, components, utilities;
 
 @import "tailwindcss";
@@ -215,6 +215,17 @@ html[data-magicui-theme-vt="active"]::view-transition-group(root) {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+  }
+
+  /** Marca: monograma YR (geométrico, letras entrelaçadas) */
+  .font-brand-mono {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-optical-sizing: auto;
+  }
+
+  .font-brand-wordmark {
+    font-family: "Oswald", system-ui, sans-serif;
+    font-optical-sizing: auto;
   }
 }
 

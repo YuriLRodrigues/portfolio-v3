@@ -10,7 +10,7 @@ export const technologies = {
     title: "Overview",
     sub: "List size and how it breaks down",
     countLabel: "Catalogued technologies",
-    barLabel: "Front end, back end, and tools",
+    barLabel: "Development ecosystems",
   },
   pipeline: {
     interface: { label: "Interface", sub: "UI, state, motion" },
@@ -21,20 +21,20 @@ export const technologies = {
   },
   panels: {
     frontend: {
-      title: "Front end",
-      kicker: "Visible layer",
+      title: "Product & interface",
+      kicker: "What people see and feel",
       blurb: "Perceived performance, accessibility, and visual consistency.",
       watermark: "INTERFACE",
     },
     backend: {
-      title: "Back end",
-      kicker: "Services & data",
+      title: "System & services",
+      kicker: "What keeps the product standing",
       blurb: "Stable contracts, persistence, and resilience as the product grows.",
       watermark: "SERVICES",
     },
     ferramentas: {
-      title: "Tooling",
-      kicker: "From repo to deploy",
+      title: "Delivery & quality",
+      kicker: "From repo to environment",
       blurb: "A workflow that keeps pace without trading away quality.",
       watermark: "WORKFLOW",
     },

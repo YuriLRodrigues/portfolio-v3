@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
 
-import { sectionEase, sectionMotionViewport } from "../section-motion";
+import { sectionEase, sectionLiftHoverTransition, sectionMotionViewport } from "../section-motion";
 import { UnderlineInput, UnderlineTextarea } from "./underline-fields";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
@@ -84,7 +84,7 @@ export function ContactFormCard() {
     <motion.div
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -3 }}
+      whileHover={{ y: -3, transition: sectionLiftHoverTransition }}
       viewport={sectionMotionViewport}
       transition={{ duration: 0.74, delay: 0.14, ease: sectionEase }}
       className={cn(

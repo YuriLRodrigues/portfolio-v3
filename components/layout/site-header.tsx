@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { PortfolioMonogram } from "@/components/brand/portfolio-mark";
 import { AppearanceMenu } from "@/components/theme/appearance-menu";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -34,12 +35,12 @@ export function SiteHeader() {
               e.preventDefault();
               onNavClick("home");
             }}
-            className="group flex items-center gap-2 tracking-tight"
+            className="group flex min-w-0 items-center gap-2.5 transition-[filter] hover:brightness-[1.03] sm:gap-3"
           >
-            <span className="flex h-8 w-8  items-center uppercase justify-center rounded-lg border border-border/60 bg-primary/10 font-mono text-xs font-bold text-primary shadow-sm transition group-hover:shadow-md">
-              {t("siteHeader.logoInitials")}
+            <PortfolioMonogram className="transition-[filter,box-shadow] duration-300 group-hover:shadow-[0_10px_32px_-6px_color-mix(in_oklch,var(--color-primary)_20%,_transparent)]" />
+            <span className="font-brand-wordmark min-w-0 truncate text-[0.95rem] font-semibold leading-none tracking-[0.04em] text-foreground sm:text-[1.125rem] sm:tracking-[0.035em]">
+              {t("siteHeader.brand")}
             </span>
-            <span className=" text-2xl leading-none text-foreground sm:text-3xl">{t("siteHeader.brand")}</span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex" aria-label={t("siteHeader.mainNav")}>

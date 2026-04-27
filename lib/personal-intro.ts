@@ -9,7 +9,7 @@ export const PERSONAL_INTRO = {
   cityState: "Conselheiro Lafaiete, MG",
   country: "Brasil",
   timezoneLabel: "Brasília (GMT-3)",
-  photoSrc: "/me.jpg",
+  photoSrc: "/eu.jpg",
 } as const;
 
 export type PersonalIntro = typeof PERSONAL_INTRO;

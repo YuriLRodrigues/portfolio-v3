@@ -10,11 +10,11 @@ import { Tabs } from "@base-ui/react/tabs";
 import { Award, Briefcase, GraduationCap } from "lucide-react";
 import { motion } from "motion/react";
 
+import { sectionEase, sectionMotionViewport } from "../section-motion";
 import { AlternatingTimeline } from "./alternating-timeline";
 import { CertificatesGrid } from "./certificates-grid";
 import { JourneyHeader } from "./journey-header";
 import { academicToEntries, professionalToEntries } from "./journey-mappers";
-import { easeOut } from "./journey-motion";
 import { useJourneyEntries } from "./use-journey-entries";
 
 /**
@@ -59,7 +59,13 @@ export function JourneySection() {
         <JourneyHeader />
 
         <Tabs.Root defaultValue="professional" className="mt-12 w-full sm:mt-14">
-          <Tabs.List className="relative flex w-full flex-col gap-2 rounded-2xl border border-border/50 bg-muted/25 p-1.5 shadow-inner backdrop-blur-sm sm:flex-row sm:gap-1.5 sm:p-1.5">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionMotionViewport}
+            transition={{ duration: 0.7, delay: 0.06, ease: sectionEase }}
+          >
+            <Tabs.List className="relative flex w-full flex-col gap-2 rounded-2xl border border-border/50 bg-muted/25 p-1.5 shadow-inner backdrop-blur-sm sm:flex-row sm:gap-1.5 sm:p-1.5">
             <Tabs.Tab
               value="professional"
               className={({ active }) =>
@@ -97,27 +103,49 @@ export function JourneySection() {
               {t("tabs.certificates")}
             </Tabs.Tab>
           </Tabs.List>
+          </motion.div>
 
-          <div className="relative mt-8 w-full overflow-hidden rounded-[1.75rem] border border-border/45 bg-card/35 p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.35)] ring-1 ring-inset ring-white/[0.04] backdrop-blur-xl dark:border-white/[0.06] dark:bg-card/20 dark:shadow-black/40 sm:p-7 lg:p-9">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={sectionMotionViewport}
+            transition={{ duration: 0.76, delay: 0.14, ease: sectionEase }}
+            className="relative mt-8 w-full overflow-hidden rounded-[1.75rem] border border-border/45 bg-card/35 p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.35)] ring-1 ring-inset ring-white/[0.04] backdrop-blur-xl dark:border-white/[0.06] dark:bg-card/20 dark:shadow-black/40 sm:p-7 lg:p-9"
+          >
             <div className="pointer-events-none absolute -right-24 top-0 size-72 rounded-full bg-primary/[0.07] blur-3xl" aria-hidden />
             <div className="pointer-events-none absolute -bottom-20 -left-16 size-56 rounded-full bg-foreground/[0.04] blur-3xl dark:bg-white/[0.05]" aria-hidden />
 
             <Tabs.Panel value="professional" className="outline-none">
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: easeOut }}>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={sectionMotionViewport}
+                transition={{ duration: 0.62, ease: sectionEase }}
+              >
                 <AlternatingTimeline listRef={listProRef} entries={professionalToEntries(professional)} kind="work" />
               </motion.div>
             </Tabs.Panel>
             <Tabs.Panel value="academic" className="outline-none">
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: easeOut }}>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={sectionMotionViewport}
+                transition={{ duration: 0.62, ease: sectionEase }}
+              >
                 <AlternatingTimeline listRef={listAcadRef} entries={academicToEntries(academic)} kind="study" />
               </motion.div>
             </Tabs.Panel>
             <Tabs.Panel value="certificates" className="outline-none">
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: easeOut }}>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={sectionMotionViewport}
+                transition={{ duration: 0.62, ease: sectionEase }}
+              >
                 <CertificatesGrid items={certificates} />
               </motion.div>
             </Tabs.Panel>
-          </div>
+          </motion.div>
         </Tabs.Root>
       </Container>
     </section>

@@ -23,7 +23,7 @@ export function HighlightCard({ title, description, Icon, accent }: HighlightCar
       <div
         className={cn(
           "group relative flex h-full min-h-[188px] flex-col overflow-visible rounded-2xl border border-border/50 bg-gradient-to-br from-card via-card/85 to-background/35 p-2 shadow-sm ring-1 ring-inset ring-white/[0.04] dark:from-card/55 dark:via-card/40 dark:to-background/20 dark:ring-white/[0.03]",
-          "transition-[border-color,box-shadow,transform] duration-300 hover:border-primary/35 hover:shadow-[0_14px_44px_-18px_color-mix(in_oklch,var(--color-primary)_32%,_transparent)]",
+          "transition-[border-color,box-shadow,transform] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/35 hover:shadow-[0_14px_44px_-18px_color-mix(in_oklch,var(--color-primary)_32%,_transparent)]",
           accent === "featured" && "border-primary/30 from-primary/[0.07] via-card/88 to-background/35 ring-primary/15 dark:from-primary/[0.1] dark:via-card/45",
         )}
       >

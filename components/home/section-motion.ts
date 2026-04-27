@@ -7,8 +7,8 @@ export const sectionMotionViewport = {
 
 export const sectionEase = [0.22, 1, 0.36, 1] as const;
 
-/** Transição curta para `whileHover` / `whileTap` (alinhada ao easing das seções). */
-export const sectionHoverTransition = { duration: 0.22, ease: sectionEase } as const;
+/** `whileHover` / `whileTap` — um pouco mais longa para não parecer “seca”. */
+export const sectionHoverTransition = { duration: 0.38, ease: sectionEase } as const;
 
-/** Leve “lift” em cartões / listas. */
-export const sectionLiftHoverTransition = { duration: 0.28, ease: sectionEase } as const;
+/** Lift em cartões / painéis — entra e sai com mais presença. */
+export const sectionLiftHoverTransition = { duration: 0.52, ease: sectionEase } as const;

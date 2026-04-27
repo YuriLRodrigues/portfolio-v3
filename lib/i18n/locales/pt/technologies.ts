@@ -10,7 +10,7 @@ export const technologies = {
     title: "Visão geral",
     sub: "Quantidade na lista e como ela se divide",
     countLabel: "Tecnologias catalogadas",
-    barLabel: "Frontend, backend e ferramentas",
+    barLabel: "Ecossistemas de desenvolvimento",
   },
   pipeline: {
     interface: { label: "Interface", sub: "UI, estado, motion" },
@@ -21,20 +21,20 @@ export const technologies = {
   },
   panels: {
     frontend: {
-      title: "Frontend",
-      kicker: "Camada visível",
+      title: "Produto & interface",
+      kicker: "O que a pessoa vê e sente",
       blurb: "Performance percebida, acessibilidade e consistência visual.",
       watermark: "INTERFACE",
     },
     backend: {
-      title: "Backend",
-      kicker: "Serviços & dados",
+      title: "Sistema & serviços",
+      kicker: "O que sustenta o produto",
       blurb: "Contratos estáveis, persistência e resiliência para o produto crescer.",
       watermark: "SERVIÇOS",
     },
     ferramentas: {
-      title: "Ferramentas",
-      kicker: "Do repo ao deploy",
+      title: "Entrega & qualidade",
+      kicker: "Do repo ao ambiente",
       blurb: "Pipeline de trabalho que mantém ritmo sem sacrificar qualidade.",
       watermark: "WORKFLOW",
     },

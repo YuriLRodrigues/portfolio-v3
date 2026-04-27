@@ -9,7 +9,7 @@ import { withTechLocale } from "@/lib/i18n/tech-english";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 
-import { sectionMotionViewport } from "../section-motion";
+import { sectionEase, sectionMotionViewport } from "../section-motion";
 import { easeOut } from "./motion-variants";
 import type { PanelMeta, Tech } from "./types";
 
@@ -44,7 +44,7 @@ export function TechTile({ tech, panelId, compact, rail }: { tech: Tech; panelId
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={sectionMotionViewport}
       transition={{ duration: 0.62, ease: easeOut }}
-      whileHover={reduceMotion ? undefined : { y: -5, transition: { duration: 0.24, ease: easeOut } }}
+      whileHover={reduceMotion ? undefined : { y: -5, transition: { duration: 0.48, ease: sectionEase } }}
       whileTap={reduceMotion ? undefined : { scale: 0.985 }}
       onMouseMove={onMove}
       onMouseLeave={() => setGlow({ x: 50, y: 50 })}
@@ -54,7 +54,7 @@ export function TechTile({ tech, panelId, compact, rail }: { tech: Tech; panelId
         "ring-1 ring-inset ring-white/[0.06] dark:from-card/70 dark:via-card/45 dark:to-background/30 dark:shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_14px_36px_-14px_rgba(0,0,0,0.45)] dark:ring-white/[0.05]",
         "before:pointer-events-none before:absolute before:bottom-3 before:left-0 before:top-3 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:opacity-95 before:content-['']",
         rail,
-        "transition-[border-color,box-shadow,transform] duration-300 hover:border-primary/45 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_20px_52px_-14px_color-mix(in_oklch,var(--color-primary)_42%,_transparent)]",
+        "transition-[border-color,box-shadow,transform] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/45 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_20px_52px_-14px_color-mix(in_oklch,var(--color-primary)_42%,_transparent)]",
         compact && "p-3",
       )}
     >
@@ -81,13 +81,13 @@ export function TechTile({ tech, panelId, compact, rail }: { tech: Tech; panelId
         <span
           className={cn(
             "relative grid shrink-0 place-items-center overflow-hidden rounded-xl border border-border/55 bg-gradient-to-br from-background/90 to-background/40",
-            "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45)] ring-2 ring-primary/10 transition-[transform,box-shadow,border-color] duration-300 dark:from-background/50 dark:to-background/20 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] dark:ring-primary/15",
+            "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45)] ring-2 ring-primary/10 transition-[transform,box-shadow,border-color] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] dark:from-background/50 dark:to-background/20 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] dark:ring-primary/15",
             "group-hover/tile:scale-[1.04] group-hover/tile:border-primary/40 group-hover/tile:ring-primary/25",
             compact ? "size-10" : "size-11 sm:size-[3.25rem]",
           )}
         >
           <span
-            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/tile:opacity-100"
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-[420ms] ease-out group-hover/tile:opacity-100"
             style={{
               background: "conic-gradient(from 210deg, transparent, color-mix(in oklch, var(--primary) 32%, transparent), transparent)",
             }}

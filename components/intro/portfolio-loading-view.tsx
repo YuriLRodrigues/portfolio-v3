@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 
+import { PortfolioMarkHero } from "@/components/brand/portfolio-mark";
 import { cn } from "@/lib/utils";
 
 type PortfolioLoadingViewProps = {
@@ -43,17 +44,7 @@ export function PortfolioLoadingView({ className }: PortfolioLoadingViewProps) {
         />
       </div>
 
-      <div className="arizonia-regular relative z-[1] flex items-end gap-2 sm:gap-3">
-        {(["Y", "R"] as const).map((ch) => (
-          <span
-            key={ch}
-            className="relative block text-[clamp(3.75rem,17vw,8rem)] leading-[0.82] text-primary [text-shadow:0_0_60px_color-mix(in_oklch,var(--color-primary)_45%,_transparent)]"
-          >
-            {ch}
-            <span className="absolute -bottom-1 left-0 h-1.5 w-full origin-left rounded-sm bg-primary/80 sm:-bottom-0.5 sm:h-2" />
-          </span>
-        ))}
-      </div>
+      <PortfolioMarkHero className="relative z-[1]" />
 
       <div className="relative z-[1] flex flex-col items-center gap-3">
         <div className="h-1 w-36 max-w-full overflow-hidden rounded-full bg-border/80" role="progressbar" aria-label={t("splash.progress")} aria-valuemin={0} aria-valuemax={100}>
