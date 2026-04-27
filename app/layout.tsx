@@ -3,12 +3,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import type { ReactNode } from "react";
 
-import { MouseFollower } from "@/components/background/mouse-follower";
 import { InitialSplash } from "@/components/intro/initial-splash";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { AppProviders } from "@/components/providers/app-providers";
 
+import { getSiteUrl } from "@/lib/site-url";
 import { ACCENT_STORAGE_KEY, ACCENTS } from "@/lib/theme/accents";
 
 import "./globals.css";
@@ -26,9 +26,43 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = getSiteUrl();
+const siteName = "Portfólio";
+const defaultDescription = "Desenvolvedor fullstack web — portfólio pessoal com projetos, stack e contato.";
+
 export const metadata: Metadata = {
-  title: "Portfólio",
-  description: "Desenvolvedor frontend — portfólio pessoal em construção.",
+  metadataBase: new URL(siteUrl),
+  title: { default: siteName, template: "%s | Portfólio" },
+  description: defaultDescription,
+  applicationName: siteName,
+  keywords: ["portfólio", "desenvolvedor frontend", "React", "TypeScript", "Next.js", "desenvolvimento web", "fullstack", "web development", "backend"],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: siteUrl,
+    siteName,
+    title: siteName,
+    description: defaultDescription,
+    images: [
+      {
+        url: "/logo.png",
+        alt: "Logo do portfólio",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: defaultDescription,
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
