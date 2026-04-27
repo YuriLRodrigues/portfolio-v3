@@ -39,9 +39,6 @@ export function StackPanels() {
                 >
                   {wm}
                 </span>
-                <span className="h-fit rounded-lg border border-border/55 bg-muted/25 px-2.5 py-1 font-mono text-[10px] font-bold tabular-nums text-muted-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.35)] dark:border-white/[0.08] dark:bg-muted/15 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
-                  {String(index + 1).padStart(2, "0")}/03
-                </span>
               </div>
 
               <div className="relative w-fit max-w-full rounded-[calc(1.5rem-4px)] border border-border/35 bg-gradient-to-br from-background/95 via-card/40 to-transparent p-5 shadow-inner dark:from-background/65 dark:via-card/25 dark:to-transparent sm:p-6">

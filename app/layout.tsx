@@ -37,7 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body className="flex min-h-full flex-col bg-background text-foreground scroll-smooth">
         <Script id="portfolio-accent-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: accentInitScript }} />
         <AppProviders>
-          <MouseFollower />
+          {/* <MouseFollower /> */}
           <InitialSplash />
           <div className="relative z-10 flex min-h-0 min-h-full flex-1 flex-col">
             <SiteHeader />
