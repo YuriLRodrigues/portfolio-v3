@@ -11,10 +11,10 @@ export default function Home() {
     <div className="flex min-h-0 flex-1 flex-col">
       <HeroSection />
       <AboutSection />
+      <JourneySection />
       <TechnologiesSection />
       <HighlightsSection />
       <ProjectsSection />
-      <JourneySection />
       <ContactSection />
     </div>
   );

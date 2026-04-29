@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useCallback, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 
+import { PortfolioMonogram } from "@/components/brand/portfolio-mark";
 import { Container } from "@/components/ui/container";
 
+import { scrollToAnchorSlow } from "@/lib/smooth-scroll-anchor";
 import { cn } from "@/lib/utils";
 
 const SITE_LABEL = "Yuri Rodrigues";
@@ -12,6 +15,11 @@ const SITE_LABEL = "Yuri Rodrigues";
 export function SiteFooter() {
   const { t } = useTranslation("common");
   const year = new Date().getFullYear();
+
+  const onHomeClick = useCallback((e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollToAnchorSlow("home");
+  }, []);
 
   return (
     <footer
@@ -33,12 +41,11 @@ export function SiteFooter() {
           <div className="flex flex-col items-center gap-3 sm:items-end">
             <Link
               href="#home"
-              className="group flex items-center gap-2 rounded-lg border border-border/50 bg-background/60 px-3 py-2 shadow-sm ring-1 ring-inset ring-white/[0.04] transition hover:border-primary/35 hover:ring-primary/15 dark:bg-card/40 dark:ring-white/[0.05]"
+              onClick={onHomeClick}
+              className="group flex items-center gap-2.5 rounded-lg border border-border/50 bg-background/60 px-3 py-2 shadow-sm ring-1 ring-inset ring-white/[0.04] transition hover:border-primary/35 hover:ring-primary/15 dark:bg-card/40 dark:ring-white/[0.05] sm:gap-3"
             >
-              <span className="grid size-8 place-items-center rounded-md border border-primary/25 bg-primary/10 font-mono text-[10px] font-bold text-primary transition group-hover:bg-primary/15">
-                YR
-              </span>
-              <span className="text-sm font-semibold tracking-tight text-foreground">{SITE_LABEL}</span>
+              <PortfolioMonogram className="transition-[filter,box-shadow] duration-300 group-hover:shadow-[0_10px_32px_-6px_color-mix(in_oklch,var(--color-primary)_20%,_transparent)]" />
+              <span className="font-brand-wordmark text-sm font-semibold leading-none tracking-[0.04em] text-foreground sm:text-[1.125rem] sm:tracking-[0.035em]">{t("siteHeader.brand")}</span>
             </Link>
             <p className="text-center font-mono text-[11px] tabular-nums text-muted-foreground sm:text-right">
               © {year} {SITE_LABEL}. <span className="text-foreground/85">{t("footer.rights")}</span>

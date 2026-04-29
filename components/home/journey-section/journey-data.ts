@@ -1,25 +1,110 @@
 import type { AcademicEntry, CertificateEntry, ProfessionalEntry } from "./journey-types";
 
-const PROFESSIONAL_BASE = [
-  { id: "p1" as const, stack: ["Next.js", "TypeScript", "PostgreSQL", "Docker"] as const },
-  { id: "p2" as const, stack: ["React", "Tailwind CSS", "Storybook", "Jest"] as const },
-  { id: "p3" as const, stack: ["JavaScript", "WordPress", "Git"] as const },
+function publicCertPdf(filename: string) {
+  return `/certificados/${encodeURIComponent(filename)}`;
+}
+
+/** Molla (2024–2025): core stack first, then data layer, state, API contract, tests, infra, integrations. */
+const MOLLA_STACK_PREVIOUS = [
+  "TypeScript",
+  "Next.js",
+  "React",
+  "NestJS",
+  "Node.js",
+  "PostgreSQL",
+  "Prisma",
+  "React Query",
+  "Zustand",
+  "Swagger",
+  "React Testing Library",
+  "Jest",
+  "Cypress",
+  "Docker",
+  "Amazon S3",
+  "SendGrid",
 ] as const;
 
-const ACADEMIC_BASE = [{ id: "a1" as const }, { id: "a2" as const }] as const;
+/** Molla (return): Drizzle + Redis + Infisical added; same ordering principle. */
+const MOLLA_STACK_RETURN = [
+  "TypeScript",
+  "Next.js",
+  "React",
+  "NestJS",
+  "Node.js",
+  "PostgreSQL",
+  "Drizzle",
+  "Redis",
+  "React Query",
+  "Zustand",
+  "Infisical",
+  "Swagger",
+  "React Testing Library",
+  "Jest",
+  "Cypress",
+  "Docker",
+  "Amazon S3",
+  "SendGrid",
+] as const;
+
+const PROFESSIONAL_BASE = [
+  { id: "p1" as const, stack: MOLLA_STACK_RETURN },
+  {
+    id: "p2" as const,
+    stack: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "React Query",
+      "Tailwind CSS",
+      "i18n",
+    ] as const,
+  },
+  { id: "p3" as const, stack: MOLLA_STACK_PREVIOUS },
+  {
+    id: "p4" as const,
+    stack: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "React Query",
+      "Tailwind CSS",
+      "Storybook",
+      "Zustand",
+      "React Testing Library",
+      "Jest",
+      "Cypress",
+    ] as const,
+  },
+] as const;
+
+const ACADEMIC_BASE = [
+  { id: "a1" as const },
+  { id: "a2" as const },
+  { id: "a3" as const },
+  { id: "a4" as const },
+  { id: "a5" as const },
+] as const;
 
 const CERTIFICATES_BASE = [
   {
     id: "c1" as const,
-    href: "/certificados/certificado-modelo.pdf" as const,
+    href: publicCertPdf("Certificado Desenvolvedor Fullstack.pdf"),
     format: "PDF",
     download: true as const,
   },
   {
     id: "c2" as const,
-    href: "https://www.credly.com",
-    format: "Online",
-    download: false as const,
+    href: publicCertPdf("Testes Automatizados.pdf"),
+    format: "PDF",
+    download: true as const,
+  },
+  {
+    id: "c3" as const,
+    href: publicCertPdf("Javascript do Básico ao Avançado.pdf"),
+    format: "PDF",
+    download: true as const,
   },
 ] as const;
 

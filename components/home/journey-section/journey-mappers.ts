@@ -5,7 +5,9 @@ export function professionalToEntries(items: ProfessionalEntry[]): Entry[] {
     period: item.period,
     title: item.title,
     subtitle: item.org,
-    meta: item.location,
+    ...(item.orgSecondary ? { subtitleSecondary: item.orgSecondary } : {}),
+    metaPlace: item.locationPlace,
+    metaMode: item.locationMode,
     description: item.description,
     tags: item.stack,
   }));

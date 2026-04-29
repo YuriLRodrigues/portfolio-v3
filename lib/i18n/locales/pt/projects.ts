@@ -4,7 +4,7 @@ export const projects = {
   titleBefore: "Do",
   titleGradient: "trabalho em time",
   titleAfter: "ao que fiz por conta",
-  p: "Entregas com squad, freela e side projects que estão em produção ou com código aberto no GitHub.",
+  p: "Aplicações em produção, estudos e experimentos—grande parte com código aberto no GitHub e demo ao vivo quando faz sentido.",
   stack: {
     frontend: "Frontend",
     backend: "Backend",
@@ -16,21 +16,53 @@ export const projects = {
   ctaGithub: "GitHub",
   tileAria: "Tecnologias",
   coverAlt: "Capa do projeto {{name}}",
+  stackShowMore: "+{{count}} mais",
+  stackShowLess: "Mostrar menos",
   items: {
-    deck: {
-      name: "Painel analítico em tempo real",
-      description: "Dashboard com métricas agregadas, filtros persistentes e exportação. Foco em latência baixa e estados de carregamento honestos para o usuário.",
-      period: "2024 — 2025",
+    workoutTracker: {
+      name: "Workout Tracker",
+      description:
+        "Interface web para treinos, exercícios e registros na academia: dashboard, perfil, autenticação e métricas—criar e editar treinos, enviar imagens e acompanhar evolução.",
     },
-    studio: {
-      name: "Experiência de checkout guiada",
-      description: "Fluxo de compra em passos com validação progressiva, integração com gateway e telemetria de abandono para produto iterar em cima de dados reais.",
-      period: "2023",
+    autoCars: {
+      name: "AutoCars",
+      description:
+        "Plataforma de anúncios de veículos: publicar e pesquisar, favoritos, comentários e dashboard do vendedor para gerir anúncios.",
     },
-    relay: {
-      name: "API de orquestração e filas",
-      description: "Serviço NestJS com workers, idempotência em webhooks e observabilidade mínima viável: health checks, métricas e logs estruturados.",
-      period: "2022 — 2023",
+    autoCarsBackend: {
+      name: "AutoCars API",
+      description:
+        "Backend do AutoCars com SOLID, módulos inspirados em DDD e camadas claras. Prisma, PostgreSQL, JWT, Swagger, MinIO para arquivos e e-mail—preparado para evoluir com pagamentos e chat.",
+    },
+    fincheck: {
+      name: "Fincheck",
+      description:
+        "Sistema web de finanças pessoais: contas bancárias e lançamentos (entrada/saída), com filtros por mês, ano, tipo e conta.",
+    },
+    documentSignature: {
+      name: "Document Signature",
+      description:
+        "Aplicação tipo BFF para autenticação, upload de PDF, visualização e assinatura digital—fluxo direto do login ao documento assinado.",
+    },
+    cinematecando: {
+      name: "Cinematecando",
+      description:
+        "Explorar filmes e séries: busca, gêneros, elenco, títulos relacionados, tema claro/escuro e lista pessoal numa UI responsiva.",
+    },
+    setupProStore: {
+      name: "Setup Pro Store",
+      description:
+        "E-commerce com vitrine, carrinho e fechamento de pedido; painel admin para pedidos, produtos e categorias—experiência responsiva.",
+    },
+    marvelTechTest: {
+      name: "Marvel (teste técnico)",
+      description:
+        "Exploração de personagens Marvel com listagem paginada e busca, detalhes e quadrinhos relacionados; navegação que preserva filtros ao voltar e menos requisições redundantes.",
+    },
+    valorantHub: {
+      name: "Valorant Info Hub",
+      description:
+        "Hub de referência do Valorant: agentes, habilidades, mapas, armas, skins e dados do jogo num só lugar.",
     },
   },
 } as const;
