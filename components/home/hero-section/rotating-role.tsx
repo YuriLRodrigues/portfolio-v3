@@ -67,12 +67,12 @@ export function RotatingRole() {
       ref={blockRef}
       className={cn(
         display.className,
-        "w-full min-h-[150px] min-w-0 max-w-full text-balance break-words text-[clamp(1.35rem,4.5vw,2.6rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] sm:tracking-[-0.04em]",
+        "min-h-[120px] w-full max-w-full min-w-0 text-[clamp(1.2rem,4.5vw,2.6rem)] leading-[0.95] font-black tracking-[-0.03em] text-balance break-words uppercase sm:min-h-[150px] sm:tracking-[-0.04em]",
       )}
     >
       <LineShadowText
-        className="block w-full min-w-0 max-w-full min-h-[1.1em]"
-        textClassName="block w-full min-w-0 max-w-full break-words [overflow-wrap:anywhere] font-inherit text-6xl font-black uppercase leading-[0.9] tracking-tighter md:text-7xl [text-shadow:0_0_1px_rgba(0,0,0,0.12),0_0_28px_color-mix(in_oklch,var(--color-primary)_32%,_transparent)]"
+        className="block min-h-[1.1em] w-full max-w-full min-w-0"
+        textClassName="block w-full min-w-0 max-w-full break-words [overflow-wrap:anywhere] font-inherit text-5xl font-black uppercase leading-[0.9] tracking-tighter md:text-7xl [text-shadow:0_0_1px_rgba(0,0,0,0.12),0_0_28px_color-mix(in_oklch,var(--color-primary)_32%,_transparent)]"
         as="span"
       >
         {exiting ? (

@@ -21,7 +21,7 @@ export function HeroFlashStrokes() {
         style={{
           background: `linear-gradient(90deg,
             transparent 0%,
-            color-mix(in oklch, var(--color-primary) 70%, cyan) 40%,
+            color-mix(in oklch, var(--color-primary) 55%, var(--color-ring)) 40%,
             color-mix(in oklch, var(--color-primary) 20%, transparent) 88%,
             transparent 100%)`,
           boxShadow: `0 0 16px 1px color-mix(in oklch, var(--color-primary) 40%, transparent), 0 0 40px 6px color-mix(in oklch, var(--color-primary) 15%, transparent)`,
@@ -32,8 +32,9 @@ export function HeroFlashStrokes() {
         style={{
           background: `linear-gradient(90deg,
             transparent 0%,
-            color-mix(in oklch, var(--color-primary) 15%, fuchsia) 30%,
-            color-mix(in oklch, var(--color-primary) 80%, white) 55%,
+            color-mix(in oklch, var(--color-primary) 28%, var(--color-ring)) 28%,
+            color-mix(in oklch, var(--color-primary) 72%, var(--color-background)) 58%,
+            color-mix(in oklch, var(--color-primary) 18%, transparent) 82%,
             transparent 100%)`,
           boxShadow: `0 0 20px 1px color-mix(in oklch, var(--color-primary) 35%, transparent)`,
         }}
@@ -43,8 +44,8 @@ export function HeroFlashStrokes() {
         style={{
           background: `linear-gradient(90deg,
             transparent 0%,
-            color-mix(in oklch, var(--color-primary) 55%, transparent) 50%,
-            color-mix(in oklch, var(--color-primary) 30%, yellow) 70%,
+            color-mix(in oklch, var(--color-primary) 50%, transparent) 48%,
+            color-mix(in oklch, var(--color-primary) 38%, var(--color-foreground)) 72%,
             transparent 100%)`,
           boxShadow: `0 0 12px 1px color-mix(in oklch, var(--color-primary) 30%, transparent)`,
         }}

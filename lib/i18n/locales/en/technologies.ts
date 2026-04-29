@@ -6,6 +6,7 @@ export const technologies = {
   titleGradient: "technologies I’ve learned",
   titleLine2: " and use today",
   p: "Languages, runtimes, frameworks, and tools I’ve actually shipped—in courses, freelance, squads, or production. Some are in every sprint; others I keep in my pocket for the right context.",
+  seeMore: "Show more",
   overview: {
     title: "Overview",
     sub: "List size and how it breaks down",

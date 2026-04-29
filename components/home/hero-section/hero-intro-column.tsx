@@ -35,9 +35,9 @@ export function HeroIntroColumn() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={heroMotionViewport}
         transition={{ duration: 0.72, ease: heroEase }}
-        className="min-w-0 max-w-2xl"
+        className="max-w-2xl min-w-0"
       >
-        <p className="text-[clamp(1.85rem,5.2vw,3.1rem)] font-black leading-[1.06] tracking-[-0.045em] sm:tracking-[-0.05em]">
+        <p className="text-[clamp(1.85rem,5.2vw,3.1rem)] leading-[1.06] font-black tracking-[-0.045em] sm:tracking-[-0.05em]">
           <span className="text-muted-foreground">{t("greeting")}</span> <span className="text-foreground">{t("nameLead")}</span>{" "}
           <span className="relative inline-block">
             <GradientText>Yuri</GradientText>
@@ -56,12 +56,12 @@ export function HeroIntroColumn() {
           whileHover={{ y: -2 }}
           viewport={heroMotionViewport}
           transition={{ delay: 0.38, duration: 0.7, ease: heroEase }}
-          className="relative min-w-0 max-w-2xl overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card/90 via-card/40 to-primary/[0.08] p-4 shadow-sm ring-1 ring-foreground/[0.04] backdrop-blur-md transition-shadow duration-300 hover:shadow-[0_20px_50px_-24px_color-mix(in_oklch,var(--color-primary)_22%,_transparent)] dark:from-card/50 dark:via-background/30 dark:to-primary/[0.12] dark:ring-white/[0.06] sm:p-5"
+          className="relative max-w-2xl min-w-0 overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card/90 via-card/40 to-primary/[0.08] p-4 shadow-sm ring-1 ring-foreground/[0.04] backdrop-blur-md transition-shadow duration-300 hover:shadow-[0_20px_50px_-24px_color-mix(in_oklch,var(--color-primary)_22%,_transparent)] sm:p-5 dark:from-card/50 dark:via-background/30 dark:to-primary/[0.12] dark:ring-white/[0.06]"
         >
-          <div className="pointer-events-none absolute -right-12 -top-10 size-36 rounded-full bg-primary/15 blur-3xl sm:size-44" aria-hidden />
+          <div className="pointer-events-none absolute -top-10 -right-12 size-36 rounded-full bg-primary/15 blur-3xl sm:size-44" aria-hidden />
           <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary/25 to-transparent" aria-hidden />
-          <p className="relative flex min-w-0 gap-2.5 font-mono text-[clamp(0.75rem,1.85vw,0.92rem)] font-medium leading-relaxed tracking-wide text-muted-foreground sm:gap-3">
-            <span className="shrink-0 select-none pt-0.5 font-bold text-primary/80" aria-hidden>
+          <p className="relative flex min-w-0 gap-2.5 font-mono text-[clamp(0.75rem,1.85vw,0.92rem)] leading-relaxed font-medium tracking-wide text-muted-foreground sm:gap-3">
+            <span className="shrink-0 pt-0.5 font-bold text-primary/80 select-none" aria-hidden>
               ›
             </span>
             <TypingAnimation
@@ -73,7 +73,7 @@ export function HeroIntroColumn() {
               inViewOnce={false}
               showCursor
               as="span"
-              className="block min-h-[5em] min-w-0 flex-1 text-foreground/90 [&_.cursor-blink]:text-primary"
+              className="block min-h-[6.5em] min-w-0 flex-1 text-foreground/90 sm:min-h-[5em] [&_.cursor-blink]:text-primary"
             >
               {t("tagline")}
             </TypingAnimation>
@@ -95,7 +95,7 @@ export function HeroIntroColumn() {
           transition={sectionHoverTransition}
           className={cn(
             buttonVariants({ size: "lg" }),
-            "group inline-flex gap-2 bg-primary px-6 font-mono text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-[0_0_28px_color-mix(in_oklch,var(--color-primary)_40%,_transparent)] hover:bg-primary/90",
+            "group inline-flex gap-2 bg-primary px-6 font-mono text-xs font-bold tracking-wider text-primary-foreground uppercase shadow-[0_0_28px_color-mix(in_oklch,var(--color-primary)_40%,_transparent)] hover:bg-primary/90",
           )}
         >
           {t("ctaProjects")}
@@ -107,7 +107,7 @@ export function HeroIntroColumn() {
           onClick={openPersonalIntro}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
-            "inline-flex gap-2 border-primary/35 bg-background/50 font-mono text-xs font-bold uppercase tracking-wider backdrop-blur-sm transition-transform duration-200 hover:scale-[1.02] hover:border-primary/50 hover:bg-primary/10 active:scale-[0.99]",
+            "inline-flex gap-2 border-primary/35 bg-background/50 font-mono text-xs font-bold tracking-wider uppercase backdrop-blur-sm transition-transform duration-200 hover:scale-[1.02] hover:border-primary/50 hover:bg-primary/10 active:scale-[0.99]",
           )}
         >
           <UserCircle2 className="size-4 shrink-0 text-primary" aria-hidden />

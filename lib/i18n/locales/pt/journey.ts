@@ -3,10 +3,10 @@ export const journey = {
   titleBefore: "Minha evolução como",
   titleGradient: "desenvolvedor",
   intro:
-    "Organizei minha trajetória em três áreas: Profissional, com a minha experiência no mercado e projetos reais; Académico, com a minha formação e estudos em tecnologia; e Certificados, onde reúno cursos e validações das minhas competências.",
+    "Organizei minha trajetória em três áreas: Profissional, com a minha experiência no mercado e projetos reais; Acadêmico, com a minha formação e estudos em tecnologia; e Certificados, onde reúno cursos e validações das minhas competências.",
   tabs: {
     professional: "Profissional",
-    academic: "Académico",
+    academic: "Acadêmico",
     certificates: "Certificados",
   },
   professional: {

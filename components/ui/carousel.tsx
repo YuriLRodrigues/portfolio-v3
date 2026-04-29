@@ -66,7 +66,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
             />
             <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-px bg-gradient-to-r from-transparent via-primary/45 to-transparent" aria-hidden />
 
-            <div className="relative w-full min-h-[min(46vh,520px)] sm:min-h-[min(50vh,580px)] lg:min-h-[min(54vh,640px)] xl:min-h-[min(56vh,680px)]">
+            <div className="relative w-full min-h-[min(58vh,640px)] sm:min-h-[min(56vh,620px)] lg:min-h-[min(58vh,700px)] xl:min-h-[min(60vh,760px)]">
               <div
                 className="flex h-full min-h-[inherit] w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{ transform: `translateX(-${current * 100}%)` }}
