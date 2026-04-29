@@ -49,6 +49,15 @@ export function InitialSplash() {
       /* ignore */
     }
 
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      try {
+        sessionStorage.setItem(SESSION_KEY, "1");
+      } catch {
+        /* ignore */
+      }
+      return;
+    }
+
     frame = requestAnimationFrame(() => {
       setShow(true);
       document.body.classList.add("overflow-hidden");

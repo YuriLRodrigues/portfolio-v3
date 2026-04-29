@@ -1,9 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { motion } from "motion/react";
+
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 import { easeOut } from "./journey-motion";
@@ -17,7 +19,7 @@ function DotSep() {
 
 export function ExperienceCard({ period, title, subtitle, subtitleSecondary, meta, metaPlace, metaMode, description, tags, kind }: Entry & { kind: TimelineKind }) {
   const { t } = useTranslation("journey");
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
   const [stackExpanded, setStackExpanded] = useState(false);
   const tagList = tags ?? [];
   const overflow = tagList.length - INITIAL_TAG_COUNT;

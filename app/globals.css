@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Arizonia&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Space+Grotesk:wght@500;600;700&display=swap");
-
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -203,27 +201,14 @@ html[data-magicui-theme-vt="active"]::view-transition-group(root) {
     animation: cursor-blink 1.1s step-end infinite;
   }
 
-  .arizonia-regular {
-    font-family: "Arizonia", cursive;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  .orbitron-regular {
-    font-family: "Orbitron", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  /** Marca: monograma YR (geométrico, letras entrelaçadas) */
+  /** Marca: monograma YR (geométrico, letras entrelaçadas) — fontes via next/font no layout */
   .font-brand-mono {
-    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
     font-optical-sizing: auto;
   }
 
   .font-brand-wordmark {
-    font-family: "Oswald", system-ui, sans-serif;
+    font-family: var(--font-oswald), system-ui, sans-serif;
     font-optical-sizing: auto;
   }
 }

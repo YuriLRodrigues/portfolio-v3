@@ -3,12 +3,12 @@
 import type { MouseEvent, ReactNode } from "react";
 import { useCallback, useRef, useState } from "react";
 
-import { useReducedMotion } from "motion/react";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 export function StackSpotlight({ children }: { children: ReactNode }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState({ x: 50, y: 45 });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
 
   const onMove = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {

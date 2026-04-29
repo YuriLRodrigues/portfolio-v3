@@ -17,6 +17,18 @@ export function ProjectsSection() {
   const { t } = useTranslation("projects");
   const slides = useMemo(() => PROJECTS.map((p) => projectToSlide(p, t)), [t]);
 
+  const carouselLabels = useMemo(
+    () => ({
+      heading: t("carouselHeading"),
+      nav: t("carouselNav"),
+      prev: t("carouselPrev"),
+      next: t("carouselNext"),
+      goToSlide: (title: string) => t("carouselGoTo", { title }),
+      slideKicker: t("carouselSlideKicker"),
+    }),
+    [t],
+  );
+
   return (
     <section
       id="projects"
@@ -52,7 +64,7 @@ export function ProjectsSection() {
           transition={{ duration: 0.76, delay: 0.2, ease: sectionEase }}
           className="relative z-[1] mt-10 w-full sm:mt-14"
         >
-          <PortfolioCarousel slides={slides} />
+          <PortfolioCarousel slides={slides} labels={carouselLabels} />
         </motion.div>
       </Container>
     </section>

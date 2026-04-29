@@ -1,11 +1,12 @@
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 import { easeOut } from "./journey-motion";
 
 export function NumberMilestone({ index, total, highlighted, compact }: { index: number; total: number; highlighted: boolean; compact?: boolean }) {
   const n = String(index + 1).padStart(2, "0");
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
 
   return (
     <motion.div

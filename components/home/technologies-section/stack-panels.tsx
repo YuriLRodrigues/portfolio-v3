@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
@@ -49,9 +50,17 @@ function StackPanelTechItems({ id: panelId, items, rail, compact }: { id: PanelM
 
 export function StackPanels() {
   const { t } = useTranslation("technologies");
+  const reduceMotion = usePrefersReducedMotion();
   return (
     <StackSpotlight>
-      <motion.div className="space-y-8" variants={container} initial="hidden" whileInView="show" viewport={sectionMotionViewport}>
+      <motion.div
+        className="space-y-8"
+        variants={container}
+        initial="hidden"
+        animate={reduceMotion ? "show" : undefined}
+        whileInView={reduceMotion ? undefined : "show"}
+        viewport={sectionMotionViewport}
+      >
         {PANEL_META.map(({ id, items, icon: PanelIcon, span, accent, rail, panelRing }) => {
           const title = t(`panels.${id}.title` as "panels.frontend.title");
           const kicker = t(`panels.${id}.kicker` as "panels.frontend.kicker");

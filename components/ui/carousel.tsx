@@ -15,15 +15,27 @@ export type PortfolioCarouselSlide = {
   footer?: ReactNode;
 };
 
+export type PortfolioCarouselLabels = {
+  heading: string;
+  nav: string;
+  prev: string;
+  next: string;
+  goToSlide: (title: string) => string;
+  /** Ex.: "Projeto" / "Project" antes do número 01, 02… */
+  slideKicker: string;
+};
+
 type PortfolioCarouselProps = {
   slides: PortfolioCarouselSlide[];
   className?: string;
+  /** Rótulos A11n i18n (evita texto fixo em PT no DOM). */
+  labels: PortfolioCarouselLabels;
 };
 
 /**
  * Carrossel à largura do pai (ex.: `Container` com `max-w-7xl`), tilt 3D no slide ativo, área de imagem alta e acabamento “premium” (gradiente, glow, painel inferior).
  */
-export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps) {
+export function PortfolioCarousel({ slides, className, labels }: PortfolioCarouselProps) {
   const [current, setCurrent] = useState(0);
   const id = useId();
 
@@ -42,7 +54,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
   return (
     <div className={cn("relative w-full", className)} aria-labelledby={`carousel-heading-${id}`}>
       <h2 id={`carousel-heading-${id}`} className="sr-only">
-        Projetos em destaque
+        {labels.heading}
       </h2>
 
       {/* Glow de fundo (fora da moldura) */}
@@ -72,7 +84,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
                 style={{ transform: `translateX(-${current * 100}%)` }}
               >
                 {slides.map((slide, index) => (
-                  <CarouselSlide key={slide.id} slide={slide} index={index} active={index === current} />
+                  <CarouselSlide key={slide.id} slide={slide} index={index} active={index === current} labels={labels} />
                 ))}
               </div>
             </div>
@@ -85,21 +97,19 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
           type="button"
           onClick={() => go(-1)}
           className="grid cursor-pointer size-12 place-items-center rounded-2xl border border-border/55 bg-gradient-to-b from-background/95 to-muted/30 text-foreground shadow-[0_8px_28px_-12px_rgba(0,0,0,0.25)] ring-1 ring-primary/15 transition-[border-color,background-color,color,transform,box-shadow] duration-200 hover:scale-105 hover:border-primary/40 hover:from-primary/10 hover:to-primary/5 hover:text-primary active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 dark:from-card/90 dark:to-background/40 dark:shadow-black/40"
-          aria-label="Projeto anterior"
+          aria-label={labels.prev}
         >
-          <ChevronLeft className="size-5" />
+          <ChevronLeft className="size-5" aria-hidden />
         </button>
         <div
           className="flex items-center gap-2 rounded-2xl border border-border/50 bg-gradient-to-b from-muted/50 to-background/80 px-4 py-2.5 shadow-inner ring-1 ring-inset ring-white/[0.04] dark:from-muted/20 dark:to-card/40 dark:ring-white/[0.05]"
-          role="tablist"
-          aria-label="Projetos"
+          role="group"
+          aria-label={labels.nav}
         >
           {slides.map((s, i) => (
             <button
               key={s.id}
               type="button"
-              role="tab"
-              aria-selected={i === current}
               onClick={() => setCurrent(i)}
               className={cn(
                 "h-2 rounded-full cursor-pointer transition-all duration-300 ease-out hover:scale-125",
@@ -107,7 +117,8 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
                   ? "w-10 bg-primary shadow-[0_0_18px_color-mix(in_oklch,var(--color-primary)_50%,_transparent)]"
                   : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50",
               )}
-              aria-label={`Ir para ${s.title}`}
+              aria-label={labels.goToSlide(s.title)}
+              aria-current={i === current ? "true" : undefined}
             />
           ))}
         </div>
@@ -115,7 +126,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
           type="button"
           onClick={() => go(1)}
           className="grid cursor-pointer size-12 place-items-center rounded-2xl border border-border/55 bg-gradient-to-b from-background/95 to-muted/30 text-foreground shadow-[0_8px_28px_-12px_rgba(0,0,0,0.25)] ring-1 ring-primary/15 transition-[border-color,background-color,color,transform,box-shadow] duration-200 hover:scale-105 hover:border-primary/40 hover:from-primary/10 hover:to-primary/5 hover:text-primary active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 dark:from-card/90 dark:to-background/40 dark:shadow-black/40"
-          aria-label="Projeto seguinte"
+          aria-label={labels.next}
         >
           <ChevronRight className="size-5" />
         </button>
@@ -124,7 +135,7 @@ export function PortfolioCarousel({ slides, className }: PortfolioCarouselProps)
   );
 }
 
-function CarouselSlide({ slide, index, active }: { slide: PortfolioCarouselSlide; index: number; active: boolean }) {
+function CarouselSlide({ slide, index, active, labels }: { slide: PortfolioCarouselSlide; index: number; active: boolean; labels: PortfolioCarouselLabels }) {
   const slideRef = useRef<HTMLDivElement>(null);
   const xRef = useRef(0);
   const yRef = useRef(0);
@@ -192,6 +203,7 @@ function CarouselSlide({ slide, index, active }: { slide: PortfolioCarouselSlide
               className="object-cover"
               sizes="(min-width: 1280px) 1200px, (min-width: 768px) 90vw, calc(100vw - 2rem)"
               priority={index === 0}
+              fetchPriority={index === 0 ? "high" : undefined}
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/[0.08] via-muted/40 to-card/90">
@@ -222,8 +234,10 @@ function CarouselSlide({ slide, index, active }: { slide: PortfolioCarouselSlide
           )}
         >
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" aria-hidden />
-          <h3 className="text-balance font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">Projeto {String(index + 1).padStart(2, "0")}</h3>
-          <p className="mt-2 text-pretty text-xl font-bold tracking-tight text-foreground sm:text-2xl">{slide.title}</p>
+          <p className="text-balance font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+            {labels.slideKicker} {String(index + 1).padStart(2, "0")}
+          </p>
+          <h3 className="mt-2 text-pretty text-xl font-bold tracking-tight text-foreground sm:text-2xl">{slide.title}</h3>
           {slide.subtitle ? <p className="mt-1.5 font-mono text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground sm:text-sm">{slide.subtitle}</p> : null}
           <div className={cn("mt-4 transition-opacity duration-500", active ? "opacity-100" : "max-h-[5rem] overflow-hidden opacity-55")}>{slide.footer}</div>
         </div>

@@ -1,13 +1,14 @@
 import type { RefObject } from "react";
 
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 
 import type { Entry, TimelineKind } from "./journey-types";
 import { TimelineRow } from "./timeline-row";
 
 export function AlternatingTimeline({ listRef, entries, kind }: { listRef: RefObject<HTMLUListElement | null>; entries: Entry[]; kind: TimelineKind }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
   const { scrollYProgress } = useScroll({
     target: listRef,
     offset: ["start 0.72", "end 0.38"],
@@ -34,7 +35,7 @@ export function AlternatingTimeline({ listRef, entries, kind }: { listRef: RefOb
         </div>
       </div>
 
-      <div className="absolute left-[1.05rem] top-3 bottom-3 w-1 md:hidden" aria-hidden>
+      <div className="absolute top-3 bottom-3 left-[1.05rem] w-1 md:hidden" aria-hidden>
         <div className={cn("absolute inset-0", railClass)} />
         <div className="absolute inset-0 overflow-hidden rounded-full">
           <motion.div

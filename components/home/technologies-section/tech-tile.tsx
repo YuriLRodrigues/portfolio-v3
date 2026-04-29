@@ -7,7 +7,8 @@ import { useTranslation } from "react-i18next";
 import { normalizeToSupported } from "@/lib/i18n/resolve-locale";
 import { withTechLocale } from "@/lib/i18n/tech-english";
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "motion/react";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { motion } from "motion/react";
 
 import { sectionEase, sectionMotionViewport } from "../section-motion";
 import { easeOut } from "./motion-variants";
@@ -20,7 +21,7 @@ export function TechTile({ tech, panelId, compact, rail }: { tech: Tech; panelId
   const loc = normalizeToSupported(i18n.resolvedLanguage ?? i18n.language);
   const localized = withTechLocale(tech, panelId, loc);
   const { name, tagline, Icon, badge } = localized;
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
   const [glow, setGlow] = useState({ x: 50, y: 50 });
   const tileRef = useRef<HTMLDivElement>(null);
 
@@ -41,6 +42,7 @@ export function TechTile({ tech, panelId, compact, rail }: { tech: Tech; panelId
     <motion.div
       ref={tileRef}
       initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      animate={reduceMotion ? { opacity: 1, y: 0 } : undefined}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={sectionMotionViewport}
       transition={{ duration: 0.62, ease: easeOut }}

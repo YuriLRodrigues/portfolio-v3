@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Oswald, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import type { ReactNode } from "react";
 
@@ -19,11 +19,27 @@ const accentInitScript = `(function(){try{var k=${JSON.stringify(ACCENT_STORAGE_
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["700"],
+  display: "swap",
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
 });
 
 const siteUrl = getSiteUrl();
@@ -67,8 +83,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`} data-accent="neutral" suppressHydrationWarning>
-      <body className="flex min-h-full flex-col bg-background text-foreground scroll-smooth">
+    <html
+      lang="pt-BR"
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${oswald.variable} h-full antialiased scroll-smooth`}
+      data-accent="neutral"
+      suppressHydrationWarning
+    >
+      <body className="flex min-h-full flex-col bg-background text-foreground scroll-smooth" suppressHydrationWarning>
         <Script id="portfolio-accent-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: accentInitScript }} />
         <AppProviders>
           {/* <MouseFollower /> */}

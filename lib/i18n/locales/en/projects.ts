@@ -18,6 +18,12 @@ export const projects = {
   coverAlt: "Project cover for {{name}}",
   stackShowMore: "+{{count}} more",
   stackShowLess: "Show less",
+  carouselHeading: "Featured projects",
+  carouselNav: "Choose project slide",
+  carouselPrev: "Previous project",
+  carouselNext: "Next project",
+  carouselGoTo: "Go to {{title}}",
+  carouselSlideKicker: "Project",
   items: {
     workoutTracker: {
       name: "Workout Tracker",

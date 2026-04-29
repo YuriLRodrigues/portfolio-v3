@@ -37,12 +37,12 @@ export function HeroIntroColumn() {
         transition={{ duration: 0.72, ease: heroEase }}
         className="max-w-2xl min-w-0"
       >
-        <p className="text-[clamp(1.85rem,5.2vw,3.1rem)] leading-[1.06] font-black tracking-[-0.045em] sm:tracking-[-0.05em]">
+        <h1 className="text-[clamp(1.85rem,5.2vw,3.1rem)] leading-[1.06] font-black tracking-[-0.045em] sm:tracking-[-0.05em]">
           <span className="text-muted-foreground">{t("greeting")}</span> <span className="text-foreground">{t("nameLead")}</span>{" "}
           <span className="relative inline-block">
             <GradientText>Yuri</GradientText>
           </span>
-        </p>
+        </h1>
       </motion.div>
 
       <div className="max-w-4xl space-y-1.5 sm:space-y-2">
@@ -113,7 +113,7 @@ export function HeroIntroColumn() {
           <UserCircle2 className="size-4 shrink-0 text-primary" aria-hidden />
           {t("photoBio")}
         </button>
-        <div className="flex items-center gap-1.5 sm:pl-1" aria-label={t("socialLabel")}>
+        <nav className="flex items-center gap-1.5 sm:pl-1" aria-label={t("socialLabel")}>
           {(
             [
               { href: "https://github.com/YuriLRodrigues", label: t("socialGithub"), Icon: GitHubIcon, preview: true },
@@ -131,7 +131,7 @@ export function HeroIntroColumn() {
               </a>
             ),
           )}
-        </div>
+        </nav>
       </motion.div>
     </div>
   );
