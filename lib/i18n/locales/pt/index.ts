@@ -1,4 +1,5 @@
 import { about } from "./about";
+import { ask } from "./ask";
 import { common } from "./common";
 import { contact } from "./contact";
 import { hero } from "./hero";
@@ -18,4 +19,5 @@ export const pt = {
   journey,
   contact,
   intro,
+  ask,
 } as const;

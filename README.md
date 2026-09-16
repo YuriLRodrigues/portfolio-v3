@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Formulário de contato
+
+O envio usa [Resend](https://resend.com), que tem plano gratuito de 3.000 e-mails por mês
+(100 por dia) — o suficiente com folga para um portfólio.
+
+1. Copie `.env.example` para `.env.local`.
+2. Crie a conta no Resend e gere uma API key em **API Keys**.
+3. Preencha `RESEND_API_KEY` e `CONTACT_NOTIFY_EMAIL` (onde você quer receber).
+4. `CONTACT_FROM_EMAIL` é opcional. Sem domínio verificado, deixe comentado: o envio
+   sai de `onboarding@resend.dev`, que já funciona no plano gratuito. Com domínio próprio
+   verificado no Resend, use um remetente do seu domínio para não cair em spam.
+
+Em produção (Vercel), as mesmas variáveis vão em **Settings → Environment Variables**.
+
+Sem as variáveis o site continua no ar: a rota `app/api/contact` responde 503 e o
+formulário mostra o aviso de "envio ainda não configurado", com o e-mail direto ao lado
+como alternativa.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

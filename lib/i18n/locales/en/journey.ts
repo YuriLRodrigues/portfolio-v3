@@ -12,12 +12,12 @@ export const journey = {
   professional: {
     p1: {
       period: "Mar 2026 — present",
-      title: "Full Stack Developer",
+      title: "Full Stack Developer (Mid-level)",
       org: "Agência Molla",
       locationPlace: "São Paulo, SP",
       locationMode: "Remote",
       description:
-        "Returned to Molla as full stack developer. Continuing delivery on Next.js and NestJS systems for enterprise clients—admin panels, dashboards, and integrations—with the same focus on performance, automated testing, and close collaboration with product and design.",
+        "Promoted to mid-level, now responsible for more than 10 B2B incentive program projects for large brands, from build to maintenance. I develop the panel the operations team works in daily and the dashboards the brand watches: role- and permission-scoped access, merchandising photo submission and approval, scoring rules with daily calculation, gamified rankings, and a rewards catalog. Next.js and NestJS, with performance and automated tests on the flows that move points and prizes.",
     },
     p2: {
       period: "Jun 2025 — Mar 2026",
@@ -36,7 +36,7 @@ export const journey = {
       locationPlace: "São Paulo, SP",
       locationMode: "Remote",
       description:
-        "PJ role at a strategy, creative, and technology agency serving large brands. Built and maintained administrative systems and dashboards (e.g. Kellanova/Kellogg’s, Dux Experts, AB Mauri, MZB, LuxRaybn): photo-based merchandising workflows, admin approvals, dynamic points and daily performance scoring, and gamified rankings. Reduced reliance on manual DB changes for admins, improved load times and reliability, and introduced unit, integration, and E2E tests. Integrated file storage (Amazon S3), transactional email (SendGrid), code review, and mentoring of junior developers alongside product and design.",
+        "PJ role at a strategy, creative, and technology agency serving large brands (Kellanova/Kellogg’s, AB Mauri, Dux Experts, MZB, LuxRaybn). Built and maintained B2B incentive programs end to end: photo-based merchandising submissions with admin approval, dynamic scoring with daily performance calculation, gamified rankings, and reward redemption. Panels split by role and permission gave the operations team autonomy and ended manual database edits. Unit, integration, and E2E tests over the approval and scoring flows, plus Amazon S3 and SendGrid integration, code review, and mentoring junior developers.",
     },
     p4: {
       period: "Jan 2024 — Jun 2024",

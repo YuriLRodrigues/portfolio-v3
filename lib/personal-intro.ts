@@ -1,6 +1,7 @@
 /**
  * Dados do “sobre mim” pessoal (foto e fatos fora de tradução imediata).
- * Coloque sua foto em public/me.jpg (ou altere photoSrc).
+ * Foto em public/yuri.webp — recorte com fundo transparente (701x992).
+ * O fundo do retrato vem do tema, em PhotoBlock; a imagem só carrega o sujeito.
  * Texto do diálogo: namespace intro em lib/i18n.
  */
 export const PERSONAL_INTRO = {
@@ -9,7 +10,7 @@ export const PERSONAL_INTRO = {
   cityState: "Conselheiro Lafaiete, MG",
   country: "Brasil",
   timezoneLabel: "Brasília (GMT-3)",
-  photoSrc: "/eu.jpg",
+  photoSrc: "/yuri.webp",
 } as const;
 
 export type PersonalIntro = typeof PERSONAL_INTRO;

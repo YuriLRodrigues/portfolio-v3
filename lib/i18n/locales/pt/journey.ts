@@ -12,12 +12,12 @@ export const journey = {
   professional: {
     p1: {
       period: "Mar 2026 — atual",
-      title: "Desenvolvedor Full Stack",
+      title: "Desenvolvedor Full Stack Pleno",
       org: "Agência Molla",
       locationPlace: "São Paulo, SP",
       locationMode: "Remoto",
       description:
-        "Retorno à Molla como desenvolvedor full stack. Continuidade na entrega de sistemas em Next.js e NestJS para clientes enterprise—painéis administrativos, dashboards e integrações—com foco em performance, testes automatizados e alinhamento com produto e design.",
+        "Promovido a pleno, hoje com mais de 10 projetos de programas de incentivo B2B para grandes marcas sob a minha responsabilidade, do desenvolvimento à manutenção. Construo o painel que a operação usa no dia a dia e os dashboards que a marca acompanha: acesso segmentado por cargo e permissão, envio e aprovação de fotos de merchandising, regras de pontuação com apuração diária, rankings gamificados e catálogo de premiação. Next.js e NestJS, com performance e testes automatizados nos fluxos que movem ponto e prêmio.",
     },
     p2: {
       period: "Jun 2025 — mar 2026",
@@ -36,7 +36,7 @@ export const journey = {
       locationPlace: "São Paulo, SP",
       locationMode: "Remoto",
       description:
-        "PJ em agência de planejamento, criação e tecnologia para grandes marcas. Desenvolvimento e manutenção de sistemas administrativos e dashboards (ex.: Kellanova/Kellogg’s, Dux Experts, AB Mauri, MZB, LuxRaybn): envio de fotos de merchandising, aprovação por administradores, pontuação dinâmica com cálculo diário de desempenho e rankings gamificados. Maior autonomia para admins sem intervenção manual no banco, ganhos de desempenho e agilidade nos fluxos, além de testes unitários, de integração e E2E. Integrações com Amazon S3 e e-mail transacional (SendGrid), code review, mentoria de júniores e trabalho contínuo com produto e design.",
+        "PJ em agência de planejamento, criação e tecnologia para grandes marcas (Kellanova/Kellogg’s, AB Mauri, Dux Experts, MZB, LuxRaybn). Construção e manutenção dos programas de incentivo B2B ponta a ponta: envio de fotos de merchandising com aprovação por administradores, pontuação dinâmica com cálculo diário de desempenho, rankings gamificados e resgate de premiação. Painéis separados por cargo e permissão deram autonomia ao time de operação e acabaram com o ajuste manual no banco. Testes unitários, de integração e E2E nos fluxos de aprovação e pontuação, integração com Amazon S3 e SendGrid, code review e mentoria de júniores.",
     },
     p4: {
       period: "Jan 2024 — jun 2024",

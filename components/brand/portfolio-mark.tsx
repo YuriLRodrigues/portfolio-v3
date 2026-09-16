@@ -37,7 +37,7 @@ function PortfolioMonogramInner({ size, className }: { size: MonogramSize; class
   const L = layout[size];
 
   return (
-    <div className={cn("relative isolate shrink-0 overflow-hidden rounded-[0.65rem] sm:rounded-xl flex items-center justify-center", L.frame, className)} aria-hidden>
+    <div className={cn("relative isolate flex shrink-0 items-center justify-center overflow-hidden rounded-[0.65rem] sm:rounded-xl", L.frame, className)} aria-hidden>
       {/* Fundo */}
       <div
         className={cn(
@@ -58,15 +58,18 @@ function PortfolioMonogramInner({ size, className }: { size: MonogramSize; class
         }}
       />
 
-      {/* Letras */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Letras.
+          A rotação do R (origem no canto inferior direito) e a margem negativa jogam o
+          conjunto para a direita e para baixo; o translate devolve o bloco ao centro
+          óptico do quadrado. Em `em` para acompanhar os dois tamanhos do monograma. */}
+      <div className={cn("absolute inset-0 flex -translate-x-[0.19em] -translate-y-[0.05em] items-center justify-center", L.textSize)}>
         {/* Y */}
-        <span className={cn("font-brand-mono font-bold leading-none tracking-[-0.08em] text-foreground/90", L.textSize)}>{left}</span>
+        <span className={cn("font-brand-mono leading-none font-bold tracking-[-0.08em] text-foreground/90", L.textSize)}>{left}</span>
 
         {/* R ajustado */}
         <span
           className={cn(
-            "font-brand-mono font-bold leading-none tracking-[-0.08em] text-primary",
+            "font-brand-mono leading-none font-bold tracking-[-0.08em] text-primary",
             L.textSize,
             "-ml-[0.20em]", // bem mais próximo
             "translate-y-[0.1em]", // levemente mais baixo
@@ -97,7 +100,7 @@ export function PortfolioMarkHero({ className }: { className?: string }) {
 
       <p
         className={cn(
-          "font-brand-wordmark mt-5 max-w-[min(90vw,28rem)] text-center text-[clamp(0.7rem,2.4vw,0.85rem)] font-semibold uppercase leading-snug tracking-[0.38em] text-muted-foreground",
+          "font-brand-wordmark mt-5 max-w-[min(90vw,28rem)] text-center text-[clamp(0.7rem,2.4vw,0.85rem)] leading-snug font-semibold tracking-[0.38em] text-muted-foreground uppercase",
           "sm:mt-6 sm:tracking-[0.42em]",
         )}
       >

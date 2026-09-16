@@ -7,9 +7,7 @@ import { NumberTicker } from "@/components/ui/number-ticker";
 
 import { cn } from "@/lib/utils";
 
-import { ABOUT_STATS, type AboutStatId } from "./about-data";
-
-type AboutStat = (typeof ABOUT_STATS)[number];
+import { type AboutStat, type AboutStatId } from "./about-data";
 
 /** Acentos derivados só de tokens do tema (`data-accent`, light/dark). */
 const STAT_THEME: Record<
@@ -67,7 +65,7 @@ const STAT_THEME: Record<
     monoAccent: "text-ring",
     numberGlow: "drop-shadow-[0_2px_18px_color-mix(in_oklch,var(--color-primary)_30%),0_0_22px_color-mix(in_oklch,var(--color-ring)_20%,_transparent)]",
   },
-  coffee: {
+  companies: {
     magic: {
       gradientSize: 118,
       gradientFrom: "color-mix(in oklch, var(--primary) 58%, var(--muted-foreground))",
@@ -103,23 +101,23 @@ export function AboutStatCard({ stat, index }: { stat: AboutStat; index: number 
       gradientOpacity={theme.magic.gradientOpacity}
       innerClassName={theme.magic.innerClassName}
       className={cn(
-        "relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-border/45 p-0 shadow-md ring-1 ring-inset ring-white/[0.04] transition-[border-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/30 hover:shadow-[0_22px_50px_-28px_color-mix(in_oklch,var(--color-primary)_28%,_transparent)] motion-reduce:transition-[border-color,box-shadow] motion-reduce:duration-[420ms] motion-reduce:ease-out motion-reduce:hover:-translate-y-0.5 motion-reduce:hover:scale-[1.01] dark:border-border/40 dark:ring-white/[0.05]",
+        "relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-border/45 p-0 shadow-md ring-1 ring-white/[0.04] transition-[border-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ring-inset hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/30 hover:shadow-[0_22px_50px_-28px_color-mix(in_oklch,var(--color-primary)_28%,_transparent)] motion-reduce:transition-[border-color,box-shadow] motion-reduce:duration-[420ms] motion-reduce:ease-out motion-reduce:hover:-translate-y-0.5 motion-reduce:hover:scale-[1.01] dark:border-border/40 dark:ring-white/[0.05]",
       )}
     >
       <div className="relative z-40 flex h-full min-h-0 flex-1 flex-col p-4 sm:p-5">
         <div className={cn("pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.22]", theme.gridBg)} aria-hidden />
 
-        <div className="pointer-events-none absolute -right-8 -top-10 size-28 rounded-full bg-primary/[0.07] blur-2xl dark:bg-primary/[0.12]" aria-hidden />
+        <div className="pointer-events-none absolute -top-10 -right-8 size-28 rounded-full bg-primary/[0.07] blur-2xl dark:bg-primary/[0.12]" aria-hidden />
 
         <div className="relative flex items-start justify-between gap-5">
           <div className="flex min-w-0 flex-1 gap-3">
             <div className={cn("mt-1 h-[3.25rem] w-1 shrink-0 rounded-full bg-gradient-to-b", theme.rail)} aria-hidden />
             <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex items-center gap-2">
-                <span className={cn("font-mono text-[9px] font-bold tabular-nums tracking-[0.2em] sm:text-[10px]", theme.monoAccent)}>{slot}</span>
-                <span className="h-px min-w-[1.25rem] flex-1 max-w-[3rem] bg-gradient-to-r from-border/60 to-transparent" aria-hidden />
+                <span className={cn("font-mono text-[9px] font-bold tracking-[0.2em] tabular-nums sm:text-[10px]", theme.monoAccent)}>{slot}</span>
+                <span className="h-px max-w-[3rem] min-w-[1.25rem] flex-1 bg-gradient-to-r from-border/60 to-transparent" aria-hidden />
               </div>
-              <p className="mt-2.5 font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.16em] text-muted-foreground  sm:text-[11px] sm:tracking-[0.18em]">
+              <p className="mt-2.5 font-mono text-[10px] leading-snug font-semibold tracking-[0.16em] text-muted-foreground uppercase sm:text-[11px] sm:tracking-[0.18em]">
                 {t(`stats.${stat.id}` as "stats.years")}
               </p>
             </div>
@@ -128,7 +126,7 @@ export function AboutStatCard({ stat, index }: { stat: AboutStat; index: number 
           <div
             className={cn(
               "relative grid size-11 shrink-0 place-items-center rounded-2xl border p-2.5 sm:size-12 sm:p-3",
-              "before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:opacity-0 before:transition-opacity before:duration-500 before:ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:before:duration-300 motion-reduce:before:ease-out group-hover:before:opacity-100",
+              "before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:opacity-0 before:transition-opacity before:duration-500 before:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:before:opacity-100 motion-reduce:before:duration-300 motion-reduce:before:ease-out",
               "before:bg-[conic-gradient(from_200deg_at_50%_50%,transparent,color-mix(in_oklch,var(--primary)_35%,_transparent),transparent)]",
               theme.iconShell,
             )}
@@ -139,25 +137,27 @@ export function AboutStatCard({ stat, index }: { stat: AboutStat; index: number 
 
         <div className="relative mt-auto flex flex-1 items-end pt-4 sm:pt-5">
           <div className="flex w-full items-baseline gap-1">
-            {"ticker" in stat ? (
+            {typeof stat.ticker === "number" ? (
               <>
                 <NumberTicker
                   value={stat.ticker}
                   delay={index * 0.12}
                   className={cn(
-                    "font-black tabular-nums tracking-[-0.04em] text-foreground dark:text-foreground",
+                    "font-black tracking-[-0.04em] text-foreground tabular-nums dark:text-foreground",
                     theme.numberGlow,
                     "text-[clamp(1.85rem,4.5vw,2.35rem)] leading-[0.95]",
                   )}
                 />
-                <span className="bg-gradient-to-br from-primary via-primary/85 to-primary/60 bg-clip-text pb-0.5 text-2xl font-black tabular-nums text-transparent sm:text-[1.85rem]">
-                  {stat.suffix}
-                </span>
+                {stat.suffix ? (
+                  <span className="bg-gradient-to-br from-primary via-primary/85 to-primary/60 bg-clip-text pb-0.5 text-2xl font-black text-transparent tabular-nums sm:text-[1.85rem]">
+                    {stat.suffix}
+                  </span>
+                ) : null}
               </>
             ) : (
               <span
                 className={cn(
-                  "bg-gradient-to-br from-primary via-ring to-primary/75 bg-clip-text font-black tabular-nums tracking-tight text-transparent",
+                  "bg-gradient-to-br from-primary via-ring to-primary/75 bg-clip-text font-black tracking-tight text-transparent tabular-nums",
                   "animate-[pulse_3.2s_ease-in-out_infinite]",
                   theme.numberGlow,
                 )}

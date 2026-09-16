@@ -13,7 +13,30 @@ export const about = {
   stats: {
     years: "Anos em produção",
     projects: "Projetos entregues",
-    coffee: "Café por sprint",
+    companies: "Empresas atendidas",
+  },
+  portraitKicker: "Quem fala aqui",
+  portraitName: "Yuri Leite Rodrigues",
+  portraitRole: "Desenvolvedor full stack. Escrevo dos dois lados: NestJS de um, Next.js do outro.",
+  portraitStatus: "Na Agência Molla, remoto, desde março de 2026.",
+  portraitCta: "Conheça mais sobre mim",
+  principlesKicker: "Como eu trabalho",
+  principles: {
+    planning: {
+      stage: "Planejamento",
+      title: "Entender antes de abrir o Figma",
+      text: "Quem usa, o que quebra se der errado e qual é o menor recorte que já entrega valor. Contrato de API e modelo de dados saem daqui, não do meio da implementação.",
+    },
+    building: {
+      stage: "Execução",
+      title: "Commit pequeno, PR revisável",
+      text: "Tipagem ponta a ponta e cliente de API gerado do schema — mudança de contrato aparece no build, não em produção. Convenção do repositório acima de gosto pessoal.",
+    },
+    testing: {
+      stage: "Testes",
+      title: "Cobrir o que dá prejuízo",
+      text: "Domínio testado com repositório in-memory, E2E só no caminho crítico. Teste não é enfeite de checklist: é o que me deixa mexer em código antigo sem medo.",
+    },
   },
   stackKicker: "Em evidência",
   stackTitle: "Stack que uso hoje",

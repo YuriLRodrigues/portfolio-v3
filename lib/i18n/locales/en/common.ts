@@ -44,9 +44,16 @@ export const common = {
     rights: "All rights reserved.",
   },
   splash: {
-    loading: "Loading portfolio",
+    loading: "Loading",
     skip: "Skip",
     progress: "Loading progress",
+    window: "yuri@portfolio — boot",
+    steps: {
+      theme: "loading theme and accent color",
+      journey: "assembling timeline and stack",
+      projects: "opening GitHub projects",
+      covers: "preparing the covers",
+    },
   },
   accents: {
     neutral: "Neutral",
