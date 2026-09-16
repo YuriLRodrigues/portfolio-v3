@@ -6,18 +6,18 @@ import { GitHubIcon } from "@/components/icons/github-icon";
 import { LinkedInIcon } from "@/components/icons/linkedin-icon";
 import { GradientText } from "@/components/ui/gradient-text";
 
-import { Mail, Phone } from "lucide-react";
 import { motion } from "motion/react";
 
 import { sectionEase, sectionHoverTransition, sectionMotionViewport } from "../section-motion";
 import { CONTACT } from "./contact-data";
+import { ContactDetails } from "./contact-details";
 
 export function ContactEditorialColumn() {
   const { t } = useTranslation("contact");
   return (
     <div className="relative min-w-0">
       <span
-        className="pointer-events-none absolute -left-2 top-[-4%] select-none font-mono text-[clamp(3.5rem,14vw,9rem)] font-black leading-none tracking-[-0.06em] text-foreground/[0.04] dark:text-foreground/[0.07] sm:-left-4 sm:top-[-6%]"
+        className="pointer-events-none absolute top-[-4%] -left-2 font-mono text-[clamp(3.5rem,14vw,9rem)] leading-none font-black tracking-[-0.06em] text-foreground/[0.04] select-none sm:top-[-6%] sm:-left-4 dark:text-foreground/[0.07]"
         aria-hidden
       >
         {t("bgWord")}
@@ -38,15 +38,15 @@ export function ContactEditorialColumn() {
             className="grid size-11 shrink-0 cursor-default place-items-center rounded-lg border border-primary/35 bg-gradient-to-br from-primary/[0.14] to-transparent shadow-[inset_0_1px_0_0_color-mix(in_oklch,var(--color-primary)_22%,_transparent)] sm:size-12"
             aria-hidden
           >
-            <span className="font-mono text-[11px] font-bold tabular-nums text-primary sm:text-xs">06</span>
+            <span className="font-mono text-[11px] font-bold text-primary tabular-nums sm:text-xs">06</span>
           </motion.div>
-          <div className="h-px min-w-[2.5rem] flex-1 max-w-[6rem] bg-gradient-to-r from-primary/45 to-transparent lg:max-w-[10rem]" aria-hidden />
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-primary sm:text-[11px]">{t("kicker")}</p>
+          <div className="h-px max-w-[6rem] min-w-[2.5rem] flex-1 bg-gradient-to-r from-primary/45 to-transparent lg:max-w-[10rem]" aria-hidden />
+          <p className="font-mono text-[10px] font-semibold tracking-[0.22em] text-primary uppercase sm:text-[11px]">{t("kicker")}</p>
         </div>
 
         <h2
           id="contact-heading"
-          className="mt-6 text-balance font-black tracking-[-0.045em] text-foreground"
+          className="mt-6 font-black tracking-[-0.045em] text-balance text-foreground"
           style={{ fontSize: "clamp(2.25rem, 6vw, 3.75rem)", lineHeight: 1.05 }}
         >
           <GradientText variant="surface">{t("title")}</GradientText>
@@ -56,30 +56,7 @@ export function ContactEditorialColumn() {
         <p className="mt-3 text-lg font-semibold tracking-tight text-foreground/90 sm:text-xl">{t("lead")}</p>
         <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">{t("p")}</p>
 
-        <div className="mt-10 space-y-8">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t("email")}</p>
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="mt-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground underline decoration-primary/40 decoration-2 underline-offset-4 transition-[text-decoration-color,transform] duration-200 hover:decoration-primary hover:translate-x-0.5"
-            >
-              <Mail className="size-5 shrink-0 text-primary" aria-hidden />
-              {CONTACT.email}
-            </a>
-          </div>
-          {CONTACT.phoneDisplay && CONTACT.phoneHref ? (
-            <div>
-              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{t("phone")}</p>
-              <a
-                href={CONTACT.phoneHref}
-                className="mt-2 inline-flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground underline decoration-primary/40 decoration-2 underline-offset-4 transition-[text-decoration-color,transform] duration-200 hover:decoration-primary hover:translate-x-0.5"
-              >
-                <Phone className="size-5 shrink-0 text-primary" aria-hidden />
-                {CONTACT.phoneDisplay}
-              </a>
-            </div>
-          ) : null}
-        </div>
+        <ContactDetails />
 
         <div className="mt-10 flex flex-wrap gap-3" aria-label={t("social")}>
           <motion.a
@@ -89,7 +66,7 @@ export function ContactEditorialColumn() {
             whileHover={{ y: -3, scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
             transition={sectionHoverTransition}
-            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-inset ring-white/[0.04] hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
+            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-white/[0.04] ring-inset hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
           >
             <GitHubIcon className="size-5" />
             <span className="sr-only">GitHub</span>
@@ -101,7 +78,7 @@ export function ContactEditorialColumn() {
             whileHover={{ y: -3, scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
             transition={sectionHoverTransition}
-            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-inset ring-white/[0.04] hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
+            className="flex size-12 items-center justify-center rounded-xl border border-border/60 bg-background/60 text-muted-foreground shadow-sm ring-1 ring-white/[0.04] ring-inset hover:border-primary/45 hover:bg-primary/10 hover:text-foreground dark:bg-background/25"
           >
             <LinkedInIcon className="size-5" />
             <span className="sr-only">LinkedIn</span>
