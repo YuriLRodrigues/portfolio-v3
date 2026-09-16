@@ -82,7 +82,8 @@ export function HeroIntroColumn() {
       </div>
 
       <motion.div
-        className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+        // Telemóvel: grade de 2 colunas — currículo e foto&bio dividem a linha.
+        className="grid grid-cols-2 items-stretch gap-3 sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={heroMotionViewport}
@@ -95,25 +96,25 @@ export function HeroIntroColumn() {
           transition={sectionHoverTransition}
           className={cn(
             buttonVariants({ size: "lg" }),
-            "group inline-flex gap-2 bg-primary px-6 font-mono text-xs font-bold tracking-wider text-primary-foreground uppercase shadow-[0_0_28px_color-mix(in_oklch,var(--color-primary)_40%,_transparent)] hover:bg-primary/90",
+            "group col-span-2 inline-flex w-full justify-center gap-2 bg-primary px-6 font-mono text-xs font-bold tracking-wider text-primary-foreground uppercase shadow-[0_0_28px_color-mix(in_oklch,var(--color-primary)_40%,_transparent)] hover:bg-primary/90 sm:col-span-1 sm:w-auto",
           )}
         >
           {t("ctaProjects")}
           <MoveRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </motion.a>
-        <ResumeMenu />
+        <ResumeMenu className="w-full sm:w-auto" />
         <button
           type="button"
           onClick={openPersonalIntro}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
-            "inline-flex gap-2 border-primary/35 bg-background/50 font-mono text-xs font-bold tracking-wider uppercase backdrop-blur-sm transition-transform duration-200 hover:scale-[1.02] hover:border-primary/50 hover:bg-primary/10 active:scale-[0.99]",
+            "inline-flex w-full justify-center gap-2 border-primary/35 bg-background/50 font-mono text-xs font-bold tracking-wider uppercase backdrop-blur-sm transition-transform duration-200 hover:scale-[1.02] hover:border-primary/50 hover:bg-primary/10 active:scale-[0.99] sm:w-auto",
           )}
         >
           <UserCircle2 className="size-4 shrink-0 text-primary" aria-hidden />
           {t("photoBio")}
         </button>
-        <nav className="flex items-center gap-1.5 sm:pl-1" aria-label={t("socialLabel")}>
+        <nav className="col-span-2 flex items-center justify-center gap-1.5 sm:col-span-1 sm:justify-start sm:pl-1" aria-label={t("socialLabel")}>
           {(
             [
               { href: "https://github.com/YuriLRodrigues", label: t("socialGithub"), Icon: GitHubIcon, preview: true },

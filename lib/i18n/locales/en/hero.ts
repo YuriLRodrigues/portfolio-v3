@@ -13,6 +13,18 @@ export const hero = {
   socialGithub: "GitHub",
   socialLinkedIn: "LinkedIn",
   socialEmail: "Email",
+  coder: {
+    file: "portfolio.ts",
+    varName: "dev",
+    keyName: "name",
+    keyRole: "role",
+    keySeniority: "seniority",
+    keyLocation: "location",
+    keyStack: "stack",
+    role: "Full-stack Developer",
+    seniority: "Mid-level",
+    location: "Brazil",
+  },
   roles: {
     fullstack: "FULLSTACK DEVELOPER",
     frontend: "FRONTEND DEVELOPER",

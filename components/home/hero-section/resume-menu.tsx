@@ -15,7 +15,7 @@ import { sectionHoverTransition } from "../section-motion";
 function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewLabel: string; downloadLabel: string }) {
   return (
     <div
-      className="absolute left-0 top-full z-[60] mt-2 min-w-[14rem] overflow-hidden rounded-xl border border-border/60 bg-background/95 py-1 shadow-xl ring-1 ring-border/30 backdrop-blur-xl"
+      className="absolute top-full left-0 z-[60] mt-2 min-w-[14rem] overflow-hidden rounded-xl border border-border/60 bg-background/95 py-1 shadow-xl ring-1 ring-border/30 backdrop-blur-xl"
       role="menu"
     >
       <a
@@ -23,7 +23,7 @@ function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewL
         target="_blank"
         rel="noopener noreferrer"
         role="menuitem"
-        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition-[background-color,transform] duration-200 hover:bg-primary/10 hover:translate-x-0.5"
+        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition-[background-color,transform] duration-200 hover:translate-x-0.5 hover:bg-primary/10"
         onClick={onPick}
       >
         <ExternalLink className="size-4 shrink-0 text-primary" />
@@ -33,7 +33,7 @@ function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewL
         href={RESUME_PDF_HREF}
         download={RESUME_FILENAME_DOWNLOAD}
         role="menuitem"
-        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition-[background-color,transform] duration-200 hover:bg-primary/10 hover:translate-x-0.5"
+        className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-foreground transition-[background-color,transform] duration-200 hover:translate-x-0.5 hover:bg-primary/10"
         onClick={onPick}
       >
         <Download className="size-4 shrink-0 text-primary" />
@@ -46,7 +46,7 @@ function Panel({ onPick, viewLabel, downloadLabel }: { onPick: () => void; viewL
 /**
  * Currículo: visualizar (nova aba) ou baixar PDF.
  */
-export function ResumeMenu() {
+export function ResumeMenu({ className }: { className?: string }) {
   const { t } = useTranslation("hero");
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -73,13 +73,13 @@ export function ResumeMenu() {
   const pick = () => setOpen(false);
 
   return (
-    <div className="relative flex flex-wrap items-center gap-2" ref={rootRef}>
-      <motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }} transition={sectionHoverTransition}>
+    <div className={cn("relative flex flex-wrap items-center gap-2", className)} ref={rootRef}>
+      <motion.div className="w-full sm:w-auto" whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }} transition={sectionHoverTransition}>
         <Button
           type="button"
           variant="outline"
           size="default"
-          className="gap-2 border-border/60 bg-background/60 font-mono text-xs font-bold uppercase tracking-wide"
+          className="w-full gap-2 border-border/60 bg-background/60 font-mono text-xs font-bold tracking-wide uppercase sm:w-auto"
           aria-expanded={open}
           aria-haspopup="menu"
           onClick={toggle}
