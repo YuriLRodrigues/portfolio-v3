@@ -4,13 +4,15 @@
  * O fundo do retrato vem do tema, em PhotoBlock; a imagem só carrega o sujeito.
  * Texto do diálogo: namespace intro em lib/i18n.
  */
+import { withBasePath } from "@/lib/base-path";
+
 export const PERSONAL_INTRO = {
   displayName: "Yuri",
   birthYear: 2004,
   cityState: "Conselheiro Lafaiete, MG",
   country: "Brasil",
   timezoneLabel: "Brasília (GMT-3)",
-  photoSrc: "/yuri.webp",
+  photoSrc: withBasePath("/yuri.webp"),
 } as const;
 
 export type PersonalIntro = typeof PERSONAL_INTRO;

@@ -1,54 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfólio · Yuri Leite Rodrigues
 
-## Getting Started
+Portfólio pessoal em Next.js 16 (App Router), React 19, Tailwind CSS 4 e i18next (português e inglês).
+É um site estático: o `next build` gera a pasta `out/`, publicada no GitHub Pages em
+<https://yurilrodrigues.github.io/portfolio-v3/>.
 
-First, run the development server:
+## Rodar local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build estático
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build
+```
 
-## Formulário de contato
+O resultado fica em `out/`. Para servir localmente: `npx serve out`.
 
-O envio usa [Resend](https://resend.com), que tem plano gratuito de 3.000 e-mails por mês
-(100 por dia) — o suficiente com folga para um portfólio.
+## Publicação no GitHub Pages
 
-1. Copie `.env.example` para `.env.local`.
-2. Crie a conta no Resend e gere uma API key em **API Keys**.
-3. Preencha `RESEND_API_KEY` e `CONTACT_NOTIFY_EMAIL` (onde você quer receber).
-4. `CONTACT_FROM_EMAIL` é opcional. Sem domínio verificado, deixe comentado: o envio
-   sai de `onboarding@resend.dev`, que já funciona no plano gratuito. Com domínio próprio
-   verificado no Resend, use um remetente do seu domínio para não cair em spam.
+O workflow `.github/workflows/deploy-pages.yml` roda a cada push na `main`:
 
-Em produção (Vercel), as mesmas variáveis vão em **Settings → Environment Variables**.
+1. instala as dependências com pnpm;
+2. faz o build com `NEXT_PUBLIC_SITE_URL` e `NEXT_PUBLIC_BASE_PATH` vindos do próprio GitHub Pages;
+3. publica a pasta `out/`.
 
-Sem as variáveis o site continua no ar: a rota `app/api/contact` responde 503 e o
-formulário mostra o aviso de "envio ainda não configurado", com o e-mail direto ao lado
-como alternativa.
+No repositório, em **Settings → Pages**, a origem precisa ser **GitHub Actions**.
 
-## Learn More
+- Num repositório `YuriLRodrigues.github.io`, o site fica na raiz: <https://yurilrodrigues.github.io>.
+- Em qualquer outro nome, o site fica em `https://yurilrodrigues.github.io/<repositório>` e o workflow passa o
+  prefixo sozinho. Arquivos de `public/` referenciados por string passam por `withBasePath` (`lib/base-path.ts`).
 
-To learn more about Next.js, take a look at the following resources:
+## Contato
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Sem formulário nem backend: a seção de contato leva direto para e-mail, LinkedIn e o currículo em PDF
+(`public/curriculo.pdf`, gerado a partir de `PESSOAL/LINKEDIN/curriculo`).
