@@ -93,12 +93,13 @@ html[data-magicui-theme-vt="active"]::view-transition-group(root) {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* GlowingEffect variant "themed": primary misturado com tons escuros (light) */
-  --glow-themed-spot: color-mix(in oklch, var(--primary) 44%, var(--foreground));
-  --glow-themed-mid: color-mix(in oklch, var(--primary) 26%, var(--muted-foreground));
-  --glow-themed-fade: color-mix(in oklch, var(--primary) 14%, transparent);
-  --glow-themed-conic-a: color-mix(in oklch, var(--primary) 52%, var(--foreground));
-  --glow-themed-conic-b: color-mix(in oklch, var(--primary) 32%, var(--muted));
-  --glow-themed-conic-c: color-mix(in oklch, var(--primary) 16%, transparent);
+  /* Contorno que segue o mouse: tons fortes o bastante para aparecer sobre o cartão. */
+  --glow-themed-spot: color-mix(in oklch, var(--primary) 55%, var(--foreground));
+  --glow-themed-mid: color-mix(in oklch, var(--primary) 40%, var(--foreground));
+  --glow-themed-fade: color-mix(in oklch, var(--primary) 30%, transparent);
+  --glow-themed-conic-a: color-mix(in oklch, var(--primary) 60%, var(--foreground));
+  --glow-themed-conic-b: color-mix(in oklch, var(--primary) 45%, var(--foreground));
+  --glow-themed-conic-c: color-mix(in oklch, var(--primary) 35%, var(--muted-foreground));
 }
 
 /* Tema escuro mais profundo: fundos e cartões mais escuros, acentos menos “lavados”. */
@@ -135,12 +136,12 @@ html[data-magicui-theme-vt="active"]::view-transition-group(root) {
   --sidebar-border: oklch(1 0 0 / 7%);
   --sidebar-ring: oklch(0.48 0 0);
   /* GlowingEffect "themed": primary esbranquiçado / misturado com fundo (dark) */
-  --glow-themed-spot: color-mix(in oklch, var(--primary) 40%, white);
-  --glow-themed-mid: color-mix(in oklch, var(--primary) 22%, var(--card));
-  --glow-themed-fade: color-mix(in oklch, var(--primary) 11%, transparent);
-  --glow-themed-conic-a: color-mix(in oklch, var(--primary) 46%, white);
-  --glow-themed-conic-b: color-mix(in oklch, var(--primary) 28%, var(--muted));
-  --glow-themed-conic-c: color-mix(in oklch, var(--primary) 13%, transparent);
+  --glow-themed-spot: color-mix(in oklch, var(--primary) 55%, white);
+  --glow-themed-mid: color-mix(in oklch, var(--primary) 45%, oklch(0.82 0 0));
+  --glow-themed-fade: color-mix(in oklch, var(--primary) 35%, transparent);
+  --glow-themed-conic-a: color-mix(in oklch, var(--primary) 50%, white);
+  --glow-themed-conic-b: color-mix(in oklch, var(--primary) 50%, oklch(0.86 0 0));
+  --glow-themed-conic-c: color-mix(in oklch, var(--primary) 45%, oklch(0.7 0 0));
 }
 
 @layer base {
@@ -154,7 +155,7 @@ html[data-magicui-theme-vt="active"]::view-transition-group(root) {
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply scroll-smooth font-sans;
     scrollbar-gutter: stable;
   }
 
