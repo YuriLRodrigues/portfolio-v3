@@ -5,7 +5,7 @@ import { Bars, Chip, Lines, Panel, Ring } from "./cover-frame";
 /**
  * Um motivo por projeto. Cada um desenha a ideia central do produto — a barra
  * de treino, o anúncio de carro, o PDF assinado — usando as mesmas primitivas,
- * para que as nove capas pareçam da mesma família.
+ * para que todas as capas pareçam da mesma família.
  */
 
 const stroke = {
@@ -379,7 +379,60 @@ function ValorantHubMotif() {
   );
 }
 
+/* 10 — Fullstack Templates: o terminal da API e a tela do front, ligados pelo contrato gerado */
+function FullstackTemplatesMotif() {
+  return (
+    <g>
+      <Panel x={78} y={112} width={292} height={264} emphasis={0.85}>
+        <g fill="var(--primary)">
+          <circle cx={104} cy={138} r={5} fillOpacity={0.85} />
+          <circle cx={122} cy={138} r={5} fillOpacity={0.5} />
+          <circle cx={140} cy={138} r={5} fillOpacity={0.28} />
+        </g>
+        <path d="M104 174 l12 9 l-12 9" {...stroke} />
+        <Lines x={128} y={180} width={190} count={1} gap={0} thickness={7} opacity={0.4} widths={[1]} />
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i}>
+            <Chip x={104} y={214 + i * 36} width={50} height={16} filled={i === 1} />
+            <Lines x={166} y={219 + i * 36} width={170} count={1} gap={0} thickness={6} opacity={0.24} widths={[i % 2 ? 0.62 : 1]} />
+          </g>
+        ))}
+      </Panel>
+
+      <path d="M370 244 C 410 244, 418 206, 458 206" fill="none" stroke="var(--primary)" strokeOpacity="0.85" strokeWidth={3} strokeDasharray="9 8" strokeLinecap="round" />
+      <g>
+        <circle cx={414} cy={226} r={24} fill="var(--card)" fillOpacity="0.95" />
+        <circle cx={414} cy={226} r={24} fill="none" stroke="var(--primary)" strokeOpacity="0.6" strokeWidth="2.5" />
+        <path d="M408 214 c-6 0 -6 4 -6 7 s-2 5 -5 5 c3 0 5 2 5 5 s0 7 6 7" {...stroke} strokeWidth={2.5} />
+        <path d="M420 214 c6 0 6 4 6 7 s2 5 5 5 c-3 0 -5 2 -5 5 s0 7 -6 7" {...stroke} strokeWidth={2.5} />
+      </g>
+
+      <Panel x={458} y={92} width={268} height={304} emphasis={0.6}>
+        <rect x={482} y={116} width={220} height={30} rx={9} fill="var(--primary)" fillOpacity="0.1" stroke="var(--primary)" strokeOpacity="0.45" strokeWidth="2" />
+        <Lines x={500} y={128} width={110} count={1} gap={0} thickness={6} opacity={0.22} widths={[1]} />
+        {[0, 1, 2, 3].map((i) => {
+          const y = 166 + i * 46;
+          const done = i < 2;
+          return (
+            <g key={i}>
+              <rect x={482} y={y} width={22} height={22} rx={6} fill="var(--primary)" fillOpacity={done ? 0.8 : 0} stroke="var(--primary)" strokeOpacity="0.7" strokeWidth="2" />
+              {done ? <path d={`M487 ${y + 11} l5 5 l9 -10`} fill="none" stroke="var(--card)" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" /> : null}
+              <Lines x={518} y={y + 3} width={170} count={2} gap={11} thickness={5} opacity={done ? 0.18 : 0.3} widths={[1, 0.55]} />
+            </g>
+          );
+        })}
+        <g>
+          {[0, 1, 2].map((i) => (
+            <circle key={i} cx={570 + i * 22} cy={370} r={i === 0 ? 7 : 5} fill="var(--primary)" fillOpacity={i === 0 ? 0.9 : 0.25} />
+          ))}
+        </g>
+      </Panel>
+    </g>
+  );
+}
+
 export const COVER_MOTIFS = {
+  fullstackTemplates: FullstackTemplatesMotif,
   workoutTracker: WorkoutTrackerMotif,
   autoCars: AutoCarsMotif,
   fincheck: FincheckMotif,

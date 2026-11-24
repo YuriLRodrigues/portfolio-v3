@@ -10,27 +10,36 @@ export const journey = {
     certificates: "Certificados",
   },
   professional: {
-    p1: {
-      period: "Mar 2026 — atual",
+    p0: {
+      period: "Jul 2026 — atual",
       title: "Desenvolvedor Full Stack Pleno",
       org: "Agência Molla",
       locationPlace: "São Paulo, SP",
       locationMode: "Remoto",
       description:
-        "Promovido a pleno, hoje com mais de 10 projetos de programas de incentivo B2B para grandes marcas sob a minha responsabilidade, do desenvolvimento à manutenção. Construo o painel que a operação usa no dia a dia e os dashboards que a marca acompanha: acesso segmentado por cargo e permissão, envio e aprovação de fotos de merchandising, regras de pontuação com apuração diária, rankings gamificados e catálogo de premiação. Next.js e NestJS, com performance e testes automatizados nos fluxos que movem ponto e prêmio.",
+        "Com a promoção, passei a responder por mais de 10 programas de incentivo B2B em produção e pelo template que é a base dos projetos novos da agência. Transformei o portal de uma campanha da Azul no Hub Azul, o login único de todas as campanhas da marca, e entreguei o Agente Tá On, portal para cerca de 21 mil agentes de viagem com ranking recalculado a cada 30 minutos. Levei o template para um monorepo em Turborepo, com um pacote de UI compartilhado entre API, portal e dashboard: com as regras do cliente definidas, um programa novo vai ao ar em cerca de 10 dias. Também desenvolvi a nova landing page da Molla em três idiomas, com a seção de DNA em que Trade, Marketing e Vendas se trançam numa hélice, e gerei a documentação técnica de sete projetos a partir do código.",
+    },
+    p1: {
+      period: "Mar 2026 — jul 2026",
+      title: "Desenvolvedor Full Stack Júnior",
+      org: "Agência Molla",
+      locationPlace: "São Paulo, SP",
+      locationMode: "Remoto",
+      description:
+        "Voltei para a Molla depois de quase um ano na PokerNetic e logo peguei campanhas de cinco marcas ao mesmo tempo. Entreguei a Seleção de Craques e a Pronto para Voar, da Azul, comecei o portal da Farmax e o ETL diário de sellout e fiz entregas para Ingram Micro, Sancor Seguros com o Sicoob e Pernambucanas. Quatro meses depois de voltar, fui promovido a pleno.",
     },
     p2: {
-      period: "Jun 2025 — mar 2026",
+      period: "Mai 2025 — mar 2026",
       title: "Desenvolvedor Full Stack",
       org: "PokerNetic",
       orgSecondary: "Autônomo",
       locationPlace: "Lisboa, Portugal",
       locationMode: "Remoto",
       description:
-        "Atuação ponta a ponta na plataforma profissional de poker PokerNetic—marketplace, coaching, rakeback, gestão de equipes e ferramentas centrais para jogadores, coaches, marcas e times. Entrega full stack que vai além do dashboard principal: integração de planos e assinaturas, biblioteca e conteúdo com vídeo, internacionalização (i18n), experiências de marketplace e APIs que integram as camadas do produto. Foco em UX orientada a dados, visão de performance em tempo real, escalabilidade e releases estáveis.",
+        "Entrei na PokerNetic, plataforma profissional de poker com sede em Lisboa, quando o produto ainda estava sendo construído. Participei da base do sistema até as funcionalidades pensadas para o lançamento: o dashboard principal com desempenho individual e por equipe em tempo real, o marketplace onde os jogadores compram pacotes, a parte que conecta jogadores, coaches, marcas e times, planos e assinaturas, biblioteca de vídeos, internacionalização e as APIs entre as camadas do produto. Antes do lançamento oficial, recebi a proposta de voltar para a Molla.",
     },
     p3: {
-      period: "Jun 2024 — fev 2025",
+      period: "Jun 2024 — abr 2025",
       title: "Desenvolvedor Full Stack Júnior",
       org: "Agência Molla",
       locationPlace: "São Paulo, SP",
@@ -45,7 +54,7 @@ export const journey = {
       locationPlace: "Vila Velha, ES",
       locationMode: "Remoto",
       description:
-        "PJ no produto de empréstimos com juros baixos: evolução do backoffice para visualizar empréstimos, histórico, simulações e status em tempo real, integrado à API REST em Node. Arquitetura escalável com Next.js e React Query, atomic design, Storybook e testes com Jest, RTL e Cypress. Participação em documentação, decisões de arquitetura e protótipos no Figma; rendimento em atividades com média acima de 70%.",
+        "Fintech de empréstimo consignado com juros baixos. Atuei no backoffice que a operação usava para acompanhar os empréstimos dos clientes: telas de empréstimos, histórico de contratos, simulações e status em tempo real, integradas à API REST em Node.js. Estruturei o frontend com Next.js e React Query em atomic design, com componentes documentados no Storybook, e escrevi testes com Jest, React Testing Library e Cypress nos fluxos principais. Participei de code review, planejamento de sprint, documentação técnica e protótipos no Figma.",
     },
   },
   academic: {

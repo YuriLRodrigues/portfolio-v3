@@ -38,12 +38,12 @@ export function SiteHeader() {
             className="group flex min-w-0 items-center gap-2.5 transition-[filter] hover:brightness-[1.03] sm:gap-3"
           >
             <PortfolioMonogram className="transition-[filter,box-shadow] duration-300 group-hover:shadow-[0_10px_32px_-6px_color-mix(in_oklch,var(--color-primary)_20%,_transparent)]" />
-            <span className="font-brand-wordmark min-w-0 truncate text-[0.95rem] font-semibold leading-none tracking-[0.04em] text-foreground sm:text-[1.125rem] sm:tracking-[0.035em]">
+            <span className="font-brand-wordmark min-w-0 truncate text-[0.95rem] leading-none font-semibold tracking-[0.04em] text-foreground sm:text-[1.125rem] sm:tracking-[0.035em]">
               {t("siteHeader.brand")}
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex" aria-label={t("siteHeader.mainNav")}>
+          <nav className="hidden items-center gap-1 lg:flex" aria-label={t("siteHeader.mainNav")}>
             {NAV_LINKS.map(({ id, href }) => (
               <a
                 key={id}
@@ -69,7 +69,7 @@ export function SiteHeader() {
               type="button"
               variant="outline"
               size="icon"
-              className="size-9 md:hidden"
+              className="size-9 lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               aria-label={mobileOpen ? t("siteHeader.closeMenu") : t("siteHeader.mobileOpenMenu")}
@@ -82,9 +82,9 @@ export function SiteHeader() {
       </header>
 
       {mobileOpen ? (
-        <div className="fixed inset-0 z-[48] md:hidden" id="mobile-nav" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-[48] lg:hidden" id="mobile-nav" role="dialog" aria-modal="true">
           <button type="button" className="absolute inset-0 bg-background/60 backdrop-blur-sm" aria-label={t("siteHeader.closeOverlay")} onClick={() => setMobileOpen(false)} />
-          <div className="absolute right-0 top-16 w-[min(100%,20rem)] border-l border-border/40 bg-background/95 p-4 shadow-2xl backdrop-blur-xl">
+          <div className="absolute top-16 right-0 w-[min(100%,20rem)] border-l border-border/40 bg-background/95 p-4 shadow-2xl backdrop-blur-xl">
             <p className="mb-1 text-xs font-medium text-muted-foreground">{t("appearance.dialogTitle")}</p>
             <p className="mb-2 text-xs text-muted-foreground">{t("siteHeader.mobileNavHint")}</p>
             <nav className="flex flex-col gap-0.5" aria-label={t("siteHeader.mobileNav")}>

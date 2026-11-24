@@ -3,16 +3,17 @@
 import { useTranslation } from "react-i18next";
 
 import { cn } from "@/lib/utils";
-import { ClipboardList, FlaskConical, Hammer, type LucideIcon } from "lucide-react";
+import { Blocks, ClipboardList, ShieldCheck, Sparkles, type LucideIcon } from "lucide-react";
 import { motion } from "motion/react";
 
 import { sectionEase, sectionMotionViewport } from "../section-motion";
 
-/** As três etapas, na ordem em que acontecem. O trilho à esquerda liga uma na outra. */
+/** As etapas, na ordem em que acontecem. O trilho à esquerda liga uma na outra. */
 const STAGES: readonly { id: string; Icon: LucideIcon }[] = [
   { id: "planning", Icon: ClipboardList },
-  { id: "building", Icon: Hammer },
-  { id: "testing", Icon: FlaskConical },
+  { id: "building", Icon: Blocks },
+  { id: "ai", Icon: Sparkles },
+  { id: "testing", Icon: ShieldCheck },
 ];
 
 export function AboutPrinciples() {

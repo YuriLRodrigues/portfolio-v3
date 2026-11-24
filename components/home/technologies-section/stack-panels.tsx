@@ -32,7 +32,10 @@ function StackPanelTechItems({ id: panelId, items, rail, compact }: { id: PanelM
 
   return (
     <>
-      <ul id={listId} className="mt-6 grid w-full max-w-full list-none grid-cols-1 gap-2.5 @sm:grid-cols-2 @sm:gap-3.5 @lg:grid-cols-3 @2xl:grid-cols-4">
+      <ul
+        id={listId}
+        className="mt-6 grid w-full max-w-full list-none grid-cols-1 gap-2.5 @min-[30rem]:grid-cols-2 @min-[30rem]:gap-3.5 @min-[52rem]:grid-cols-3 @min-[70rem]:grid-cols-4"
+      >
         {list.map((tech) => (
           <li key={tech.name} className="min-w-0">
             <TechTile panelId={panelId} tech={tech} compact={compact} rail={rail} />

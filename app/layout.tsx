@@ -43,15 +43,16 @@ const oswald = Oswald({
 });
 
 const siteUrl = getSiteUrl();
-const siteName = "Portfólio";
-const defaultDescription = "Desenvolvedor fullstack web — portfólio pessoal com projetos, stack e contato.";
+const siteName = "Yuri Rodrigues · Desenvolvedor Full Stack Pleno";
+const defaultDescription =
+  "Portfólio de Yuri Leite Rodrigues, desenvolvedor full stack pleno: plataformas de incentivo B2B com Next.js, NestJS e PostgreSQL, projetos open source e currículo.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: siteName, template: "%s | Portfólio" },
+  title: { default: siteName, template: "%s | Yuri Rodrigues" },
   description: defaultDescription,
   applicationName: siteName,
-  keywords: ["portfólio", "desenvolvedor frontend", "React", "TypeScript", "Next.js", "desenvolvimento web", "fullstack", "web development", "backend"],
+  keywords: ["Yuri Leite Rodrigues", "portfólio", "desenvolvedor full stack", "Next.js", "NestJS", "TypeScript", "PostgreSQL", "Turborepo", "programas de incentivo"],
   alternates: { canonical: "/" },
   robots: {
     index: true,
@@ -85,11 +86,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${oswald.variable} h-full antialiased scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${oswald.variable} h-full scroll-smooth antialiased`}
       data-accent="neutral"
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-background text-foreground scroll-smooth" suppressHydrationWarning>
+      <body className="flex min-h-full flex-col scroll-smooth bg-background text-foreground" suppressHydrationWarning>
         <Script id="portfolio-accent-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: accentInitScript }} />
         <AppProviders>
           {/* <MouseFollower /> */}

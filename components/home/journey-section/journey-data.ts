@@ -1,7 +1,9 @@
+import { withBasePath } from "@/lib/base-path";
+
 import type { AcademicEntry, CertificateEntry, ProfessionalEntry } from "./journey-types";
 
 function publicCertPdf(filename: string) {
-  return `/certificados/${encodeURIComponent(filename)}`;
+  return withBasePath(`/certificados/${encodeURIComponent(filename)}`);
 }
 
 /** Molla (2024–2025): core stack first, then data layer, state, API contract, tests, infra, integrations. */
@@ -46,7 +48,34 @@ const MOLLA_STACK_RETURN = [
   "SendGrid",
 ] as const;
 
+/** Molla (pleno): monorepo, SSO, filas e a camada visual da LP entram na lista. */
+const MOLLA_STACK_MID = [
+  "TypeScript",
+  "Next.js",
+  "React",
+  "NestJS",
+  "Node.js",
+  "PostgreSQL",
+  "Drizzle",
+  "Redis",
+  "BullMQ",
+  "Turborepo",
+  "OpenID Connect",
+  "TanStack Query",
+  "Orval",
+  "Tailwind CSS",
+  "shadcn/ui",
+  "GSAP",
+  "three.js",
+  "Vitest",
+  "Playwright",
+  "Docker",
+  "Amazon S3",
+  "Claude Code",
+] as const;
+
 const PROFESSIONAL_BASE = [
+  { id: "p0" as const, stack: MOLLA_STACK_MID },
   { id: "p1" as const, stack: MOLLA_STACK_RETURN },
   {
     id: "p2" as const,

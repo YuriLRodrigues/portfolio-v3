@@ -44,7 +44,8 @@ export const ask = {
     now: {
       label: "What are you working on?",
       keywords: "now,today,currently,working on,where do you work,current job,current role,company,molla",
-      answer: "I've been at Agência Molla since March 2026, remote.\nI build B2B incentive program platforms for large brands: the operations panel, scoring, rankings, and rewards, on Next.js and NestJS.",
+      answer:
+        "I've been at Agência Molla since March 2026, remote, and was promoted to mid-level in July.\nI build B2B incentive platforms for brands like Azul, Farmax, and Combrasil: single sign-on, portals, scoring, rankings, and dashboards, on Next.js and NestJS.\nI also own the template every new project at the agency starts from.",
     },
     experience: {
       label: "What's your experience?",
@@ -56,7 +57,7 @@ export const ask = {
       label: "What can I look at?",
       keywords: "project,projects,portfolio,repository,repositories,github,code,open source,what have you built",
       answer:
-        "Nine projects are public on GitHub: personal builds, studies, and take-home tests.\nThe biggest are Workout Tracker and AutoCars, both with front end and API written by me.\nEvery card links straight to the repository.",
+        "Ten projects are public on GitHub: personal builds, studies, and take-home tests.\nThe newest are my open source NestJS and Next.js templates, built to work as a pair; the biggest are Workout Tracker and AutoCars.\nEvery card links straight to the repository.",
     },
     contact: {
       label: "How do I reach you?",

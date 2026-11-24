@@ -44,7 +44,8 @@ export const ask = {
     now: {
       label: "No que está trabalhando agora?",
       keywords: "agora,hoje,atualmente,no que trabalha,onde trabalha,emprego atual,trabalho atual,empresa,molla",
-      answer: "Estou na Agência Molla desde março de 2026, remoto.\nConstruo plataformas de programas de incentivo B2B para grandes marcas: painel da operação, pontuação, rankings e premiação, em Next.js e NestJS.",
+      answer:
+        "Estou na Agência Molla desde março de 2026, remoto, e fui promovido a pleno em julho.\nConstruo plataformas de incentivo B2B para marcas como Azul, Farmax e Combrasil: SSO, portais, apuração, rankings e dashboards, em Next.js e NestJS.\nTambém cuido do template que é a base dos projetos novos da agência.",
     },
     experience: {
       label: "Qual é a sua experiência?",
@@ -56,7 +57,7 @@ export const ask = {
       label: "Que projetos posso ver?",
       keywords: "projeto,projetos,portfolio,portfólio,repositorio,repositorios,github,codigo,código,open source",
       answer:
-        "São nove projetos abertos no GitHub: autorais, estudos e testes técnicos.\nOs maiores são o Workout Tracker e o AutoCars, ambos com front e API escritos por mim.\nTodo card leva direto para o repositório.",
+        "São dez projetos abertos no GitHub: autorais, estudos e testes técnicos.\nOs mais recentes são os templates open source de NestJS e Next.js, feitos para trabalhar em par; os maiores, Workout Tracker e AutoCars.\nTodo card leva direto para o repositório.",
     },
     contact: {
       label: "Como falo com você?",

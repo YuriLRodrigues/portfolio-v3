@@ -2,10 +2,10 @@ import { Container } from "@/components/ui/container";
 
 import { SectionBackground } from "../section-background";
 import { ContactEditorialColumn } from "./contact-editorial-column";
-import { ContactFormCard } from "./contact-form-card";
+import { ContactChannelsCard } from "./contact-channels-card";
 
 /**
- * Contato — layout editorial + cartão de formulário (UI apenas; envio real num passo seguinte).
+ * Contato — coluna editorial + cartão com os canais diretos (e-mail, LinkedIn e currículo).
  */
 export function ContactSection() {
   return (
@@ -15,7 +15,7 @@ export function ContactSection() {
       <Container className="relative z-10">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-16 xl:gap-20">
           <ContactEditorialColumn />
-          <ContactFormCard />
+          <ContactChannelsCard />
         </div>
       </Container>
     </section>
