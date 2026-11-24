@@ -34,6 +34,38 @@ export type Project = {
 
 export const PROJECTS: readonly Project[] = [
   {
+    id: "fullstackTemplates",
+    stack: "full",
+    kind: "authorial",
+    year: "2026",
+    technologies: [
+      "NestJS",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Drizzle",
+      "PostgreSQL",
+      "PGlite",
+      "shadcn/ui",
+      "Base UI",
+      "Tailwind CSS",
+      "Orval",
+      "Zod",
+      "JWT",
+      "Swagger",
+      "Vitest",
+      "Playwright",
+      "ESLint",
+      "GitHub Actions",
+      "Docker",
+      "Claude Code",
+    ],
+    repos: [
+      { kind: "api", url: "https://github.com/YuriLRodrigues/nestjs-drizzle-clean-architecture" },
+      { kind: "web", url: "https://github.com/YuriLRodrigues/nextjs-shadcn-orval-template" },
+    ],
+  },
+  {
     id: "workoutTracker",
     stack: "full",
     kind: "authorial",

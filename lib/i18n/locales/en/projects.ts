@@ -48,6 +48,15 @@ export const projects = {
   githubCtaAria: "Open my GitHub profile",
 
   items: {
+    fullstackTemplates: {
+      name: "Fullstack Templates",
+      tagline: "An API and a front end that start with standards",
+      description:
+        "Two open source templates built to work as a pair: a NestJS API with Drizzle and Clean Architecture, and a Next.js 16 front end that consumes it through a client generated from OpenAPI. Sign-up, login and a task CRUD run for real out of the box. Keep, adapt or delete them.",
+      h1: "Layers enforced by ESLint, use cases that return Either, and one error contract from the API all the way to the toast",
+      h2: "Unit, integration and E2E tests against Postgres through PGlite, no Docker needed; Playwright E2E on the front end without a backend",
+      h3: "CLAUDE.md and Claude Code skills to scaffold a module, use case or migration and to review a diff against the patterns",
+    },
     workoutTracker: {
       name: "Workout Tracker",
       tagline: "Routines, load, and progress in one place",
