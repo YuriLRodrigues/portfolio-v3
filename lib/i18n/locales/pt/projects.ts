@@ -57,6 +57,15 @@ export const projects = {
       h2: "Testes unitários, de integração e E2E contra Postgres via PGlite, sem Docker; no front, E2E com Playwright sem subir backend",
       h3: "CLAUDE.md e skills do Claude Code para criar módulo, use case e migration e para revisar um diff contra os padrões",
     },
+    nitroHub: {
+      name: "NITRO HUB",
+      tagline: "O que o PC gamer pedia em vários programas, num app só",
+      description:
+        "Medir FPS, ver temperatura, deixar o Windows pronto para jogar e consultar o hardware pedia um programa para cada coisa. O NITRO HUB junta tudo num app grátis para Windows 10 e 11. Construí o app do começo ao fim com o Claude Code, em C# e .NET, uma stack fora do meu dia a dia, para ver até onde a IA chega quando eu cuido do produto e das decisões.",
+      h1: "Overlay de FPS, sensores com alertas, Modo jogo automático e otimizações do Windows sempre com botão de desfazer",
+      h2: "Instalador com SHA-256 publicado em cada versão e atualização automática pelas releases do GitHub",
+      h3: "Landing page em Next.js 16 estática no GitHub Pages, com guias, uma página por recurso e o hash do instalador conferido no navegador",
+    },
     workoutTracker: {
       name: "Workout Tracker",
       tagline: "Treino, carga e progresso no mesmo lugar",
