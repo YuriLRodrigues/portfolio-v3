@@ -24,6 +24,93 @@ const softStroke = {
   strokeLinecap: "round",
 } as const;
 
+/* NITRO HUB: quatro programas soltos (FPS, temperatura, ajustes, hardware) convergindo para uma janela só */
+const NITRO_APPS = [0, 1, 2, 3] as const;
+const NITRO_FRAMETIME = "M412 252 L436 246 L460 250 L484 244 L508 249 L528 222 L546 248 L572 243 L596 247 L620 241 L644 246 L668 242 L692 245";
+
+function NitroAppGlyph({ kind, x, y }: { kind: (typeof NITRO_APPS)[number]; x: number; y: number }) {
+  if (kind === 0) {
+    return (
+      <g {...stroke} strokeWidth={3.5}>
+        <line x1={x - 10} y1={y + 9} x2={x - 10} y2={y + 1} />
+        <line x1={x} y1={y + 9} x2={x} y2={y - 9} />
+        <line x1={x + 10} y1={y + 9} x2={x + 10} y2={y - 3} />
+      </g>
+    );
+  }
+  if (kind === 1) {
+    return (
+      <g {...stroke} strokeWidth={3}>
+        <line x1={x} y1={y - 11} x2={x} y2={y + 3} />
+        <circle cx={x} cy={y + 8} r={5} fill="var(--primary)" fillOpacity="0.35" />
+      </g>
+    );
+  }
+  if (kind === 2) {
+    return (
+      <g {...stroke} strokeWidth={3}>
+        <circle cx={x} cy={y} r={9} />
+        <circle cx={x} cy={y} r={3} fill="var(--primary)" />
+      </g>
+    );
+  }
+  return (
+    <g {...stroke} strokeWidth={2.5}>
+      <rect x={x - 9} y={y - 9} width={18} height={18} rx={3} />
+      <line x1={x - 4} y1={y - 14} x2={x - 4} y2={y - 10} />
+      <line x1={x + 4} y1={y - 14} x2={x + 4} y2={y - 10} />
+      <line x1={x - 4} y1={y + 10} x2={x - 4} y2={y + 14} />
+      <line x1={x + 4} y1={y + 10} x2={x + 4} y2={y + 14} />
+    </g>
+  );
+}
+
+function NitroHubMotif() {
+  return (
+    <g>
+      {NITRO_APPS.map((kind) => {
+        const cy = 138 + kind * 74;
+        return (
+          <g key={kind}>
+            <path
+              d={`M126 ${cy} C 196 ${cy}, 204 250, 262 250`}
+              fill="none"
+              stroke="var(--primary)"
+              strokeOpacity="0.45"
+              strokeWidth={2.5}
+              strokeDasharray="7 7"
+              strokeLinecap="round"
+            />
+            <rect x={74} y={cy - 26} width={52} height={52} rx={14} fill="var(--card)" fillOpacity="0.95" stroke="var(--foreground)" strokeOpacity="0.16" strokeWidth={2} />
+            <NitroAppGlyph kind={kind} x={100} y={cy} />
+          </g>
+        );
+      })}
+
+      <line x1={262} y1={250} x2={320} y2={250} stroke="var(--primary)" strokeOpacity="0.85" strokeWidth={3} strokeLinecap="round" />
+      <circle cx={276} cy={250} r={20} fill="var(--card)" />
+      <circle cx={276} cy={250} r={20} fill="none" stroke="var(--primary)" strokeOpacity="0.7" strokeWidth={2.5} />
+      <path d="M279 238 L268 253 L277 253 L273 263 L285 247 L276 247 Z" fill="var(--primary)" fillOpacity="0.9" />
+
+      <Panel x={320} y={96} width={408} height={308} emphasis={0.75}>
+        <g fill="var(--primary)">
+          <circle cx={344} cy={120} r={5} fillOpacity={0.85} />
+          <circle cx={362} cy={120} r={5} fillOpacity={0.5} />
+          <circle cx={380} cy={120} r={5} fillOpacity={0.28} />
+        </g>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <rect key={i} x={340} y={146 + i * 46} width={30} height={30} rx={8} fill="var(--primary)" fillOpacity={i === 0 ? 0.8 : 0.14} />
+        ))}
+        <Chip x={404} y={146} width={84} height={22} filled />
+        <Lines x={500} y={154} width={130} count={1} gap={0} thickness={6} opacity={0.3} widths={[1]} />
+        <rect x={404} y={186} width={300} height={98} rx={10} fill="var(--primary)" fillOpacity="0.06" stroke="var(--foreground)" strokeOpacity="0.1" strokeWidth={1.5} />
+        <path d={NITRO_FRAMETIME} {...stroke} strokeWidth={2.5} />
+        <Bars x={410} baseline={382} values={[42, 58, 36, 70, 52, 64]} barWidth={26} gap={22} maxHeight={74} active={3} />
+      </Panel>
+    </g>
+  );
+}
+
 /* 01 — Workout Tracker: anel de progresso, barra de supino e volume semanal */
 function WorkoutTrackerMotif() {
   return (
@@ -433,6 +520,7 @@ function FullstackTemplatesMotif() {
 
 export const COVER_MOTIFS = {
   fullstackTemplates: FullstackTemplatesMotif,
+  nitroHub: NitroHubMotif,
   workoutTracker: WorkoutTrackerMotif,
   autoCars: AutoCarsMotif,
   fincheck: FincheckMotif,

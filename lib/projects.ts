@@ -66,6 +66,17 @@ export const PROJECTS: readonly Project[] = [
     ],
   },
   {
+    id: "nitroHub",
+    stack: "full",
+    kind: "authorial",
+    year: "2026",
+    technologies: ["C#", ".NET", "Windows", "Next.js", "React", "TypeScript", "Tailwind CSS", "GitHub Actions", "GitHub Pages", "Claude Code"],
+    repos: [
+      { kind: "repo", url: "https://github.com/YuriLRodrigues/nitro-hub" },
+      { kind: "web", url: "https://github.com/YuriLRodrigues/landing-page-nitro-hub" },
+    ],
+  },
+  {
     id: "workoutTracker",
     stack: "full",
     kind: "authorial",
