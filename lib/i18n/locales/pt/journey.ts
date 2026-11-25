@@ -17,7 +17,7 @@ export const journey = {
       locationPlace: "São Paulo, SP",
       locationMode: "Remoto",
       description:
-        "Com a promoção, passei a responder por mais de 10 programas de incentivo B2B em produção e pelo template que é a base dos projetos novos da agência. Transformei o portal de uma campanha da Azul no Hub Azul, o login único de todas as campanhas da marca, e entreguei o Agente Tá On, portal para cerca de 21 mil agentes de viagem com ranking recalculado a cada 30 minutos. Levei o template para um monorepo em Turborepo, com um pacote de UI compartilhado entre API, portal e dashboard: com ele e a documentação em que atuei diretamente, um projeto novo é lançado em menos de 10 dias. Também desenvolvi o novo site da Molla, a página principal da agência e a vitrine de como ela se apresenta às marcas: substituiu o site antigo em ASP.NET, é multilíngue (português, inglês e espanhol) e tem logo 3D, animações em GSAP e a seção do DNA, em que Trade, Marketing e Vendas se trançam numa hélice. Por fim, gerei a documentação técnica de sete projetos a partir do código.",
+        "Com a promoção, passei a responder por mais de 10 programas de incentivo B2B em produção e pelo template que é a base dos projetos novos da agência. Transformei o portal de uma campanha da Azul no Hub Azul, o login único de todas as campanhas da marca, entreguei o Agente Tá On, portal para cerca de 21 mil agentes de viagem com ranking recalculado a cada 30 minutos, e mantenho os portais da Farmax e da Combrasil. Levei o template para um monorepo em Turborepo, com API, portal e dashboard no mesmo repositório, e construí o design system que portal e dashboard dividem, com mais de 80 componentes: com o template e a documentação em que atuei diretamente, um projeto novo é lançado em menos de 10 dias. Também desenvolvi o novo site da Molla, a página principal da agência e a vitrine de como ela se apresenta às marcas: substituiu o site antigo em ASP.NET, é multilíngue (português, inglês e espanhol) e tem logo 3D, animações em GSAP e a seção do DNA, em que Trade, Marketing e Vendas se trançam numa hélice. Por fim, gerei a documentação técnica de sete projetos a partir do código.",
     },
     p1: {
       period: "Mar 2026 — jul 2026",
@@ -45,7 +45,7 @@ export const journey = {
       locationPlace: "São Paulo, SP",
       locationMode: "Remoto",
       description:
-        "PJ em agência de planejamento, criação e tecnologia para grandes marcas (Kellanova/Kellogg’s, AB Mauri, Dux Experts, MZB, LuxRaybn). Construção e manutenção dos programas de incentivo B2B ponta a ponta: envio de fotos de merchandising com aprovação por administradores, pontuação dinâmica com cálculo diário de desempenho, rankings gamificados e resgate de premiação. Painéis separados por cargo e permissão deram autonomia ao time de operação e acabaram com o ajuste manual no banco. Testes unitários, de integração e E2E nos fluxos de aprovação e pontuação, integração com Amazon S3 e SendGrid, code review e mentoria de júniores.",
+        "PJ em agência de planejamento, criação e tecnologia para grandes marcas (Kellanova/Kellogg’s, AB Mauri, Dux Experts, MZB, LuxRaybn). Construção e manutenção dos programas de incentivo B2B ponta a ponta: envio de fotos de merchandising com aprovação por administradores, pontuação dinâmica com cálculo diário de desempenho, rankings gamificados e resgate de premiação. Painéis separados por cargo e permissão deram autonomia ao time de operação e acabaram com o ajuste manual no banco. Testes unitários, de integração e E2E nos fluxos de aprovação e pontuação, integração com Amazon S3 e SendGrid e code review do time.",
     },
     p4: {
       period: "Jan 2024 — jun 2024",
@@ -111,4 +111,5 @@ export const journey = {
   certIssued: "Emitido em {{date}}",
   certDownload: "Baixar PDF",
   certOpen: "Abrir credencial",
+  orgSite: "Abrir o site da {{org}} em nova aba",
 } as const;

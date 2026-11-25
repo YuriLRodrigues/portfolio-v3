@@ -21,6 +21,7 @@ export function useJourneyEntries() {
         locationMode: t(`professional.${p.id}.locationMode`),
         description: t(`professional.${p.id}.description`),
         stack: [...p.stack],
+        site: p.site,
       };
     });
 

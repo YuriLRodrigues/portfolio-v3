@@ -57,7 +57,7 @@ export const ask = {
       label: "What can I look at?",
       keywords: "project,projects,portfolio,repository,repositories,github,code,open source,what have you built",
       answer:
-        "Ten projects are public on GitHub: personal builds, studies, and take-home tests.\nThe newest are my open source NestJS and Next.js templates, built to work as a pair; the biggest are Workout Tracker and AutoCars.\nEvery card links straight to the repository.",
+        "There are 11 projects in the portfolio, across personal builds, studies, and take-home tests, almost all open source on GitHub.\nThe newest are my open source NestJS and Next.js templates, built to work as a pair, and NITRO HUB, a closed-source Windows app; the biggest are Workout Tracker and AutoCars.\nEvery card links straight to the repository.",
     },
     contact: {
       label: "How do I reach you?",
