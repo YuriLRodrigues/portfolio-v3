@@ -17,7 +17,7 @@ export const about = {
   },
   portraitKicker: "Quem fala aqui",
   portraitName: "Yuri Leite Rodrigues",
-  portraitRole: "Desenvolvedor full stack. Escrevo dos dois lados: NestJS de um, Next.js do outro.",
+  portraitRole: "Desenvolvedor full stack pleno. Escrevo dos dois lados: NestJS de um, Next.js do outro.",
   portraitStatus: "Na Agência Molla, remoto, desde março de 2026. Pleno desde julho.",
   portraitCta: "Conheça mais sobre mim",
   principlesKicker: "Como eu trabalho",

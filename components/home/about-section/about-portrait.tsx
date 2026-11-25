@@ -11,8 +11,7 @@ import { motion } from "motion/react";
 import { sectionLiftHoverTransition } from "../section-motion";
 
 /**
- * Retrato recortado sobre um fundo que vem do tema, em tom baixo.
- * A imagem não tem fundo próprio — quem pinta atrás é o gradiente daqui.
+ * Cartão do retrato: a mesma foto do LinkedIn, num quadro arredondado, sobre o fundo do tema.
  */
 export function AboutPortrait() {
   const { t } = useTranslation("about");
@@ -42,14 +41,14 @@ export function AboutPortrait() {
       />
 
       <div className="relative flex items-end gap-4 px-5 pt-6 sm:px-6 sm:pt-7">
-        <div className="relative h-44 w-32 shrink-0 sm:h-52 sm:w-40">
+        <div className="relative size-32 shrink-0 overflow-hidden rounded-2xl border border-primary/30 shadow-[0_18px_40px_-16px_color-mix(in_oklch,var(--color-primary)_40%,_transparent)] ring-2 ring-primary/15 sm:size-40">
           <Image
             src={PERSONAL_INTRO.photoSrc}
             alt={tIntro("photoAlt", { name: PERSONAL_INTRO.displayName })}
-            width={701}
-            height={992}
+            width={800}
+            height={800}
             draggable={false}
-            className="size-full object-contain object-bottom drop-shadow-[0_18px_28px_color-mix(in_oklch,var(--color-primary)_22%,_transparent)] select-none"
+            className="size-full object-cover select-none"
             sizes="160px"
           />
         </div>
