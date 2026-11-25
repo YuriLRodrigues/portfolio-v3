@@ -89,19 +89,19 @@ export const journey = {
     c1: {
       title: "Full Stack JavaScript Developer",
       issuer: "OneBitCode",
-      issued: "Jun 2023",
+      issued: "Dec 2023",
       format: "PDF",
     },
     c2: {
       title: "Automated Testing",
       issuer: "OneBitCode",
-      issued: "2023",
+      issued: "Dec 2023",
       format: "PDF",
     },
     c3: {
       title: "JavaScript from Basics to Advanced",
       issuer: "OneBitCode",
-      issued: "2023",
+      issued: "Jul 2023",
       format: "PDF",
     },
   },
