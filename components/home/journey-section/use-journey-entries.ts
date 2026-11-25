@@ -29,6 +29,7 @@ export function useJourneyEntries() {
       title: t(`academic.${a.id}.title`),
       institution: t(`academic.${a.id}.institution`),
       description: t(`academic.${a.id}.description`),
+      stack: [...a.stack],
     }));
 
     const certificates: CertificateEntry[] = JOURNEY_CERTIFICATES.map((c) => ({

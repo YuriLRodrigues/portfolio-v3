@@ -60,56 +60,47 @@ export const journey = {
   academic: {
     a1: {
       period: "Jan 2025 — em andamento",
-      title: "Desenvolvimento web full stack e mobile",
+      title: "Desenvolvimento Full Stack e Mobile",
       institution: "JStack",
       description:
-        "Formação completa na stack JavaScript mais usada no mercado: Node.js, React e React Native. Mais de 150 horas, do básico ao avançado—Docker, bancos SQL e NoSQL, WebSockets, testes, arquitetura escalável e AWS (Lambda e serviços relacionados). Projetos práticos, quizzes e aulas ao vivo para consolidar o que vale na entrega real.",
-    },
-    a2: {
-      period: "Previsto — a partir de jan 2025",
-      title: "Inglês do básico ao avançado",
-      institution: "Udemy — Paulo Andrade",
-      description:
-        "Curso estruturado para fortalecer fala, audição, leitura e escrita, com mais segurança em contextos acadêmicos e profissionais. Objetivo: maior fluência e abertura para oportunidades internacionais e crescimento contínuo.",
+        "Formação na stack JavaScript, do básico ao avançado, com mais de 150 horas de Node.js, React e React Native. Foi onde aprofundei arquitetura de API, testes e infraestrutura, coisas que hoje uso todo dia nos projetos da Molla. Construí o Fincheck, app de finanças pessoais com API em NestJS e Prisma, front em React com Vite, autenticação JWT e validação com Zod nas duas pontas, e estudei Docker, bancos SQL e NoSQL, WebSockets, testes automatizados e AWS (Lambda e serviços serverless). A arquitetura em camadas e a injeção de dependência que vi aqui foram para os templates em NestJS que mantenho hoje.",
     },
     a3: {
       period: "Nov 2023 — dez 2023",
-      title: "NestJS fundamentos",
-      institution: "HCode — Udemy",
-      description:
-        "Imersão em NestJS para APIs de backend: organização do projeto, módulos, injeção de dependências e padrões próximos de produção. Inclui testes unitários, de integração e E2E, além de recursos como envio de e-mail e blocos comuns de API.",
+      title: "NestJS: fundamentos",
+      institution: "HCode (Udemy)",
+      description: "Curso de NestJS para APIs de backend: organização do projeto em módulos, injeção de dependência, envio de e-mail e testes unitários, de integração e E2E.",
     },
     a4: {
-      period: "Jun 2023",
-      title: "Desenvolvimento web full stack",
-      institution: "One Bit Code",
+      period: "Jun 2023 — jun 2024",
+      title: "Desenvolvimento Full Stack",
+      institution: "OneBitCode",
       description:
-        "Trilha intensiva com front end moderno—Next.js, React, JavaScript, TypeScript, HTML5, CSS, SASS, Tailwind CSS e Bootstrap—e back end com Node.js, Express e MongoDB. Git e GitHub para versionamento e trabalho em equipe. Projetos do simples ao sistema completo, cobrindo o ecossistema web.",
+        "Minha primeira formação full stack, com mais de 100 horas de conteúdo e prática. Foi onde saí do HTML e CSS e cheguei a sistemas completos, com front e back escritos por mim: HTML, CSS moderno, Sass, Bootstrap, JavaScript, React e TypeScript no front; Node.js com Express, MongoDB e SQL com Sequelize nas APIs REST; Git e GitHub em todos os projetos. O projeto final foi uma plataforma de cursos online inspirada na Netflix, e ao longo da formação também concluí os módulos de Next.js, Docker, testes com Jest e Styled Components.",
     },
     a5: {
       period: "Out 2021 — mai 2023",
-      title: "Técnico em informática",
+      title: "Técnico em Informática",
       institution: "Senac Minas",
-      description:
-        "Curso técnico com Python, automações, Power BI, Office e redes. Desenvolvimento de comunicação, trabalho em equipe e postura de aprendizado contínuo—úteis para se adaptar às demandas do mercado.",
+      description: "Curso técnico com Python, automações, Power BI, pacote Office e redes.",
     },
   },
   certificates: {
     c1: {
-      title: "Certificado desenvolvedor full stack",
-      issuer: "One Bit Code",
+      title: "Desenvolvedor Full Stack JavaScript",
+      issuer: "OneBitCode",
       issued: "Jun 2023",
       format: "PDF",
     },
     c2: {
-      title: "Testes automatizados",
-      issuer: "Formação profissional",
+      title: "Testes Automatizados",
+      issuer: "OneBitCode",
       issued: "2023",
       format: "PDF",
     },
     c3: {
       title: "JavaScript do básico ao avançado",
-      issuer: "Formação profissional",
+      issuer: "OneBitCode",
       issued: "2023",
       format: "PDF",
     },
