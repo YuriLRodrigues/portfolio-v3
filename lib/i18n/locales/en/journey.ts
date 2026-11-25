@@ -60,56 +60,47 @@ export const journey = {
   academic: {
     a1: {
       period: "Jan 2025 — present",
-      title: "Full stack & mobile web development",
+      title: "Full Stack & Mobile Development",
       institution: "JStack",
       description:
-        "End-to-end program on the most widely used JavaScript stack: Node.js, React, and React Native. 150+ hours from fundamentals to advanced topics—Docker, SQL and NoSQL databases, WebSockets, testing, scalable architecture, and AWS (Lambda and related services). Practical projects, quizzes, and live sessions to solidify skills for real-world delivery.",
-    },
-    a2: {
-      period: "Planned — from Jan 2025",
-      title: "English: beginner to advanced",
-      institution: "Udemy — Paulo Andrade",
-      description:
-        "Structured course to build strong speaking, listening, reading, and writing skills, with confidence in academic and professional contexts. Goal: higher fluency and clearer access to international opportunities and growth.",
+        "A JavaScript-stack program from the basics to advanced topics, with more than 150 hours of Node.js, React, and React Native. It's where I went deeper into API architecture, testing, and infrastructure, which I now use every day on Molla's projects. I built Fincheck, a personal finance app with a NestJS and Prisma API, a React front end on Vite, JWT authentication, and Zod validation on both ends, and studied Docker, SQL and NoSQL databases, WebSockets, automated testing, and AWS (Lambda and serverless services). The layered architecture and dependency injection I learned here went into the NestJS templates I maintain today.",
     },
     a3: {
       period: "Nov 2023 — Dec 2023",
       title: "NestJS fundamentals",
-      institution: "HCode — Udemy",
-      description:
-        "Focused backend track on NestJS: project structure, modules and providers, and production-oriented patterns. Covers unit, integration, and E2E testing plus core features such as email and common API building blocks.",
+      institution: "HCode (Udemy)",
+      description: "A NestJS course for backend APIs: structuring the project in modules, dependency injection, sending email, and unit, integration, and E2E tests.",
     },
     a4: {
-      period: "Jun 2023",
-      title: "Full stack web development",
-      institution: "One Bit Code",
+      period: "Jun 2023 — Jun 2024",
+      title: "Full Stack Development",
+      institution: "OneBitCode",
       description:
-        "Intensive full-stack path with modern front end—Next.js, React, JavaScript, TypeScript, HTML5, CSS, SASS, Tailwind CSS, and Bootstrap—and back end with Node.js, Express, and MongoDB. Git and GitHub for collaboration. Projects from small apps to complete systems across the web stack.",
+        "My first full stack program, with more than 100 hours of content and practice. It's where I went from HTML and CSS to complete systems, with the front and back end written by me: HTML, modern CSS, Sass, Bootstrap, JavaScript, React, and TypeScript on the front end; Node.js with Express, MongoDB, and SQL with Sequelize for REST APIs; Git and GitHub in every project. The final project was an online course platform inspired by Netflix, and along the way I also completed the Next.js, Docker, Jest testing, and Styled Components modules.",
     },
     a5: {
       period: "Oct 2021 — May 2023",
-      title: "Technical diploma in IT",
+      title: "IT Technical Diploma",
       institution: "Senac Minas",
-      description:
-        "Hands-on technical program spanning Python, automation, Power BI, Office, and networking. Strengthened teamwork, communication, and a learning mindset—useful for adapting to fast-changing market demands.",
+      description: "Technical course covering Python, automation, Power BI, Microsoft Office, and networking.",
     },
   },
   certificates: {
     c1: {
-      title: "Full stack developer certificate",
-      issuer: "One Bit Code",
+      title: "Full Stack JavaScript Developer",
+      issuer: "OneBitCode",
       issued: "Jun 2023",
       format: "PDF",
     },
     c2: {
-      title: "Automated testing",
-      issuer: "Professional training",
+      title: "Automated Testing",
+      issuer: "OneBitCode",
       issued: "2023",
       format: "PDF",
     },
     c3: {
-      title: "JavaScript from basics to advanced",
-      issuer: "Professional training",
+      title: "JavaScript from Basics to Advanced",
+      issuer: "OneBitCode",
       issued: "2023",
       format: "PDF",
     },

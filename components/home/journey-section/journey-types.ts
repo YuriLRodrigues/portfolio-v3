@@ -17,6 +17,7 @@ export type AcademicEntry = {
   title: string;
   institution: string;
   description: string;
+  stack?: string[];
 };
 
 export type CertificateEntry = {

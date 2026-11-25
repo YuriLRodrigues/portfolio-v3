@@ -79,41 +79,23 @@ const PROFESSIONAL_BASE = [
   { id: "p1" as const, stack: MOLLA_STACK_RETURN },
   {
     id: "p2" as const,
-    stack: [
-      "TypeScript",
-      "Next.js",
-      "React",
-      "Node.js",
-      "PostgreSQL",
-      "React Query",
-      "Tailwind CSS",
-      "i18n",
-    ] as const,
+    stack: ["TypeScript", "Next.js", "React", "NestJS", "Node.js", "PostgreSQL", "Amazon S3", "React Query", "Tailwind CSS", "i18n"] as const,
   },
   { id: "p3" as const, stack: MOLLA_STACK_PREVIOUS },
   {
     id: "p4" as const,
-    stack: [
-      "TypeScript",
-      "Next.js",
-      "React",
-      "React Query",
-      "Tailwind CSS",
-      "Storybook",
-      "Zustand",
-      "React Testing Library",
-      "Jest",
-      "Cypress",
-    ] as const,
+    stack: ["TypeScript", "Next.js", "React", "React Query", "Tailwind CSS", "Storybook", "Zustand", "React Testing Library", "Jest", "Cypress"] as const,
   },
 ] as const;
 
 const ACADEMIC_BASE = [
-  { id: "a1" as const },
-  { id: "a2" as const },
-  { id: "a3" as const },
-  { id: "a4" as const },
-  { id: "a5" as const },
+  { id: "a1" as const, stack: ["Node.js", "NestJS", "React", "React Native", "Prisma", "Zod", "Docker", "AWS"] as const },
+  { id: "a3" as const, stack: ["NestJS", "TypeScript"] as const },
+  {
+    id: "a4" as const,
+    stack: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Sequelize", "Sass", "Git"] as const,
+  },
+  { id: "a5" as const, stack: ["Python", "Power BI"] as const },
 ] as const;
 
 const CERTIFICATES_BASE = [

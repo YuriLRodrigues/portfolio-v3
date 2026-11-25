@@ -19,5 +19,6 @@ export function academicToEntries(items: AcademicEntry[]): Entry[] {
     title: item.title,
     subtitle: item.institution,
     description: item.description,
+    tags: item.stack,
   }));
 }
