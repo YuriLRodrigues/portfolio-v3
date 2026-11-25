@@ -17,7 +17,7 @@ export const journey = {
       locationPlace: "São Paulo, SP",
       locationMode: "Remote",
       description:
-        "With the promotion I took on more than 10 B2B incentive programs in production and the template every new project at the agency starts from. I turned one of Azul's campaign portals into Hub Azul, the single login for all of the airline's campaigns, and shipped Agente Tá On, a portal for about 21,000 travel agents with rankings recalculated every 30 minutes. I moved the template into a Turborepo monorepo with a UI package shared by the API, portal and dashboard: with it and the documentation I worked on directly, a new project launches in under 10 days. I also built Molla's new website, the agency's main page and the showcase of how it presents itself to brands: it replaced the old ASP.NET site, is multilingual (Portuguese, English and Spanish) and has a 3D logo, GSAP animations and a DNA section where Trade, Marketing and Sales braid into a helix. Finally, I generated technical documentation for seven projects straight from the code.",
+        "With the promotion I took on more than 10 B2B incentive programs in production and the template every new project at the agency starts from. I turned one of Azul's campaign portals into Hub Azul, the single login for all of the airline's campaigns, shipped Agente Tá On, a portal for about 21,000 travel agents with rankings recalculated every 30 minutes, and maintain the Farmax and Combrasil portals. I moved the template into a Turborepo monorepo, with the API, portal and dashboard in one repository, and built the design system the portal and dashboard share, with more than 80 components: with the template and the documentation I worked on directly, a new project launches in under 10 days. I also built Molla's new website, the agency's main page and the showcase of how it presents itself to brands: it replaced the old ASP.NET site, is multilingual (Portuguese, English and Spanish) and has a 3D logo, GSAP animations and a DNA section where Trade, Marketing and Sales braid into a helix. Finally, I generated technical documentation for seven projects straight from the code.",
     },
     p1: {
       period: "Mar 2026 — Jul 2026",
@@ -45,7 +45,7 @@ export const journey = {
       locationPlace: "São Paulo, SP",
       locationMode: "Remote",
       description:
-        "PJ role at a strategy, creative, and technology agency serving large brands (Kellanova/Kellogg’s, AB Mauri, Dux Experts, MZB, LuxRaybn). Built and maintained B2B incentive programs end to end: photo-based merchandising submissions with admin approval, dynamic scoring with daily performance calculation, gamified rankings, and reward redemption. Panels split by role and permission gave the operations team autonomy and ended manual database edits. Unit, integration, and E2E tests over the approval and scoring flows, plus Amazon S3 and SendGrid integration, code review, and mentoring junior developers.",
+        "PJ role at a strategy, creative, and technology agency serving large brands (Kellanova/Kellogg’s, AB Mauri, Dux Experts, MZB, LuxRaybn). Built and maintained B2B incentive programs end to end: photo-based merchandising submissions with admin approval, dynamic scoring with daily performance calculation, gamified rankings, and reward redemption. Panels split by role and permission gave the operations team autonomy and ended manual database edits. Unit, integration, and E2E tests over the approval and scoring flows, Amazon S3 and SendGrid integration, and code review for the team.",
     },
     p4: {
       period: "Jan 2024 — Jun 2024",
@@ -111,4 +111,5 @@ export const journey = {
   certIssued: "Issued {{date}}",
   certDownload: "Download PDF",
   certOpen: "Open credential",
+  orgSite: "Open the {{org}} website in a new tab",
 } as const;

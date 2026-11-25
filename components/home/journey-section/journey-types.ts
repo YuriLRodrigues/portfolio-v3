@@ -10,6 +10,8 @@ export type ProfessionalEntry = {
   locationMode: string;
   description: string;
   stack?: string[];
+  /** Company website, linked from the org name. */
+  site?: string;
 };
 
 export type AcademicEntry = {
@@ -36,6 +38,8 @@ export type Entry = {
   period: string;
   title: string;
   subtitle: string;
+  /** When set, the subtitle links to this URL (company website, new tab). */
+  subtitleHref?: string;
   /** Shown after subtitle with · (e.g. employment type). */
   subtitleSecondary?: string;
   /** @deprecated Prefer metaPlace + metaMode for work entries. */

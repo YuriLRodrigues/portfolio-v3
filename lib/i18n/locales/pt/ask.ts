@@ -57,7 +57,7 @@ export const ask = {
       label: "Que projetos posso ver?",
       keywords: "projeto,projetos,portfolio,portfólio,repositorio,repositorios,github,codigo,código,open source",
       answer:
-        "São dez projetos abertos no GitHub: autorais, estudos e testes técnicos.\nOs mais recentes são os templates open source de NestJS e Next.js, feitos para trabalhar em par; os maiores, Workout Tracker e AutoCars.\nTodo card leva direto para o repositório.",
+        "São 11 projetos no portfólio, entre autorais, estudos e testes técnicos, quase todos com código aberto no GitHub.\nOs mais recentes são os templates open source de NestJS e Next.js, feitos para trabalhar em par, e o NITRO HUB, app para Windows com código fechado; os maiores, Workout Tracker e AutoCars.\nTodo card leva direto para o repositório.",
     },
     contact: {
       label: "Como falo com você?",

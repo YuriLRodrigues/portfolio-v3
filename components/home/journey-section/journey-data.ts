@@ -74,16 +74,25 @@ const MOLLA_STACK_MID = [
   "Claude Code",
 ] as const;
 
+/** Sites das empresas, também linkados no currículo. */
+const SITE = {
+  molla: "https://www.agenciamolla.com.br/",
+  pokernetic: "https://pokernetic.com/",
+  dinheirow: "https://www.dinheirow.com.br/",
+} as const;
+
 const PROFESSIONAL_BASE = [
-  { id: "p0" as const, stack: MOLLA_STACK_MID },
-  { id: "p1" as const, stack: MOLLA_STACK_RETURN },
+  { id: "p0" as const, site: SITE.molla, stack: MOLLA_STACK_MID },
+  { id: "p1" as const, site: SITE.molla, stack: MOLLA_STACK_RETURN },
   {
     id: "p2" as const,
+    site: SITE.pokernetic,
     stack: ["TypeScript", "Next.js", "React", "NestJS", "Node.js", "PostgreSQL", "Amazon S3", "React Query", "Tailwind CSS", "i18n"] as const,
   },
-  { id: "p3" as const, stack: MOLLA_STACK_PREVIOUS },
+  { id: "p3" as const, site: SITE.molla, stack: MOLLA_STACK_PREVIOUS },
   {
     id: "p4" as const,
+    site: SITE.dinheirow,
     stack: ["TypeScript", "Next.js", "React", "React Query", "Tailwind CSS", "Storybook", "Zustand", "React Testing Library", "Jest", "Cypress"] as const,
   },
 ] as const;

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { motion } from "motion/react";
-
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 
 import { easeOut } from "./journey-motion";
 import type { Entry, TimelineKind } from "./journey-types";
@@ -17,7 +17,7 @@ function DotSep() {
   return <span className="text-primary"> · </span>;
 }
 
-export function ExperienceCard({ period, title, subtitle, subtitleSecondary, meta, metaPlace, metaMode, description, tags, kind }: Entry & { kind: TimelineKind }) {
+export function ExperienceCard({ period, title, subtitle, subtitleHref, subtitleSecondary, meta, metaPlace, metaMode, description, tags, kind }: Entry & { kind: TimelineKind }) {
   const { t } = useTranslation("journey");
   const reduceMotion = usePrefersReducedMotion();
   const [stackExpanded, setStackExpanded] = useState(false);
@@ -48,7 +48,7 @@ export function ExperienceCard({ period, title, subtitle, subtitleSecondary, met
     >
       <div
         className={cn(
-          "pointer-events-none absolute -right-12 -top-12 size-44 scale-100 rounded-full blur-3xl transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-110 group-hover/card:opacity-100",
+          "pointer-events-none absolute -top-12 -right-12 size-44 scale-100 rounded-full blur-3xl transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-110 group-hover/card:opacity-100",
           "opacity-80",
           kind === "work" ? "bg-primary/[0.14]" : "bg-primary/[0.09]",
         )}
@@ -58,12 +58,25 @@ export function ExperienceCard({ period, title, subtitle, subtitleSecondary, met
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent transition-[opacity,filter] duration-500 group-hover/card:via-primary/70 group-hover/card:opacity-100"
         aria-hidden
       />
-      <time className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary transition-[color,filter] duration-500 group-hover/card:text-primary group-hover/card:drop-shadow-[0_0_12px_color-mix(in_oklch,var(--color-primary)_35%,transparent)]">
+      <time className="font-mono text-[10px] font-bold tracking-[0.2em] text-primary uppercase transition-[color,filter] duration-500 group-hover/card:text-primary group-hover/card:drop-shadow-[0_0_12px_color-mix(in_oklch,var(--color-primary)_35%,transparent)]">
         {period}
       </time>
       <h3 className="mt-2 text-lg font-bold tracking-tight text-foreground sm:text-xl">{title}</h3>
       <p className="mt-1 text-sm font-medium text-muted-foreground">
-        {subtitle}
+        {subtitleHref ? (
+          <a
+            href={subtitleHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={t("orgSite", { org: subtitle })}
+            className="group/org inline-flex items-center gap-0.5 rounded-sm text-foreground/85 underline decoration-primary/40 decoration-1 underline-offset-4 transition-colors duration-200 hover:text-primary hover:decoration-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {subtitle}
+            <ArrowUpRight className="size-3.5 shrink-0 transition-transform duration-200 group-hover/org:translate-x-0.5 group-hover/org:-translate-y-0.5" aria-hidden />
+          </a>
+        ) : (
+          subtitle
+        )}
         {subtitleSecondary ? (
           <>
             <DotSep />
@@ -90,7 +103,7 @@ export function ExperienceCard({ period, title, subtitle, subtitleSecondary, met
           <ul className="flex flex-wrap gap-2" aria-label={t("stackLabel")}>
             {visibleTags.map((tag) => (
               <li key={tag}>
-                <span className="inline-flex rounded-md border border-primary/25 bg-primary/[0.08] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-primary transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out group-hover/card:border-primary/35 group-hover/card:bg-primary/[0.1] hover:scale-105 hover:border-primary/50 hover:shadow-[0_6px_20px_-8px_color-mix(in_oklch,var(--color-primary)_40%,transparent)]">
+                <span className="inline-flex rounded-md border border-primary/25 bg-primary/[0.08] px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-primary uppercase transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out group-hover/card:border-primary/35 group-hover/card:bg-primary/[0.1] hover:scale-105 hover:border-primary/50 hover:shadow-[0_6px_20px_-8px_color-mix(in_oklch,var(--color-primary)_40%,transparent)]">
                   {tag}
                 </span>
               </li>
@@ -99,7 +112,7 @@ export function ExperienceCard({ period, title, subtitle, subtitleSecondary, met
               <li className="contents">
                 <button
                   type="button"
-                  className="inline-flex rounded-md border border-dashed border-primary/40 bg-primary/[0.04] px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-primary transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary/[0.1] hover:shadow-[0_8px_24px_-12px_color-mix(in_oklch,var(--color-primary)_35%,transparent)] active:translate-y-0"
+                  className="inline-flex rounded-md border border-dashed border-primary/40 bg-primary/[0.04] px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-primary uppercase transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary/[0.1] hover:shadow-[0_8px_24px_-12px_color-mix(in_oklch,var(--color-primary)_35%,transparent)] active:translate-y-0"
                   aria-expanded={false}
                   onClick={() => setStackExpanded(true)}
                 >
@@ -109,12 +122,7 @@ export function ExperienceCard({ period, title, subtitle, subtitleSecondary, met
             ) : null}
           </ul>
           {hasOverflow && stackExpanded ? (
-            <button
-              type="button"
-              className="mt-2 text-xs font-medium text-primary underline-offset-4 hover:underline"
-              aria-expanded
-              onClick={() => setStackExpanded(false)}
-            >
+            <button type="button" className="mt-2 text-xs font-medium text-primary underline-offset-4 hover:underline" aria-expanded onClick={() => setStackExpanded(false)}>
               {t("stackShowLess")}
             </button>
           ) : null}
