@@ -175,22 +175,14 @@ function PhotoBlock({ photoAlt }: { photoAlt: string }) {
 
   return (
     <div className="relative mx-auto size-36 shrink-0 overflow-hidden rounded-2xl border border-primary/30 bg-muted/50 shadow-[0_12px_40px_-12px_color-mix(in_oklch,var(--color-primary)_35%,_transparent)] ring-2 ring-primary/15 sm:size-40 dark:bg-muted/20">
-      {/* A foto é um recorte sem fundo; o fundo abaixo vem do tema, em tom baixo. */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `radial-gradient(125% 95% at 50% 105%, color-mix(in oklch, var(--primary) 26%, transparent), transparent 66%)`,
-        }}
-        aria-hidden
-      />
+      {/* A mesma foto do LinkedIn, quadrada e com o fundo dela. */}
       <Image
         src={PERSONAL_INTRO.photoSrc}
         alt={photoAlt}
-        width={701}
-        height={992}
+        width={800}
+        height={800}
         draggable={false}
-        // Desce e amplia um pouco: a borda inferior do recorte sai do quadro.
-        className="relative size-full translate-y-[7%] scale-[1.06] object-contain object-bottom select-none"
+        className="size-full object-cover select-none"
         sizes="160px"
         onError={() => setFailed(true)}
       />

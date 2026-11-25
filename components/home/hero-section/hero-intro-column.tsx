@@ -10,6 +10,7 @@ import { GradientText } from "@/components/ui/gradient-text";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 
+import { withBasePath } from "@/lib/base-path";
 import { cn } from "@/lib/utils";
 import { Mail, MoveRight, UserCircle2 } from "lucide-react";
 import { motion } from "motion/react";
@@ -117,13 +118,15 @@ export function HeroIntroColumn() {
         <nav className="col-span-2 flex items-center justify-center gap-1.5 sm:col-span-1 sm:justify-start sm:pl-1" aria-label={t("socialLabel")}>
           {(
             [
-              { href: "https://github.com/YuriLRodrigues", label: t("socialGithub"), Icon: GitHubIcon, preview: true },
-              { href: "https://www.linkedin.com/in/yuri-leite-rodrigues", label: t("socialLinkedIn"), Icon: LinkedInIcon, preview: true },
-              { href: "mailto:rodriguesyuri769@gmail.com", label: t("socialEmail"), Icon: Mail, preview: false },
+              // Prévias fixas (public/previews, geradas por PESSOAL/LINKEDIN/imagens/previas.py): a captura ao vivo
+              // guardava uma versão antiga do GitHub e, no LinkedIn, só mostrava a tela de cadastro.
+              { href: "https://github.com/YuriLRodrigues", label: t("socialGithub"), Icon: GitHubIcon, preview: withBasePath("/previews/github.png") },
+              { href: "https://www.linkedin.com/in/yuri-leite-rodrigues", label: t("socialLinkedIn"), Icon: LinkedInIcon, preview: withBasePath("/previews/linkedin.png") },
+              { href: "mailto:rodriguesyuri769@gmail.com", label: t("socialEmail"), Icon: Mail, preview: null },
             ] as const
           ).map(({ href, label, Icon, preview }) =>
             preview ? (
-              <LinkPreview key={label} url={href} className={socialIconClassName} target="_blank" rel="noopener noreferrer" aria-label={label}>
+              <LinkPreview key={label} url={href} isStatic imageSrc={preview} className={socialIconClassName} target="_blank" rel="noopener noreferrer" aria-label={label}>
                 <Icon className="size-4" aria-hidden />
               </LinkPreview>
             ) : (
